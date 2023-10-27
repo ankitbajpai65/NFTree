@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.mission{
+    /* border:2px solid green; */
+    background: var(--green-10);
+    padding-bottom:2rem;
+}
+.solutionImgContainer {
+    /* border:2px solid red; */
+    height: 25rem;
+}
+
+.solutionImg {
+    height: 100%;
+    width:unset;
+    margin:auto;
+}
+
+#mission {
+    height: 4rem;
+}
+
+/* MEDIA QUERY */
+
+@media only screen and (max-width : 600px) {
+    .solutionHead {
+        font-size: 2.3rem !important;
+        margin: 0 !important;
+    }
+
+    .solution {
+        font-size: 2rem;
+    }
+
+    #mission {
+        height: 2rem;
+    }
+
+    .solutionInfo {
+        margin-bottom: 2rem !important;
+    }
+}
+
+@media only screen and (max-width : 600px) {
+    .solutionImgContainer {
+        height: 20rem;
+        margin: 0 2rem;
+    }
+
+    .solutionHead {
+        margin-bottom: 4rem !important;
+        margin-top: 1rem !important;
+    }
+
+    .solution {
+        font-size: 1.5rem !important;
+    }
+}
+
+@media only screen and (min-width : 600px) and (max-width : 768px) {
+    .solutionImgContainer {
+        height: 22rem;
+        margin-left: 2rem;
+    }
+
+    .solutionHead {
+        font-size: 2.4rem !important;
+        margin-top: 1rem !important;
+    }
+
+    .solution {
+        font-size: 1.8rem !important;
+    }
+
+    .solutionInfo {
+        margin-bottom: 2rem !important;
+        font-size: 0.8rem !important;
+    }
+}
+
+@media only screen and (min-width : 768px) and (max-width : 900px) {
+    .solutionImgContainer {
+        margin-left: 2rem;
+    }
+
+    .solutionHead {
+        font-size: 2.4rem !important;
+        margin-top: 1rem !important;
+    }
+
+    .solution {
+        font-size: 1.8rem !important;
+    }
+
+    .solutionInfo {
+        margin-bottom: 2rem !important;
+    }
+}
+
+@media only screen and (min-width : 900px) and (max-width : 1200px) {
+    .solutionHead {
+        font-size: 2.3rem !important;
+        margin-top: 1rem !important;
+    }
+
+    .solutionInfo {
+        margin-bottom: 2rem !important;
+    }
+
+    .solution {
+        font-size: 2rem !important;
+    }
+}

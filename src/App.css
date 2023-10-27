@@ -1,0 +1,16 @@
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+:root {
+  --green-10: #EBF3E8;
+  --green-20: #D2E3C8;
+  --green-30: #86A789;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
