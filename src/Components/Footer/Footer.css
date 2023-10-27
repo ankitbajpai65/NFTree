@@ -10,12 +10,25 @@
     transition: ease 0.4s all;
 }
 
+#footerImg{
+    height:4rem;
+    margin-top: 0.5rem;
+}
+
 .footerIcons {
     border-radius: 50%;
     color: var(--primary);
     margin: 0 0 0 2.5rem;
     transform: scale(1.4);
     cursor: pointer;
+}
+
+.footerText{
+    color:white;
+    font-size: 14px;
+    text-align: center;
+    padding-bottom: 1rem;
+    background: var(--green-30);
 }
 
 @media only screen and (max-width : 600px) {

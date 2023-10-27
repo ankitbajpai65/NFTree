@@ -1,23 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { Routes, Route,useNavigate } from "react-router-dom";
 import Home from "../Home/Home";
 import Kyc from "../Kyc/Kyc";
-// import Kyc from
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import MenuIcon from "@mui/icons-material/Menu";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
+import {
+	AppBar,
+	Box,
+	Grid,
+	CssBaseline,
+	Divider,
+	Drawer,
+	IconButton,
+	List,
+	ListItem,
+	Toolbar,
+	Typography,
+	Button
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import logo1 from "/logo_colored.png";
 import "../Navbar/Navbar.css";
-import Button from "@mui/material/Button";
 
 const drawerWidth = 240;
 
@@ -28,7 +29,6 @@ export default function Navbar() {
 	const [mobileOpen, setMobileOpen] = React.useState(false);
 	const [scroll, setScroll] = useState(false);
 	const [isLogin, setIsLogin] = useState(false);
-	// const [isMouseEnter, setIsMouseEnter] = useState(false);
 
 	const scrolling = () => {
 		window.scrollY >= 2 ? setScroll(true) : setScroll(false);
@@ -40,18 +40,7 @@ export default function Navbar() {
 		if (isMouseEnter) setIsMouseEnter(false);
 	};
 
-	const handleMouseEnter = () => {
-		// console.log(`mouse enters`);
-		setIsMouseEnter(true);
-	};
-	const handleMouseLeave = () => {
-		// console.log(`mouse leaves`);
-		setIsMouseEnter(false);
-		setMobileOpen(false);
-	};
-
 	const handleSidebarClick = (event) => {
-		// console.log(event.target);
 		const clickedElement = event.target;
 		if (!clickedElement.classList.contains("solutionLink")) {
 			setIsMouseEnter(false);
@@ -113,7 +102,6 @@ export default function Navbar() {
 						// border: '2px solid red',
 						zIndex: 10,
 						boxShadow: "none",
-						// background: scroll ? "#343A4B" : "transparent",
 						background: "#EBF3E8",
 						position: "fixed",
 						top: 0,
@@ -166,7 +154,6 @@ export default function Navbar() {
 													<a
 														href={`#${item.toLowerCase()}`}
 														className="navbarLinks"
-													// style={{ color: "white" }}
 													>
 														{item}
 													</a>
@@ -216,7 +203,6 @@ export default function Navbar() {
 							</Grid>
 
 						</Grid>
-						{/* <LanguageSelect lang={lang} setLang={setLang} /> */}
 					</Toolbar>
 				</AppBar>
 				<Box component="nav">

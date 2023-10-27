@@ -1,10 +1,7 @@
 import React from "react";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-// import { useTranslation } from "react-i18next";
+import {List,ListItem} from "@mui/material";
 
 const Dropdown = ({ handleMouseLeave, setMobileOpen }) => {
-	// const { t } = useTranslation();
 	return (
 		<>
 			<List
@@ -29,7 +26,6 @@ const Dropdown = ({ handleMouseLeave, setMobileOpen }) => {
 								setMobileOpen(false);
 							}}
 							className="dropdownLinks">
-							{/* {t("navbar.solutions.bitsaudi")} */}
 							Bitsaudi
 						</a>
 
@@ -40,7 +36,6 @@ const Dropdown = ({ handleMouseLeave, setMobileOpen }) => {
 								setMobileOpen(false);
 							}}
 							className="dropdownLinks">
-							{/* {t("navbar.solutions.bitwallet")} */}
 							Bitwallet
 						</a>
 						<a
@@ -50,7 +45,6 @@ const Dropdown = ({ handleMouseLeave, setMobileOpen }) => {
 								setMobileOpen(false);
 							}}
 							className="dropdownLinks">
-							{/* {t("navbar.solutions.gaming")} */}
 							Gaming
 						</a>
 
@@ -62,7 +56,6 @@ const Dropdown = ({ handleMouseLeave, setMobileOpen }) => {
 							}}
 							className="dropdownLinks">
 							Services
-							{/* {t("navbar.solutions.itservices")} */}
 						</a>
 					</div>
 				</ListItem>
