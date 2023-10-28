@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
+import React from 'react';
+import {
+	Typography,
+    Card,
+    CardContent,
+    CardMedia,
+} from '@mui/material';
 import { styled } from '@mui/system';
 import { css } from '@emotion/react';
-// import AOS from 'aos';
-// import 'aos/dist/aos.css';
 import './About.css';
 
 const CardMediaWrapper = styled(CardMedia)(({ theme }) => css`
@@ -24,7 +24,7 @@ export default function AboutCard(props) {
             boxShadow: '0px 4px 12px rgba(12, 68, 204, 0.1)',
             borderRadius: '6px',
             margin: 'auto'
-        }} className="serviceCard" data-aos="zoom-in">
+        }} className="aboutCard">
             {/* <CardMediaWrapper
                 component="img"
                 height="40"
@@ -39,12 +39,7 @@ export default function AboutCard(props) {
                 }}
             /> */}
             <CardContent className='cardContent'>
-                {/* <Typography gutterBottom variant="h5" component="div" sx={{ fontSize: '22px', fontWeight: 'medium' }} className="serviceCardTitle">
-                    {props.title}
-                </Typography> */}
-                <Typography variant="body2" color="text.secondary">
-                    {props.desc}
-                </Typography>
+                <Typography variant="body2" color="text.secondary" dangerouslySetInnerHTML={{ __html: props.desc }} />
             </CardContent>
         </Card >
     );

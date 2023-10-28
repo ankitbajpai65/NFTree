@@ -1,10 +1,8 @@
 import React from "react";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-// import { useTranslation } from "react-i18next";
+import { List, ListItem } from "@mui/material";
+import { Link } from 'react-router-dom';
 
 const Dropdown = ({ handleMouseLeave, setMobileOpen }) => {
-	// const { t } = useTranslation();
 	return (
 		<>
 			<List
@@ -14,56 +12,34 @@ const Dropdown = ({ handleMouseLeave, setMobileOpen }) => {
 					padding: 0,
 					backgroundColor: "white",
 					position: "absolute",
-					top: { xs: "1.5rem", sm: "4rem" },
-					width: { xs: "10rem", sm: "auto" },
+					top: { xs: "2rem", sm: "3rem" },
+					left: { xs: '-65px', sm: 'unset' },
+					width: { xs: "12rem", sm: "auto" },
 					zIndex: "100",
 					boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
 					borderRadius: "4px",
 				}}>
 				<ListItem disablePadding>
 					<div style={{ margin: "auto" }}>
-						<a
-							href="#bitsaudi"
+						<Link
+							to="/completed_projects"
 							onClick={() => {
 								handleMouseLeave();
 								setMobileOpen(false);
 							}}
 							className="dropdownLinks">
-							{/* {t("navbar.solutions.bitsaudi")} */}
-							Bitsaudi
-						</a>
+							Completed Projects
+						</Link>
 
-						<a
-							href="#bitwallet"
+						<Link
+							to="/ongoing_projects"
 							onClick={() => {
 								handleMouseLeave();
 								setMobileOpen(false);
 							}}
 							className="dropdownLinks">
-							{/* {t("navbar.solutions.bitwallet")} */}
-							Bitwallet
-						</a>
-						<a
-							href="#gaming"
-							onClick={() => {
-								handleMouseLeave();
-								setMobileOpen(false);
-							}}
-							className="dropdownLinks">
-							{/* {t("navbar.solutions.gaming")} */}
-							Gaming
-						</a>
-
-						<a
-							href="#itservices"
-							onClick={() => {
-								handleMouseLeave();
-								setMobileOpen(false);
-							}}
-							className="dropdownLinks">
-							Services
-							{/* {t("navbar.solutions.itservices")} */}
-						</a>
+							Ongoing Projects
+						</Link>
 					</div>
 				</ListItem>
 			</List>

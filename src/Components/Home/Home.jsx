@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import About from "../About/About";
 import Mission from "../Mission/Mission";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import home from "./assets/home.png";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import {
+	Box,
+	Grid,
+	Typography,
+	Button
+} from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { Link } from "react-router-dom";
+import home from "./assets/home.png";
 import "./Home.css";
 
 const Home = () => {
@@ -64,36 +65,24 @@ const Home = () => {
 						}}
 						className="homeTextBox">
 						<Typography
-							variant="h1"
+							variant="h2"
 							gutterBottom
 							className="homeHead"
-							sx={{
-								fontWeight: "bold",
-								// color: "black",
-							}}>
+							sx={{ fontWeight: "bold" }}>
 							NFTree
 						</Typography>
+
 						<Typography
 							variant="body1"
 							className="homeDesc"
 							gutterBottom
 							sx={{
 								textAlign: "justify",
-								// color: "white",
 								marginBottom: '2rem'
 							}}>
-							{/* {t("mainSubHeading")} */}
 							Welcome to NFTree, the platform that provides a new way to save the environment and reward investors at the same time. With our NFTree, you can exercise your social responsibility without compromising your investment goals, and we can continue planting more trees around the globe.
 						</Typography>
 
-						{/* {lang === "en" ? */}
-						{/* <Link
-								style={{ marginTop: '1rem' }}
-								className="downloadBtn"
-								to="https://drive.google.com/file/d/1j0sPNmKCAPwZ5olYa4zZnZFjqk5-TI6D/view?usp=sharing"
-								target="_blank">
-								HomeButton
-							</Link> */}
 						<Button variant="contained" endIcon={<ArrowForwardIcon />}>
 							Get Started
 						</Button>
@@ -105,8 +94,6 @@ const Home = () => {
 					sm={5}
 					sx={{
 						height: "80%",
-						// border: '2px solid yellow',
-						// marginTop: '2rem',
 						backgroundImage: `url(${home})`,
 						backgroundPosition: "center",
 						backgroundSize: "contain",
