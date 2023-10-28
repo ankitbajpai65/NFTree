@@ -9,7 +9,7 @@ const About = () => {
         <>
             <div id="about"></div>
             <div className="aboutDiv">
-                <h1>What is NFTree</h1>
+                <h1>What is NFTree?</h1>
                 <p className="aboutDesc">
                     NFTree is a platform for investing in tree plantations through NFTokens. These tokens represent ownership in a tree. As the tree grows, so does the value of the token. This means that NFTree provides both an economic and environmental benefit.
                 </p>

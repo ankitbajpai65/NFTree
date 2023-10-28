@@ -1,7 +1,8 @@
-import React, { useState} from "react";
-import { Routes, Route,useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Home from "../Home/Home";
 import Kyc from "../Kyc/Kyc";
+import Dropdown from "./Dropdown";
 import {
 	AppBar,
 	Box,
@@ -21,13 +22,13 @@ import logo1 from "/logo_colored.png";
 import "../Navbar/Navbar.css";
 
 const drawerWidth = 240;
+const navItems = ["Home", "About", "Projects", "Mission"];
 
 export default function Navbar() {
 	const navigate = useNavigate();
-	const navItems = ["Home", "About", "Contact", "Mission"];
-
 	const [mobileOpen, setMobileOpen] = React.useState(false);
 	const [scroll, setScroll] = useState(false);
+	const [isMouseEnter, setIsMouseEnter] = useState(false);
 	const [isLogin, setIsLogin] = useState(false);
 
 	const scrolling = () => {
@@ -40,16 +41,21 @@ export default function Navbar() {
 		if (isMouseEnter) setIsMouseEnter(false);
 	};
 
+	const handleMouseEnter = () => setIsMouseEnter(true);
+
+	const handleMouseLeave = () => {
+		setIsMouseEnter(false);
+		setMobileOpen(false);
+	};
+
 	const handleSidebarClick = (event) => {
 		const clickedElement = event.target;
-		if (!clickedElement.classList.contains("solutionLink")) {
+		if (!clickedElement.classList.contains("projectLink")) {
 			setIsMouseEnter(false);
 		}
 	};
 
-	const handleLogin=()=>{
-		setIsLogin(!isLogin)
-	}
+	const handleLogin = () => setIsLogin(!isLogin);
 
 	const drawer = (
 		<Box
@@ -63,28 +69,50 @@ export default function Navbar() {
 					src={logo1}
 					alt=""
 					style={{
-						height: "5rem",
+						height: "3.5rem",
 						marginTop: ".5rem",
 					}}
 				/>
 			</Typography>
 			<Divider />
 			<List>
-				{navItems.map((item, index) => (
-					<ListItem key={index} disablePadding>
+				{navItems.map((item, id) => (
+					<ListItem key={id} disablePadding>
 						<div
 							style={{
 								padding: "10px",
 								margin: "auto",
 							}}>
-							<a
-								href={`#${item.toLowerCase()}`}
-								className="navbarLinks otherLinks"
-								onClick={handleDrawerToggle}
-								style={{ color: "black" }}
-							>
-								{item}
-							</a>
+							{item === "Projects" ? (
+								<>
+									<div
+										style={{ position: "relative" }}
+										className="solutionDivSidebar">
+										<a
+											className="navbarLinks projectLink"
+											onClick={handleMouseEnter}
+											style={{ color: "black" }}>
+											{item}
+										</a>
+										{isMouseEnter && (
+											<Dropdown
+												handleMouseLeave={
+													handleMouseLeave
+												}
+												setMobileOpen={setMobileOpen}
+											/>
+										)}
+									</div>
+								</>
+							) : (
+								<a
+									href={`#${item.toLowerCase()}`}
+									className="navbarLinks otherLinks"
+									onClick={handleDrawerToggle}
+									style={{ color: "black" }}>
+									{item}
+								</a>
+							)}
 						</div>
 					</ListItem>
 				))}
@@ -117,7 +145,7 @@ export default function Navbar() {
 								display: { sm: "none" },
 								color: "white",
 							}}>
-							<MenuIcon />
+							<MenuIcon sx={{ filter: 'invert(1)' }} />
 						</IconButton>
 						<Grid container
 							sx={{
@@ -141,26 +169,48 @@ export default function Navbar() {
 										justifyContent: "space-around",
 										alignItems: "center",
 									}}>
-									{navItems.map((item, index) => {
-										return (
-											<>
-												{console.log(item)}
-												<div
-													key={index}
-													style={{
-														display: "flex",
-														alignItems: "center",
-													}}>
-													<a
-														href={`#${item.toLowerCase()}`}
-														className="navbarLinks"
-													>
-														{item}
-													</a>
-												</div>
-											</>
-										)
-									})}
+									{navItems.map((item, id) => (
+										<div
+											key={id}
+											style={{
+												display: "flex",
+												alignItems: "center",
+											}}>
+											{item === "Projects" ? (
+												<>
+													<div
+														onMouseOver={handleMouseEnter}
+														onMouseOut={handleMouseLeave}
+														style={{
+															height: "2rem",
+															display: "flex",
+															alignItems: "center",
+														}}>
+														<a className="projectLink">
+															{item}
+														</a>
+														{isMouseEnter && (
+															<Dropdown
+																handleMouseLeave={
+																	handleMouseLeave
+																}
+																setMobileOpen={
+																	setMobileOpen
+																}
+															/>
+														)}
+													</div>
+												</>
+											) : (
+												<a
+													href={`#${item.toLowerCase()}`}
+													className="navbarLinks"
+												>
+													{item}
+												</a>
+											)}
+										</div>
+									))}
 								</Box>
 							</Grid>
 							<Grid item xs={4}
@@ -193,7 +243,7 @@ export default function Navbar() {
 							}}>
 								{
 									isLogin ?
-										<Button variant="contained" onClick={()=>navigate('/kyc')}>Complete KYC</Button>
+										<Button variant="contained" onClick={() => navigate('/kyc')}>Complete KYC</Button>
 										:
 										<>
 											<Button variant="outlined" onClick={handleLogin}>Signin</Button>
