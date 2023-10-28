@@ -273,8 +273,8 @@ export default function Navbar() {
       <Routes>
         <Route index element={<Home />} />
         <Route path="/" element={<Home />} />
-        <Route path="/signin" element={<Signin />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="signin" element={<Signin />} />
+        <Route path="signup" element={<Signup />} />
         <Route path="kyc" element={<Kyc />} />
         {/* <Route path="*" element={<NoPage />} /> */}
       </Routes>

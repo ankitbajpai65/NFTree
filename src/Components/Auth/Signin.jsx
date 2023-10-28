@@ -2,6 +2,8 @@ import { useState } from "react";
 import googlelogin from "./img/google-login.png";
 import "./Auth.css";
 
+import { GoogleLogin } from "@react-oauth/google";
+
 const Signin = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -16,6 +18,17 @@ const Signin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
+  };
+
+  const handleGoogleLogin = () => {
+    <GoogleLogin
+      onSuccess={(credentialResponse) => {
+        console.log(credentialResponse);
+      }}
+      onError={() => {
+        console.log("Login Failed");
+      }}
+    />;
   };
 
   return (
@@ -55,7 +68,7 @@ const Signin = () => {
             <button className="submit-button" onClick={handleSubmit}>
               Sign In
             </button>
-            <button className="google-login" onClick={handleSubmit}>
+            <button className="google-login" onClick={handleGoogleLogin}>
               <div>
                 <div>
                   <img src={googlelogin} alt="Google Login" />
@@ -68,6 +81,14 @@ const Signin = () => {
             <p>
               Don't have an account?<a href="">Sign up</a>{" "}
             </p>
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                console.log(credentialResponse);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
           </div>
         </div>
       </div>
