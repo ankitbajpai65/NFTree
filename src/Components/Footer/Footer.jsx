@@ -1,11 +1,10 @@
 import React from "react";
-import {Box,Grid} from '@mui/material';
+import { Box, Grid } from "@mui/material";
 import { Instagram, Twitter, LinkedIn, Telegram } from "@mui/icons-material";
 import logo from "/logo_white.png";
 import "./Footer.css";
 
 const Footer = () => {
-
   // const { t } = useTranslation();
   return (
     <>
@@ -36,16 +35,16 @@ const Footer = () => {
           id="footerIcons"
         >
           <Box>
-            <InstagramIcon
+            <Instagram
               sx={{
                 // color: "#08A454",
                 transform: "scale(1.4)",
                 cursor: "pointer",
               }}
             />
-            <TwitterIcon className="footerIcons" />
-            <LinkedInIcon className="footerIcons" />
-            <TelegramIcon className="footerIcons" />
+            <Twitter className="footerIcons" />
+            <LinkedIn className="footerIcons" />
+            <Telegram className="footerIcons" />
           </Box>
         </Grid>
         <Grid item xs={1}></Grid>
@@ -63,47 +62,50 @@ const Footer = () => {
       </p>
     </>
   );
-=======
-	return (
-		<>
-			<Grid container spacing={2} className="footerDiv">
-				<Grid item xs={1}></Grid>
 
-				<Grid item xs={12} sm={5} md={6} lg={6} id="footerLogo">
-					<img src={logo} alt="" id="footerImg" />
-				</Grid>
+  return (
+    <>
+      <Grid container spacing={2} className="footerDiv">
+        <Grid item xs={1}></Grid>
 
-				<Grid
-					item
-					xs={12}
-					sm={5}
-					md={4}
-					lg={3}
-					sx={{
-						display: "flex",
-						alignItems: "center",
-						justifyContent: "flex-end",
-					}}
-					id="footerIcons">
-					<Box>
-						<Instagram
-							sx={{
-								transform: "scale(1.4)",
-								cursor: "pointer",
-							}}
-						/>
-						<Twitter className="footerIcons" />
-						<LinkedIn className="footerIcons" />
-						<Telegram className="footerIcons" />
-					</Box>
-				</Grid>
+        <Grid item xs={12} sm={5} md={6} lg={6} id="footerLogo">
+          <img src={logo} alt="" id="footerImg" />
+        </Grid>
 
-				<Grid item xs={1}></Grid>
-			</Grid>
+        <Grid
+          item
+          xs={12}
+          sm={5}
+          md={4}
+          lg={3}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+          }}
+          id="footerIcons"
+        >
+          <Box>
+            <Instagram
+              sx={{
+                transform: "scale(1.4)",
+                cursor: "pointer",
+              }}
+            />
+            <Twitter className="footerIcons" />
+            <LinkedIn className="footerIcons" />
+            <Telegram className="footerIcons" />
+          </Box>
+        </Grid>
 
-			<p className="footerText">© 2023 Beyond Imagination Technologies Pvt. Ltd.</p>
-		</>
-	);
+        <Grid item xs={1}></Grid>
+      </Grid>
+
+      <p className="footerText">
+        © 2023 Beyond Imagination Technologies Pvt. Ltd.
+      </p>
+    </>
+  );
 };
 
 export default Footer;
