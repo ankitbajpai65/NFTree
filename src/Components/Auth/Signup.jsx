@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import googlelogin from "./img/google-login.png";
 import "./Auth.css";
 
@@ -22,12 +23,8 @@ const Signup = () => {
   return (
     <>
       <div className="login-container">
-        <div className="head-part">
-          <h1>Create Free Account</h1>
-          <p>Clarity gives you the blocks and components you need</p>
-          <p>to create a truly professional website.</p>
-        </div>
         <div className="login-box">
+          <h1 className="formHead">Create Free Account</h1>
           <div className="login-input">
             <input
               type="text"
@@ -53,28 +50,23 @@ const Signup = () => {
             />
           </div>
           <div className="login-checkbox">
-            <div>
+            <div className="checkBoxDiv">
               <input type="checkbox" name="terms-and-condition" id="" />
-              <span>I agree with the Terms & Conditions of Clarity</span>
+              <span>I agree with the Terms & Conditions of NFTree</span>
             </div>
           </div>
           <div className="login-button">
             <button className="submit-button" onClick={handleSubmit}>
               Sign In
             </button>
-            <button className="google-login" onClick={handleSubmit}>
-              <div>
-                <div>
+            <button className="googleLoginBtn" onClick={handleSubmit}>
                   <img src={googlelogin} alt="Google Login" />
                   Sign in with Google
-                </div>
-              </div>
             </button>
-          </div>
-          <div className="switch-option">
-            <p>
-              Already have an account?<a href="">Sign In</a>{" "}
-            </p>
+            <div>
+              <span>Already have an account? </span>
+              <Link to='/signin'>Signin</Link>
+            </div>
           </div>
         </div>
       </div>

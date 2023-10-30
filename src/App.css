@@ -2,6 +2,7 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
+
 body {
   background: #ebf3e8;
 }
@@ -10,10 +11,28 @@ body {
   --green-10: #ebf3e8;
   --green-20: #d2e3c8;
   --green-30: #86a789;
+  --primary:#2563EB;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+a{
+  color:var(--primary);
+  text-decoration: none;
+}
+
+input {
+  font-size: 1rem;
+  outline: none;
+}
+
+button {
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
