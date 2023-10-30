@@ -5,6 +5,7 @@ import Kyc from "../Kyc/Kyc";
 import Dropdown from "./Dropdown";
 import Signin from "../Auth/Signin";
 import Signup from "../Auth/Signup";
+import CreateProject from "../Projects/CreateProject";
 
 import {
   AppBar,
@@ -306,9 +307,10 @@ export default function Navbar() {
       <Routes>
         <Route index element={<Home />} />
         <Route path="/" element={<Home />} />
-        <Route path="/signin" element={<Signin />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="signin" element={<Signin />} />
+        <Route path="signup" element={<Signup />} />
         <Route path="kyc" element={<Kyc />} />
+        <Route path="create_project" element={<CreateProject />} />
         {/* <Route path="*" element={<NoPage />} /> */}
       </Routes>
     </>
