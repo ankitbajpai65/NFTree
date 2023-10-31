@@ -11,11 +11,7 @@ const CreateProject = () => {
           <div className="login-input">
             <input type="text" name="name" placeholder="Project name" />
 
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter Password"
-            />
+            <input type="text" name="password" placeholder="Enter Password" />
           </div>
 
           <div className="login-button">
