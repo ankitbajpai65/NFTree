@@ -4,10 +4,8 @@ const CreateProject = () => {
   return (
     <>
       <div className="login-container">
-        <div className="head-part">
-          <h1>Create Project</h1>
-        </div>
-        <div className="login-box">
+        <div className="login-box login-button">
+          <h1 className="formHead">Create Project</h1>
           <div className="login-input">
             <input type="text" name="name" placeholder="Project name" />
 
