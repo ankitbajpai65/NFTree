@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import googlelogin from "./img/google-login.png";
 import "./Auth.css";
 
@@ -34,12 +35,8 @@ const Signin = () => {
   return (
     <>
       <div className="login-container">
-        <div className="head-part">
-          <h1>Sign in to your account</h1>
-          <p>Clarity gives you the blocks and components you need</p>
-          <p>to create a truly professional website.</p>
-        </div>
         <div className="login-box">
+          <h1 className="formHead">Sign in to your account</h1>
           <div className="login-input">
             <input
               type="email"
@@ -58,7 +55,7 @@ const Signin = () => {
             />
           </div>
           <div className="login-checkbox">
-            <div>
+            <div className="checkBoxDiv">
               <input type="checkbox" name="remember-me" id="" />
               <span>Remember me</span>
             </div>
