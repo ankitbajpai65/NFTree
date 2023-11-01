@@ -78,7 +78,13 @@ const OrganizationDetails = (props) => {
           style={{ display: 'none' }}
         // onChange={handleFileUpload}
         />
-        <Button variant="outlined" component="label" htmlFor="file-input" sx={{ width: '100%' }}>
+        <Button
+          variant="outlined"
+          component="label"
+          htmlFor="file-input"
+          sx={{ width: '100%' }}
+          className="outlinedBtn"
+        >
           Upload Registration Proof
         </Button>
       </Grid>

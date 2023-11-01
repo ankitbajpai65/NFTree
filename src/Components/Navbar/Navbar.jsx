@@ -267,11 +267,18 @@ export default function Navbar() {
                     <Button
                       variant="outlined"
                       onClick={() => navigate("/signin")}
+                      className="outlinedBtn"
+                      // sx={{
+                      //   border:'2px solid var(--green-30)',
+                      //   background:'transparent !important',
+                      //   color:'var(--green-30)',
+                      // }}
                     >
                       Signin
                     </Button>
                     <Button
                       variant="contained"
+                      className="filledBtn"
                       onClick={() => navigate("/signup")}
                     >
                       Signup

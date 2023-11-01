@@ -21,7 +21,7 @@ body {
 }
 
 a{
-  color:var(--primary);
+  color:var(--green-30);
   text-decoration: none;
 }
 
@@ -35,4 +35,19 @@ button {
   border: none;
   outline: none;
   cursor: pointer;
+  color:white;
+  background-color: var(--green-30) !important;
+}
+button>span{
+  box-shadow: none !important;
+}
+
+.filledBtn {
+  box-shadow: none !important;
+}
+
+.outlinedBtn {
+  border: 2px solid var(--green-30) !important;
+  color: var(--green-30) !important;
+  background:transparent !important;
 }

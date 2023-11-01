@@ -12,13 +12,12 @@ body {
 }
 
 .login-box {
-  border: 1px solid white;
   width: 62vw;
-  max-width: 540px;
-  min-width: 300px;
-  border-radius: 20px;
-  background: white;
-  padding: 2rem;
+    max-width: 540px;
+    min-width: 300px;
+    border-radius: 1rem;
+    background: white;
+    padding: 3rem;
 }
 
 .formHead {
@@ -68,10 +67,10 @@ body {
   height: 50px;
 }
 
-.submit-button {
-  background: var(--primary);
+/* .submit-button {
+  background: var(--green-30);
   color: white;
-}
+} */
 
 .googleLoginBtn {
   background: #e9e9e9;

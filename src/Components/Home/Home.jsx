@@ -83,7 +83,7 @@ const Home = () => {
 							Welcome to NFTree, the platform that provides a new way to save the environment and reward investors at the same time. With our NFTree, you can exercise your social responsibility without compromising your investment goals, and we can continue planting more trees around the globe.
 						</Typography>
 
-						<Button variant="contained" endIcon={<ArrowForwardIcon />}>
+						<Button variant="contained" endIcon={<ArrowForwardIcon />} className="filledBtn">
 							Get Started
 						</Button>
 					</Box>

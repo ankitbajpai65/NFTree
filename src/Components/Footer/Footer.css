@@ -19,6 +19,8 @@
   margin: 0 0 0 2.5rem;
   transform: scale(1.4);
   cursor: pointer;
+  color:white;
+  /* transition: color 0.3s; */
 }
 
 

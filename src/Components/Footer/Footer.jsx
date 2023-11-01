@@ -37,7 +37,7 @@ const Footer = () => {
           <Box>
             <Instagram
               sx={{
-                // color: "#08A454",
+                color: "white",
                 transform: "scale(1.4)",
                 cursor: "pointer",
               }}
@@ -58,50 +58,6 @@ const Footer = () => {
           background: "var(--green-30)",
         }}
       >
-        © 2023 Beyond Imagination Technologies Pvt. Ltd.
-      </p>
-    </>
-  );
-
-  return (
-    <>
-      <Grid container spacing={2} className="footerDiv">
-        <Grid item xs={1}></Grid>
-
-        <Grid item xs={12} sm={5} md={6} lg={6} id="footerLogo">
-          <img src={logo} alt="" id="footerImg" />
-        </Grid>
-
-        <Grid
-          item
-          xs={12}
-          sm={5}
-          md={4}
-          lg={3}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-end",
-          }}
-          id="footerIcons"
-        >
-          <Box>
-            <Instagram
-              sx={{
-                transform: "scale(1.4)",
-                cursor: "pointer",
-              }}
-            />
-            <Twitter className="footerIcons" />
-            <LinkedIn className="footerIcons" />
-            <Telegram className="footerIcons" />
-          </Box>
-        </Grid>
-
-        <Grid item xs={1}></Grid>
-      </Grid>
-
-      <p className="footerText">
         © 2023 Beyond Imagination Technologies Pvt. Ltd.
       </p>
     </>

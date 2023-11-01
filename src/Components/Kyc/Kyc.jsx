@@ -48,7 +48,6 @@ const Kyc = () => {
     <Box
       sx={{
         maxWidth: activeStep === 3 ? '85%' : "600px",
-        // margin: 'auto',
         margin: "4rem auto 3rem auto",
         padding: 2
       }}
@@ -60,11 +59,11 @@ const Kyc = () => {
       >
         {steps.map((label, index) => (
           <Step key={index} sx={{
-            color: index === activeStep ? 'blue !important' : '',
+            // color: index === activeStep ? 'var(--green-30) !important' : '',
           }}>
             <StepLabel onClick={() => stepperClick(index)} sx={{
               cursor: 'pointer !important',
-              color: index === activeStep ? 'blue !important' : '',
+              color: index === activeStep ? 'red !important' : '',
             }} />
           </Step>
         ))}
@@ -94,6 +93,7 @@ const Kyc = () => {
             variant="contained"
             disabled={activeStep === 0}
             onClick={handleBack}
+            className="filledBtn"
           >
             Back
           </Button>
@@ -101,6 +101,7 @@ const Kyc = () => {
             <Button
               sx={{ width: '45%' }}
               variant="contained"
+              className="filledBtn"
             >
               Submit
             </Button>
@@ -109,6 +110,7 @@ const Kyc = () => {
               sx={{ width: '45%' }}
               variant="contained"
               onClick={handleNext}
+              className="filledBtn"
             >
               Next
             </Button>

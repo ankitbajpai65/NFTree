@@ -34,7 +34,7 @@ const Wallet = (props) => {
                     <Typography variant="body1" gutterBottom>
                         Connect with Bit-Wallet browser extension.
                     </Typography>
-                    <Button variant="contained" sx={{ mt: 3 }}>Connect Wallet</Button>
+                    <Button variant="contained" sx={{ mt: 3 }} className="filledBtn">Connect Wallet</Button>
                 </Grid>
                 <Grid item xs={4} sx={{
                     backgroundColor: '#e4e4e4',
@@ -54,7 +54,7 @@ const Wallet = (props) => {
                         fullWidth
                         sx={{ my: 2, width: '80%' }}
                     />
-                    <Button variant="contained" sx={{ m: 3 }}>Request</Button>
+                    <Button variant="contained" sx={{ m: 3 }} className="filledBtn">Request</Button>
                     <Typography variant="body1" gutterBottom sx={{ textAlign: 'center' }}>
                         OR
                     </Typography>

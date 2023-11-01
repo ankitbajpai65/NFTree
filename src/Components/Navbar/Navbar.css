@@ -16,19 +16,16 @@
 .navbarLinks {
     text-decoration: none !important;
     margin: auto;
-    color:black;
 }
 
-.navbarLinks:hover,
+/* .navbarLinks:hover,
 .projectLink:hover {
-    color: #02A552 !important;
-    /* text-decoration: underline; */
-}
+    color: white !important;
+} */
 
 .projectLink {
     cursor: default;
     text-decoration: none;
-    color: black;
     margin: auto;
 }
 
@@ -43,6 +40,10 @@
 .dropdownLinks:hover {
     background: rgb(244, 244, 244)
 }
+
+/* .signinBtn:hover {
+    border: 2px solid var(--green-30) !important;
+} */
 
 /* MEDIA QUERY */
 
