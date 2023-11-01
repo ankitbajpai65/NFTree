@@ -13,11 +13,11 @@ body {
 
 .login-box {
   width: 62vw;
-    max-width: 540px;
-    min-width: 300px;
-    border-radius: 1rem;
-    background: white;
-    padding: 3rem;
+  max-width: 540px;
+  min-width: 300px;
+  border-radius: 1rem;
+  background: white;
+  padding: 3rem;
 }
 
 .formHead {
@@ -32,7 +32,8 @@ body {
   justify-content: center;
 }
 
-.login-input input {
+.login-input input,
+.login-input textarea {
   border: 1px solid #e4e4e7;
   width: 100%;
   padding: 3% 4%;
@@ -81,7 +82,7 @@ body {
 }
 
 .googleLoginBtn img {
-  height: 2rem;
+  height: 1.5rem;
 }
 
 .switch-option {
@@ -95,6 +96,7 @@ body {
     margin-top: 80px;
     width: 40vw;
   }
+
   .login-button button {
     height: 40px;
   }

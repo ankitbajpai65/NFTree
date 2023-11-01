@@ -69,6 +69,15 @@ const Signin = () => {
               <img src={googlelogin} alt="Google Login" />
               Sign in with Google
             </button>
+            {/* <GoogleLogin
+             className="loginBtn"
+              onSuccess={(credentialResponse) => {
+                console.log(credentialResponse);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            /> */}
             <div>
               <span>Already have an account? </span>
               <Link to='/signup'>Signup</Link>

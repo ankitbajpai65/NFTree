@@ -1,6 +1,14 @@
-.submit-button{
-  width:100%;
-  margin-top:2rem;
+.createProjectContainer {
+  height: 135vh;
+}
+
+.uploadBtn:hover {
+  border: 1px solid #E4E4E7 !important;
+}
+
+.submit-button {
+  width: 100%;
+  margin-top: 2rem;
 }
 
 @media only screen and (max-width: 1300px) {
