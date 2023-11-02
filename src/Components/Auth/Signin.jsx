@@ -21,17 +21,6 @@ const Signin = () => {
     console.log(formData);
   };
 
-  const handleGoogleLogin = () => {
-    <GoogleLogin
-      onSuccess={(credentialResponse) => {
-        console.log(credentialResponse);
-      }}
-      onError={() => {
-        console.log("Login Failed");
-      }}
-    />;
-  };
-
   return (
     <>
       <div className="login-container">
@@ -65,7 +54,7 @@ const Signin = () => {
             <button className="submit-button" onClick={handleSubmit}>
               Sign In
             </button>
-            <button className="google-login" onClick={handleGoogleLogin}>
+            <button className="google-login" onClick={""}>
               <div>
                 <div>
                   <img src={googlelogin} alt="Google Login" />
@@ -74,10 +63,7 @@ const Signin = () => {
               </div>
             </button>
           </div>
-          <div className="switch-option">
-            <p>
-              Don't have an account?<a href="">Sign up</a>{" "}
-            </p>
+          <button className="GoogleLogin">
             <GoogleLogin
               onSuccess={(credentialResponse) => {
                 console.log(credentialResponse);
@@ -86,6 +72,11 @@ const Signin = () => {
                 console.log("Login Failed");
               }}
             />
+          </button>
+          <div className="switch-option">
+            <p>
+              Don't have an account?<a href="">Sign up</a>{" "}
+            </p>
           </div>
         </div>
       </div>

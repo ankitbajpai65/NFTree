@@ -1,4 +1,5 @@
 .login-container {
+  position: relative;
   text-align: center;
   height: 105vh;
   background: #ebf3e8;
@@ -12,6 +13,7 @@ body {
 }
 
 .login-box {
+  position: relative;
   border: 1px solid white;
   width: 62vw;
   max-width: 540px;
@@ -19,6 +21,16 @@ body {
   border-radius: 20px;
   background: white;
   padding: 2rem;
+}
+
+.switch-option {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translate(-50%, 0px);
+  display: block;
+  margin: auto;
+  width: max-content;
 }
 
 .formHead {
@@ -68,20 +80,33 @@ body {
   height: 50px;
 }
 
+GoogleLogin {
+  display: none;
+}
+
 .submit-button {
   background: var(--primary);
   color: white;
 }
 
-.googleLoginBtn {
+.google-login {
   background: #e9e9e9;
+
+  border: 1px solid #e9e9e9;
+}
+
+.google-login div {
+  position: absolute;
   display: flex;
   align-items: center;
+  width: max-content;
+  left: 50%;
+  transform: translate(-50%, 0%);
   justify-content: center;
   gap: 10px;
 }
 
-.googleLoginBtn img {
+.google-login img {
   height: 2rem;
 }
 

@@ -59,13 +59,10 @@ const Signup = () => {
             <button className="submit-button" onClick={handleSubmit}>
               Sign In
             </button>
-            <button className="googleLoginBtn" onClick={handleSubmit}>
-                  <img src={googlelogin} alt="Google Login" />
-                  Sign in with Google
-            </button>
-            <div>
+
+            <div className="switch-option">
               <span>Already have an account? </span>
-              <Link to='/signin'>Signin</Link>
+              <Link to="/signin">Signin</Link>
             </div>
           </div>
         </div>
