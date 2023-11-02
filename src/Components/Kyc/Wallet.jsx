@@ -1,14 +1,11 @@
 import {
     TextField,
     Grid,
-    Input,
     Button,
     Typography
 } from '@mui/material';
 
-const Wallet = (props) => {
-    console.log(props);
-
+const Wallet = () => {
     return (
         <>
             <h1 style={{ margin: 'auto', margin: '1rem auto', textAlign: 'center' }}>Wallet</h1>
@@ -55,12 +52,12 @@ const Wallet = (props) => {
                         sx={{ my: 2, width: '80%' }}
                     />
                     <Button variant="contained" sx={{ m: 3 }} className="filledBtn">Request</Button>
-                    <Typography variant="body1" gutterBottom sx={{ textAlign: 'center' }}>
+                    {/* <Typography variant="body1" gutterBottom sx={{ textAlign: 'center' }}>
                         OR
                     </Typography>
                     <Typography variant="body1" gutterBottom sx={{ textAlign: 'center' }}>
                         Scan the QR-code using bit-wallet app.
-                    </Typography>
+                    </Typography> */}
                 </Grid>
             </Grid>
         </>

@@ -5,7 +5,6 @@ import logo from "/logo_white.png";
 import "./Footer.css";
 
 const Footer = () => {
-  // const { t } = useTranslation();
   return (
     <>
       <Grid container spacing={2} className="footerDiv">

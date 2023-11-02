@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import Home from "../Home/Home";
 import Kyc from "../Kyc/Kyc";
 import Dropdown from "./Dropdown";
@@ -26,14 +26,13 @@ import logo1 from "/logo_colored.png";
 import "../Navbar/Navbar.css";
 
 const drawerWidth = 240;
-const navItems = ["Home", "About", "Projects", "Mission"];
+const navItems = ["Home", "Projects"];
 
 export default function Navbar() {
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [scroll, setScroll] = useState(false);
   const [isMouseEnter, setIsMouseEnter] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
 
   const scrolling = () => {
     window.scrollY >= 2 ? setScroll(true) : setScroll(false);
@@ -58,8 +57,6 @@ export default function Navbar() {
       setIsMouseEnter(false);
     }
   };
-
-  const handleLogin = () => setIsLogin(!isLogin);
 
   const drawer = (
     <Box
@@ -99,6 +96,7 @@ export default function Navbar() {
                       className="navbarLinks projectLink"
                       onClick={handleMouseEnter}
                       style={{ color: "black" }}
+                    // onClick={()=>navigate('/')}
                     >
                       {item}
                     </a>
@@ -169,6 +167,32 @@ export default function Navbar() {
               <Grid
                 item
                 xs={4}
+                component="div"
+                sx={{
+                  display: { xs: "none", sm: "block" },
+                  textAlign: "center",
+                  // ml: { sm: 0, md: 4 },
+                }}
+                className="navbarTitle"
+              >
+                {/* <a href="#home"> */}
+                <img
+                  src={logo1}
+                  onClick={() => navigate('/')}
+                  alt=""
+                  style={{
+                    height: "3rem",
+                    margin: "auto",
+                    marginTop: ".5rem",
+                    cursor: 'pointer'
+                  }}
+                  id="navbarLogo"
+                />
+                {/* </a> */}
+              </Grid>
+              <Grid
+                item
+                xs={5}
                 sx={{
                   // border: '2px solid red',
                   display: { xs: "none", sm: "block" },
@@ -179,7 +203,7 @@ export default function Navbar() {
                   sx={{
                     width: "100%",
                     display: "flex",
-                    justifyContent: "space-around",
+                    justifyContent: "flex-start",
                     alignItems: "center",
                   }}
                 >
@@ -212,79 +236,33 @@ export default function Navbar() {
                           </div>
                         </>
                       ) : (
-                        <a
-                          href={`#${item.toLowerCase()}`}
+                        <Link
+                          to='/'
                           className="navbarLinks"
                         >
                           {item}
-                        </a>
+                        </Link>
                       )}
                     </div>
                   ))}
                 </Box>
               </Grid>
-              <Grid
-                item
-                xs={4}
-                component="div"
-                sx={{
-                  display: { xs: "none", sm: "block" },
-                  textAlign: "center",
-                  // ml: { sm: 0, md: 4 },
-                }}
-                className="navbarTitle"
-              >
-                <a href="#home">
-                  <img
-                    src={logo1}
-                    alt=""
-                    style={{
-                      height: "3rem",
-                      margin: "auto",
-                      marginTop: ".5rem",
-                    }}
-                    id="navbarLogo"
-                  />
-                </a>
-              </Grid>
 
               <Grid
                 item
-                xs={4}
+                xs={3}
                 sx={{
                   display: "flex",
                   justifyContent: "flex-end",
-                  gap: "1rem",
-                  padding: "0 1rem",
                 }}
               >
-                {isLogin ? (
-                  <Button variant="contained" onClick={() => navigate("/kyc")}>
-                    Complete KYC
-                  </Button>
-                ) : (
-                  <>
-                    <Button
-                      variant="outlined"
-                      onClick={() => navigate("/signin")}
-                      className="outlinedBtn"
-                      // sx={{
-                      //   border:'2px solid var(--green-30)',
-                      //   background:'transparent !important',
-                      //   color:'var(--green-30)',
-                      // }}
-                    >
-                      Signin
-                    </Button>
-                    <Button
-                      variant="contained"
-                      className="filledBtn"
-                      onClick={() => navigate("/signup")}
-                    >
-                      Signup
-                    </Button>
-                  </>
-                )}
+                <Button
+                  variant="contained"
+                  className="filledBtn"
+                  onClick={() => navigate("/signin")}
+                >
+                  Login
+                </Button>
               </Grid>
             </Grid>
           </Toolbar>

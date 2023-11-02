@@ -32,16 +32,6 @@ const Dropdown = ({ handleMouseLeave, setMobileOpen }) => {
             >
               Create Project
             </Link>
-            <Link
-              to="/completed_projects"
-              onClick={() => {
-                handleMouseLeave();
-                setMobileOpen(false);
-              }}
-              className="dropdownLinks"
-            >
-              Completed Projects
-            </Link>
 
             <Link
               to="/ongoing_projects"
@@ -52,6 +42,17 @@ const Dropdown = ({ handleMouseLeave, setMobileOpen }) => {
               className="dropdownLinks"
             >
               Ongoing Projects
+            </Link>
+
+            <Link
+              to="/completed_projects"
+              onClick={() => {
+                handleMouseLeave();
+                setMobileOpen(false);
+              }}
+              className="dropdownLinks"
+            >
+              Completed Projects
             </Link>
           </div>
         </ListItem>

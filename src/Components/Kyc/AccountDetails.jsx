@@ -3,52 +3,32 @@ import {
     TextField,
 } from "@mui/material";
 
-const AccountDetails = (props) => {
-    console.log(props);
+const accountFormDetails = [
+    { name: 'firstName', placeholder: 'First name' },
+    { name: 'lastName', placeholder: 'Last name' },
+    { name: 'email', placeholder: 'Email' },
+    { name: 'phone', placeholder: 'Phone' },
+];
+
+const AccountDetails = () => {
     return (
         <Grid container spacing={2}>
-            <h1 style={{ margin: 'auto', margin: '1rem auto' }}>Account Details</h1>
-
-            <Grid item xs={12}>
-                <TextField
-                    name="fname"
-                    label="First name"
-                    variant="outlined"
-                    type="fname"
-                    size="small"
-                    fullWidth
-                />
-            </Grid>
-            <Grid item xs={12}>
-                <TextField
-                    name="lname"
-                    label="Last name"
-                    variant="outlined"
-                    type="lname"
-                    size="small"
-                    fullWidth
-                />
-            </Grid>
-            <Grid item xs={12}>
-                <TextField
-                    name="email"
-                    label="Email"
-                    variant="outlined"
-                    size='small'
-                    type="email"
-                    fullWidth
-                />
-            </Grid>
-            <Grid item xs={12}>
-                <TextField
-                    name="phone"
-                    label="Phone No."
-                    variant="outlined"
-                    size="small"
-                    type="phone"
-                    fullWidth
-                />
-            </Grid>
+            <h1 style={{ margin: 'auto', margin: '0 auto 1rem' }}>Account Details</h1>
+            {
+                accountFormDetails.map((field, index) => {
+                    return (
+                        <Grid item xs={12} key={index}>
+                            <TextField
+                                name={field.name}
+                                placeholder={field.placeholder}
+                                variant="outlined"
+                                size="small"
+                                fullWidth
+                            />
+                        </Grid>
+                    )
+                })
+            }
         </Grid>
     )
 }

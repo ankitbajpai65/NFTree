@@ -19,7 +19,6 @@ const Home = () => {
 				container
 				spacing={2}
 				sx={{
-					// border: '2px solid red',
 					height: { xs: "70vh", sm: "90vh" },
 					zIndex: 1,
 					display: "flex",
@@ -37,7 +36,6 @@ const Home = () => {
 					xs={12}
 					sm={5}
 					sx={{
-						// border: '2px solid red',
 						height: "68%",
 						backgroundImage: `url(${home})`,
 						backgroundPosition: "center",
@@ -51,7 +49,6 @@ const Home = () => {
 					xs={12}
 					sm={5}
 					sx={{
-						// border: '2px solid red',
 						display: "flex",
 						flexDirection: "column",
 						alignItems: "center",
@@ -59,7 +56,6 @@ const Home = () => {
 					}}>
 					<Box
 						sx={{
-							// border: '2px solid blue',
 							width: { xs: "90%", sm: "90%", lg: "70%" },
 							textAlign: "start",
 						}}

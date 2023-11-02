@@ -48,7 +48,7 @@ const Kyc = () => {
     <Box
       sx={{
         maxWidth: activeStep === 3 ? '85%' : "600px",
-        margin: "4rem auto 3rem auto",
+        margin: "6rem auto 3rem auto",
         padding: 2
       }}
     >
@@ -58,17 +58,21 @@ const Kyc = () => {
         orientation="horizontal"
       >
         {steps.map((label, index) => (
-          <Step key={index} sx={{
-            // color: index === activeStep ? 'var(--green-30) !important' : '',
-          }}>
-            <StepLabel onClick={() => stepperClick(index)} sx={{
-              cursor: 'pointer !important',
-              color: index === activeStep ? 'red !important' : '',
-            }} />
+          <Step key={index}>
+            <StepLabel
+              onClick={() => stepperClick(index)}
+              sx={{ cursor: 'pointer !important' }}
+            // className={`${index === activeStep ? 'activeStepper' : ''}`}
+            />
           </Step>
         ))}
       </Stepper>
-      <Grid container sx={{ border: '1px solid #c6c6c6', mt: 5 }}>
+      <Grid container sx={{
+        padding: '3rem',
+        background: 'white',
+        borderRadius: '1rem',
+        mt: 5
+      }}>
         <Grid
           item
           xs={12}
