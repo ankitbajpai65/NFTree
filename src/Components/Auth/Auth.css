@@ -8,19 +8,15 @@
   justify-content: center;
 }
 
-body {
-  background: #ebf3e8;
-}
-
 .login-box {
   position: relative;
   border: 1px solid white;
   width: 62vw;
   max-width: 540px;
   min-width: 300px;
-  border-radius: 20px;
+  border-radius: 1rem;
   background: white;
-  padding: 2rem;
+  padding: 3rem;
 }
 
 .switch-option {
@@ -45,11 +41,12 @@ body {
   justify-content: center;
 }
 
-.login-input input {
+.login-input input,
+.login-input textarea {
   border: 1px solid #e4e4e7;
   width: 100%;
   padding: 3% 4%;
-  border-radius: 10px;
+  border-radius: 5px;
   min-height: 40px;
 }
 
@@ -73,8 +70,7 @@ body {
 }
 
 .login-button button {
-  padding: 3% 2%;
-  border-radius: 10px;
+  border-radius: 5px;
   font-weight: 600;
   min-height: 40px;
   height: 50px;
@@ -89,7 +85,8 @@ GoogleLogin {
   color: white;
 }
 
-.google-login {
+.google-login,
+.googleLoginBtn {
   background: #e9e9e9;
 
   border: 1px solid #e9e9e9;
@@ -109,6 +106,9 @@ GoogleLogin {
 .google-login img {
   height: 2rem;
 }
+.googleLoginBtn img {
+  height: 1.5rem;
+}
 
 .switch-option {
   display: block;
@@ -121,6 +121,7 @@ GoogleLogin {
     margin-top: 80px;
     width: 40vw;
   }
+
   .login-button button {
     height: 40px;
   }

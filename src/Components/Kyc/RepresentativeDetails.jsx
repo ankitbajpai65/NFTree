@@ -5,9 +5,7 @@ import {
 } from '@mui/material';
 import Input from '@mui/material/Input';
 
-const RepresentativeDetails = (props) => {
-    console.log(props);
-
+const RepresentativeDetails = () => {
     return (
         <Grid container spacing={2}>
             <h1 style={{ margin: 'auto', margin: '1rem auto' }}>Representative Details</h1>
@@ -15,7 +13,7 @@ const RepresentativeDetails = (props) => {
             <Grid item xs={12}>
                 <TextField
                     name="designation"
-                    label="Designation of the representative"
+                    placeholder="Designation of the representative"
                     variant="outlined"
                     size='small'
                     fullWidth
@@ -30,7 +28,13 @@ const RepresentativeDetails = (props) => {
                     disableUnderline
                     style={{ display: 'none' }}
                 />
-                <Button variant="outlined" component="label" htmlFor="file-input" sx={{ width: '100%' }}>
+                <Button
+                    variant="outlined"
+                    component="label"
+                    htmlFor="file-input"
+                    sx={{ width: '100%' }}
+                    className="outlinedBtn"
+                >
                     Upload Signed Note
                 </Button>
             </Grid>

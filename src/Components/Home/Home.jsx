@@ -19,7 +19,6 @@ const Home = () => {
 				container
 				spacing={2}
 				sx={{
-					// border: '2px solid red',
 					height: { xs: "70vh", sm: "90vh" },
 					zIndex: 1,
 					display: "flex",
@@ -37,7 +36,6 @@ const Home = () => {
 					xs={12}
 					sm={5}
 					sx={{
-						// border: '2px solid red',
 						height: "68%",
 						backgroundImage: `url(${home})`,
 						backgroundPosition: "center",
@@ -51,7 +49,6 @@ const Home = () => {
 					xs={12}
 					sm={5}
 					sx={{
-						// border: '2px solid red',
 						display: "flex",
 						flexDirection: "column",
 						alignItems: "center",
@@ -59,7 +56,6 @@ const Home = () => {
 					}}>
 					<Box
 						sx={{
-							// border: '2px solid blue',
 							width: { xs: "90%", sm: "90%", lg: "70%" },
 							textAlign: "start",
 						}}
@@ -83,7 +79,7 @@ const Home = () => {
 							Welcome to NFTree, the platform that provides a new way to save the environment and reward investors at the same time. With our NFTree, you can exercise your social responsibility without compromising your investment goals, and we can continue planting more trees around the globe.
 						</Typography>
 
-						<Button variant="contained" endIcon={<ArrowForwardIcon />}>
+						<Button variant="contained" endIcon={<ArrowForwardIcon />} className="filledBtn">
 							Get Started
 						</Button>
 					</Box>

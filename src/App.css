@@ -4,14 +4,14 @@ html {
 }
 
 body {
-  background: #ebf3e8;
+  background: var(--green-10) !important;
 }
 
 :root {
   --green-10: #ebf3e8;
   --green-20: #d2e3c8;
   --green-30: #86a789;
-  --primary:#2563EB;
+  --primary: #2563EB;
 }
 
 * {
@@ -20,14 +20,26 @@ body {
   box-sizing: border-box;
 }
 
-a{
-  color:var(--primary);
+a {
+  color: var(--green-30);
   text-decoration: none;
 }
 
-input {
+label {
+  font-size: 0.8rem;
+  display: block;
+  margin-right: auto;
+  color: black;
+  margin: 4px auto -2px 8px;
+}
+
+input,
+textarea {
   font-size: 1rem;
   outline: none;
+  color: #757575;
+  resize: none;
+  font-family: 'Arial';
 }
 
 button {
@@ -35,4 +47,25 @@ button {
   border: none;
   outline: none;
   cursor: pointer;
+  color: white;
+  background-color: var(--green-30) !important;
+}
+
+button>span {
+  box-shadow: none !important;
+}
+
+.filledBtn {
+  box-shadow: none !important;
+  text-transform: capitalize !important;
+}
+
+.outlinedBtn {
+  border: 2px solid var(--green-30) !important;
+  color: var(--green-30) !important;
+  background: transparent !important;
+}
+
+.activeStepper circle{
+  color:var(--green-30) !important;
 }

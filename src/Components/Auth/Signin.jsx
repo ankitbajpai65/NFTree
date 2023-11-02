@@ -54,29 +54,23 @@ const Signin = () => {
             <button className="submit-button" onClick={handleSubmit}>
               Sign In
             </button>
-            <button className="google-login" onClick={""}>
-              <div>
-                <div>
-                  <img src={googlelogin} alt="Google Login" />
-                  Sign in with Google
-                </div>
-              </div>
+            <button className="googleLoginBtn" onClick={handleGoogleLogin}>
+              <img src={googlelogin} alt="Google Login" />
+              Sign in with Google
             </button>
-          </div>
-          <button className="GoogleLogin">
-            <GoogleLogin
+            {/* <GoogleLogin
+             className="loginBtn"
               onSuccess={(credentialResponse) => {
                 console.log(credentialResponse);
               }}
               onError={() => {
                 console.log("Login Failed");
               }}
-            />
-          </button>
-          <div className="switch-option">
-            <p>
-              Don't have an account?<a href="">Sign up</a>{" "}
-            </p>
+            /> */}
+            <div>
+              <span>Already have an account? </span>
+              <Link to="/signup">Signup</Link>
+            </div>
           </div>
         </div>
       </div>
