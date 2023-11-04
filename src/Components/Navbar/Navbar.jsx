@@ -5,7 +5,10 @@ import Kyc from "../Kyc/Kyc";
 import Dropdown from "./Dropdown";
 import Signin from "../Auth/Signin";
 import Signup from "../Auth/Signup";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CreateProject from "../Projects/CreateProject";
+import OngoingProject from "../Projects/OngoingProject/OngoingProject";
+import CompletedProjects from "../Projects/CompletedProjects/CompletedProjects";
 
 import {
   AppBar,
@@ -26,13 +29,15 @@ import logo1 from "/logo_colored.png";
 import "../Navbar/Navbar.css";
 
 const drawerWidth = 240;
-const navItems = ["Home", "Projects"];
+const navItems = ["Home", "Projects", "Contact"];
 
 export default function Navbar() {
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [scroll, setScroll] = useState(false);
   const [isMouseEnter, setIsMouseEnter] = useState(false);
+  const [isMouseEnterProfile, setIsMouseEnterProfile] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
 
   const scrolling = () => {
     window.scrollY >= 2 ? setScroll(true) : setScroll(false);
@@ -48,6 +53,13 @@ export default function Navbar() {
 
   const handleMouseLeave = () => {
     setIsMouseEnter(false);
+    setMobileOpen(false);
+  };
+
+  const handleMouseEnterProfile = () => setIsMouseEnterProfile(true);
+
+  const handleMouseLeaveProfile = () => {
+    setIsMouseEnterProfile(false);
     setMobileOpen(false);
   };
 
@@ -166,16 +178,15 @@ export default function Navbar() {
             >
               <Grid
                 item
-                xs={4}
+                xs={8}
                 component="div"
                 sx={{
                   display: { xs: "none", sm: "block" },
-                  textAlign: "center",
-                  // ml: { sm: 0, md: 4 },
+                  textAlign: "start",
+                  pl: { sm: 0, md: 5 },
                 }}
                 className="navbarTitle"
               >
-                {/* <a href="#home"> */}
                 <img
                   src={logo1}
                   onClick={() => navigate('/')}
@@ -188,14 +199,13 @@ export default function Navbar() {
                   }}
                   id="navbarLogo"
                 />
-                {/* </a> */}
               </Grid>
               <Grid
                 item
-                xs={5}
+                xs={4}
                 sx={{
                   // border: '2px solid red',
-                  display: { xs: "none", sm: "block" },
+                  display: { xs: "none", sm: "flex" },
                   width: { sm: "70%", md: "50%" },
                 }}
               >
@@ -231,6 +241,7 @@ export default function Navbar() {
                               <Dropdown
                                 handleMouseLeave={handleMouseLeave}
                                 setMobileOpen={setMobileOpen}
+                                dropdown={"Projects"}
                               />
                             )}
                           </div>
@@ -246,23 +257,36 @@ export default function Navbar() {
                     </div>
                   ))}
                 </Box>
-              </Grid>
-
-              <Grid
-                item
-                xs={3}
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                }}
-              >
-                <Button
-                  variant="contained"
-                  className="filledBtn"
-                  onClick={() => navigate("/signin")}
-                >
-                  Login
-                </Button>
+                {
+                  isLogin ?
+                    <Button
+                      variant="contained"
+                      className="filledBtn"
+                      onClick={() => navigate("/signin")}
+                    >
+                      Login
+                    </Button>
+                    :
+                    <>
+                      <div
+                        style={{ position: 'relative' }}
+                        onMouseOver={handleMouseEnterProfile}
+                        onMouseOut={handleMouseLeaveProfile}
+                      >
+                        <AccountCircleIcon sx={{
+                          color: 'black',
+                          fontSize: '2.5rem'
+                        }} />
+                        {isMouseEnterProfile && (
+                          <Dropdown
+                            handleMouseLeave={handleMouseLeaveProfile}
+                            setMobileOpen={setMobileOpen}
+                            dropdown={"Profile"}
+                          />
+                        )}
+                      </div>
+                    </>
+                }
               </Grid>
             </Grid>
           </Toolbar>
@@ -292,10 +316,12 @@ export default function Navbar() {
       <Routes>
         <Route index element={<Home />} />
         <Route path="/" element={<Home />} />
-        <Route path="signin" element={<Signin />} />
-        <Route path="signup" element={<Signup />} />
-        <Route path="kyc" element={<Kyc />} />
-        <Route path="create_project" element={<CreateProject />} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/kyc" element={<Kyc />} />
+        <Route path="/create_project" element={<CreateProject />} />
+        <Route path="/ongoing_project" element={<OngoingProject />} />
+        <Route path="/completed_projects/*" element={<CompletedProjects />} />
         {/* <Route path="*" element={<NoPage />} /> */}
       </Routes>
     </>

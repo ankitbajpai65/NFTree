@@ -14,16 +14,19 @@ const CreateProject = () => {
             <input
               type="text"
               name="area"
+              required
               placeholder="Total Plantation Area in Square Meter"
             />
             <input
               type="text"
               name="plants"
+              required
               placeholder="No of Plants Planned"
             />
             <input
               type="text"
               name="donation"
+              required
               placeholder="Donation Cost per Plant"
             />
 

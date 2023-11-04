@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 
 const organizationFormDetails = [
-  { name: 'orgName', placeholder: 'Name of the organization', xs: 6 },
+  { name: 'orgName', placeholder: 'Name of organization', xs: 6 },
   { name: 'address', placeholder: 'Address', xs: 6 },
   { name: 'country', placeholder: 'Country' },
   { name: 'website', placeholder: 'Website' },

@@ -60,8 +60,8 @@ const Signup = () => {
               Sign up
             </button>
             <button className="googleLoginBtn" onClick={handleSubmit}>
-                  <img src={googlelogin} alt="Google Login" />
-                  Sign in with Google
+              <img src={googlelogin} alt="Google Login" />
+              Sign in with Google
             </button>
             <div>
               <span>Already have an account? </span>
