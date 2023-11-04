@@ -1,299 +1,110 @@
 import React, { useState } from "react";
-import { Routes, Route, useNavigate, Link } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Home from "../Home/Home";
 import Kyc from "../Kyc/Kyc";
-import Dropdown from "./Dropdown";
-import Signin from "../Auth/Signin";
-import Signup from "../Auth/Signup";
 import CreateProject from "../Projects/CreateProject";
-
-import {
-  AppBar,
-  Box,
-  Grid,
-  CssBaseline,
-  Divider,
-  Drawer,
-  IconButton,
-  List,
-  ListItem,
-  Toolbar,
-  Typography,
-  Button,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import Auth from "../Auth/Auth";
+import { useAuth } from "../../Contexts/AuthContext";
+import { googleLogout } from "@react-oauth/google";
 import logo1 from "/logo_colored.png";
 import "../Navbar/Navbar.css";
 
-const drawerWidth = 240;
-const navItems = ["Home", "Projects"];
-
 export default function Navbar() {
   const navigate = useNavigate();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [scroll, setScroll] = useState(false);
-  const [isMouseEnter, setIsMouseEnter] = useState(false);
+  const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
 
-  const scrolling = () => {
-    window.scrollY >= 2 ? setScroll(true) : setScroll(false);
-  };
-  window.addEventListener("scroll", scrolling);
-
-  const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
-    if (isMouseEnter) setIsMouseEnter(false);
-  };
-
-  const handleMouseEnter = () => setIsMouseEnter(true);
-
-  const handleMouseLeave = () => {
-    setIsMouseEnter(false);
-    setMobileOpen(false);
-  };
-
-  const handleSidebarClick = (event) => {
-    const clickedElement = event.target;
-    if (!clickedElement.classList.contains("projectLink")) {
-      setIsMouseEnter(false);
-    }
-  };
-
-  const drawer = (
-    <Box
-      sx={{
-        textAlign: "center",
-        zIndex: "20",
-      }}
-      id="sidebar"
-    >
-      <Typography variant="h6" sx={{ my: 2 }}>
-        <img
-          src={logo1}
-          alt=""
-          style={{
-            height: "3.5rem",
-            marginTop: ".5rem",
-          }}
-        />
-      </Typography>
-      <Divider />
-      <List>
-        {navItems.map((item, id) => (
-          <ListItem key={id} disablePadding>
-            <div
-              style={{
-                padding: "10px",
-                margin: "auto",
-              }}
-            >
-              {item === "Projects" ? (
-                <>
-                  <div
-                    style={{ position: "relative" }}
-                    className="solutionDivSidebar"
-                  >
-                    <a
-                      className="navbarLinks projectLink"
-                      onClick={handleMouseEnter}
-                      style={{ color: "black" }}
-                    // onClick={()=>navigate('/')}
-                    >
-                      {item}
-                    </a>
-                    {isMouseEnter && (
-                      <Dropdown
-                        handleMouseLeave={handleMouseLeave}
-                        setMobileOpen={setMobileOpen}
-                      />
-                    )}
-                  </div>
-                </>
-              ) : (
-                <a
-                  href={`#${item.toLowerCase()}`}
-                  className="navbarLinks otherLinks"
-                  onClick={handleDrawerToggle}
-                  style={{ color: "black" }}
-                >
-                  {item}
-                </a>
-              )}
-            </div>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
+  function googleLogoutBtn() {
+    googleLogout();
+    setAuthUser("");
+    setIsLoggedIn(false);
+    navigate("/");
+  }
 
   return (
     <>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <AppBar
-          component="nav"
-          sx={{
-            // border: '2px solid red',
-            zIndex: 10,
-            boxShadow: "none",
-            background: "#EBF3E8",
-            position: "fixed",
-            top: 0,
-          }}
-        >
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{
-                mr: 2,
-                display: { sm: "none" },
-                color: "white",
-              }}
-            >
-              <MenuIcon sx={{ filter: "invert(1)" }} />
-            </IconButton>
-            <Grid
-              container
-              sx={{
-                // border: '2px solid red',
-                width: "100%",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <Grid
-                item
-                xs={4}
-                component="div"
-                sx={{
-                  display: { xs: "none", sm: "block" },
-                  textAlign: "center",
-                  // ml: { sm: 0, md: 4 },
-                }}
-                className="navbarTitle"
-              >
-                {/* <a href="#home"> */}
-                <img
-                  src={logo1}
-                  onClick={() => navigate('/')}
-                  alt=""
-                  style={{
-                    height: "3rem",
-                    margin: "auto",
-                    marginTop: ".5rem",
-                    cursor: 'pointer'
-                  }}
-                  id="navbarLogo"
-                />
-                {/* </a> */}
-              </Grid>
-              <Grid
-                item
-                xs={5}
-                sx={{
-                  // border: '2px solid red',
-                  display: { xs: "none", sm: "block" },
-                  width: { sm: "70%", md: "50%" },
-                }}
-              >
-                <Box
-                  sx={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    alignItems: "center",
-                  }}
-                >
-                  {navItems.map((item, id) => (
-                    <div
-                      key={id}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
+      <div style={{ height: "0px" }}>
+        <nav>
+          <div id="navbarLogo">
+            <img src={logo1} onClick={() => navigate("/")} alt="" />
+          </div>
+          <div>
+            <ul className="navItems">
+              <li>
+                <h4 className="active" onClick={() => navigate("/")}>
+                  Home
+                </h4>
+              </li>
+              <li className="submenus">
+                <h4>Projects</h4>
+                <ul>
+                  {isLoggedIn && (
+                    <li onClick={() => navigate("/create_project")}>
+                      <p>Create Project</p>
+                    </li>
+                  )}
+                  <li>
+                    <p>Ongoing Projects</p>
+                  </li>
+                  <li>
+                    <p>Completed Projects</p>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <h4>Contact us</h4>
+              </li>
+              <li style={{ padding: "0" }} className="submenus">
+                {!isLoggedIn ? (
+                  <button
+                    className="loginBtn"
+                    style={{ backgroundColor: "red" }}
+                    onClick={() => navigate("/auth")}
+                  >
+                    login
+                  </button>
+                ) : (
+                  <button
+                    className="loginBtn"
+                    style={{ backgroundColor: "red" }}
+                  >
+                    {authUser["name"].split(" ")[0]}
+                  </button>
+                )}
+                {isLoggedIn && (
+                  <ul style={{ right: "0px", marginTop: "2px" }}>
+                    <li>
+                      <p>Dashboard</p>
+                    </li>
+                    <li>
+                      <p>Edit Profile</p>
+                    </li>
+                    <li onClick={() => navigate("/kyc")}>
+                      <p>Complete KYC</p>
+                    </li>
+                    <li
+                      onClick={() => {
+                        googleLogoutBtn();
                       }}
                     >
-                      {item === "Projects" ? (
-                        <>
-                          <div
-                            onMouseOver={handleMouseEnter}
-                            onMouseOut={handleMouseLeave}
-                            style={{
-                              height: "2rem",
-                              display: "flex",
-                              alignItems: "center",
-                            }}
-                          >
-                            <a className="projectLink">{item}</a>
-                            {isMouseEnter && (
-                              <Dropdown
-                                handleMouseLeave={handleMouseLeave}
-                                setMobileOpen={setMobileOpen}
-                              />
-                            )}
-                          </div>
-                        </>
-                      ) : (
-                        <Link
-                          to='/'
-                          className="navbarLinks"
-                        >
-                          {item}
-                        </Link>
-                      )}
-                    </div>
-                  ))}
-                </Box>
-              </Grid>
-
-              <Grid
-                item
-                xs={3}
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                }}
-              >
-                <Button
-                  variant="contained"
-                  className="filledBtn"
-                  onClick={() => navigate("/signin")}
-                >
-                  Login
-                </Button>
-              </Grid>
-            </Grid>
-          </Toolbar>
-        </AppBar>
-        <Box component="nav">
-          <Drawer
-            variant="temporary"
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            ModalProps={{
-              keepMounted: true,
-            }}
-            onClick={handleSidebarClick}
-            sx={{
-              display: { xs: "block", sm: "none" },
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: drawerWidth,
-              },
-            }}
-          >
-            {drawer}
-          </Drawer>
-        </Box>
-      </Box>
+                      <p>Logout</p>
+                    </li>
+                  </ul>
+                )}
+              </li>
+            </ul>
+          </div>
+          <div className="menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </nav>
+      </div>
 
       <Routes>
         <Route index element={<Home />} />
         <Route path="/" element={<Home />} />
-        <Route path="signin" element={<Signin />} />
-        <Route path="signup" element={<Signup />} />
+        <Route path="auth" element={<Auth />} />
         <Route path="kyc" element={<Kyc />} />
         <Route path="create_project" element={<CreateProject />} />
         {/* <Route path="*" element={<NoPage />} /> */}
