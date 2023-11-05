@@ -7,11 +7,15 @@ import Auth from "../Auth/Auth";
 import { useAuth } from "../../Contexts/AuthContext";
 import { googleLogout } from "@react-oauth/google";
 import logo1 from "/logo_colored.png";
+import OngoingProject from "../Projects/OngoingProject/OngoingProject";
 import "../Navbar/Navbar.css";
+import Contact from "../Contact_us/Contact";
 
 export default function Navbar() {
   const navigate = useNavigate();
   const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
+
+  console.log(isLoggedIn);
 
   function googleLogoutBtn() {
     googleLogout();
@@ -38,19 +42,19 @@ export default function Navbar() {
                 <h4>Projects</h4>
                 <ul>
                   {isLoggedIn && (
-                    <li onClick={() => navigate("/create_project")}>
+                    <li onClick={() => navigate("/create-project")}>
                       <p>Create Project</p>
                     </li>
                   )}
-                  <li>
+                  <li onClick={() => navigate("/ongoing-project")}>
                     <p>Ongoing Projects</p>
                   </li>
-                  <li>
+                  <li onClick={() => navigate("/complete-project")}>
                     <p>Completed Projects</p>
                   </li>
                 </ul>
               </li>
-              <li>
+              <li onClick={() => navigate("/contact-us")}>
                 <h4>Contact us</h4>
               </li>
               <li style={{ padding: "0" }} className="submenus">
@@ -105,8 +109,21 @@ export default function Navbar() {
         <Route index element={<Home />} />
         <Route path="/" element={<Home />} />
         <Route path="auth" element={<Auth />} />
-        <Route path="kyc" element={<Kyc />} />
-        <Route path="create_project" element={<CreateProject />} />
+        <Route path="ongoing-project" element={<OngoingProject />} />
+        {/* <Route path="ongoing-project/:id" element={<DetailedProjectPage />} />
+        <Route path="complete-project" element={<CompletedProject />} />
+        <Route
+          path="complete-project/:id"
+          element={<DetailedCompletedProjectPage />}
+        /> */}
+        <Route path="contact-us" element={<Contact />} />
+        {isLoggedIn && (
+          <>
+            <Route path="kyc" element={<Kyc />} />
+            <Route path="create-project" element={<CreateProject />} />
+          </>
+        )}
+
         {/* <Route path="*" element={<NoPage />} /> */}
       </Routes>
     </>

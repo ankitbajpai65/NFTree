@@ -1,76 +1,3 @@
-.navbarTitle {
-  width: auto;
-  max-width: 150px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: "black";
-}
-
-.navbarTitle img:hover {
-  animation: scaleup(0.2s);
-  transform: scale(1.15);
-  transition: ease 0.4s all;
-}
-
-.navbarLinks {
-  text-decoration: none !important;
-  margin: auto;
-  margin: 0 2rem;
-}
-
-/* .navbarLinks:hover,
-.projectLink:hover {
-    color: white !important;
-} */
-
-.projectLink {
-  cursor: default;
-  text-decoration: none;
-  margin: auto;
-  margin: 0 2rem;
-}
-
-.dropdownLinks {
-  text-decoration: none;
-  display: block;
-  color: black;
-  margin: 0.5rem 0;
-  padding: 8px 10px;
-}
-
-.dropdownLinks:hover {
-  background: rgb(244, 244, 244);
-}
-
-/* .signinBtn:hover {
-    border: 2px solid var(--green-30) !important;
-} */
-
-/* MEDIA QUERY */
-
-@media only screen and (max-width: 1200px) {
-  #navbarLogo {
-    height: 4rem !important;
-  }
-
-  .navbarLinks,
-  .projectLink {
-    font-size: 0.9rem;
-  }
-}
-
-@media only screen and (min-width: 600px) and (max-width: 768px) {
-  #navbarLogo {
-    height: 3.5rem !important;
-  }
-
-  .navbarLinks,
-  .projectLink {
-    font-size: 0.8rem;
-  }
-}
-
 nav {
   display: flex;
   justify-content: space-between;
@@ -202,6 +129,14 @@ nav {
     display: flex;
   }
   .navItems {
-    display: none;
+    position: absolute;
+    flex-direction: column;
+    right: 0px;
+    top: 80px;
+    gap: 20px;
+    background: #86a789;
+    height: 100vh;
+    width: 60vw;
+    justify-content: flex-start;
   }
 }
