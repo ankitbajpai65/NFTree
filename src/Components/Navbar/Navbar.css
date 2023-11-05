@@ -106,7 +106,7 @@ nav {
 .navItems li {
   list-style: none;
   padding: 18px 0;
-  padding-right: 5vh;
+  padding-right: 4vw;
   font-family: Arial, Helvetica, sans-serif;
   position: relative;
 }
@@ -197,7 +197,7 @@ nav {
   }
 }
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 600px) {
   .menu {
     display: flex;
   }

@@ -12,4 +12,8 @@
     margin-top: 0px;
     width: 60vw;
   }
+
+  .form-container {
+    height: 138vh;
+  }
 }

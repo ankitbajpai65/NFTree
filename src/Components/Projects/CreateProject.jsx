@@ -4,7 +4,10 @@ import "./CreateProject.css";
 const CreateProject = () => {
   return (
     <>
-      <div className="form-container" style={{ height: "138vh" }}>
+      <div
+        className="form-container"
+        style={{ minHeight: "900px", height: "100vh" }}
+      >
         <div className="form-box form-button">
           <h2 className="formHead">
             Let's Plant Trees: Nurturing the Future, One Sapling at a Time

@@ -133,7 +133,10 @@ const Auth = () => {
                 ? "Don't have an account?"
                 : "Already have an account?"}{" "}
             </span>
-            <a onClick={() => setIsRegistered(!isRegistered)}>
+            <a
+              onClick={() => setIsRegistered(!isRegistered)}
+              style={{ cursor: "pointer" }}
+            >
               {isRegistered ? "Signup" : "Signin"}
             </a>
           </div>
