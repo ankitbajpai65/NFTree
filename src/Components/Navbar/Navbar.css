@@ -129,14 +129,41 @@ nav {
     display: flex;
   }
   .navItems {
+    user-select: none;
     position: absolute;
     flex-direction: column;
     right: 0px;
-    top: 80px;
     gap: 20px;
-    background: #86a789;
+    background: white;
+    padding-top: 100px;
     height: 100vh;
     width: 60vw;
     justify-content: flex-start;
+    text-align: center;
+  }
+
+  .navItems li {
+    padding: 15px 0px;
+    width: 100%;
+  }
+
+  .active::after {
+    display: none;
+  }
+
+  .submenus ul {
+    position: relative;
+    background: white;
+    box-shadow: none;
+    width: 100%;
+  }
+
+  .submenus ul li p {
+    color: #11443c;
+  }
+
+  .loginBtn {
+    position: relative;
+    top: -270px;
   }
 }
