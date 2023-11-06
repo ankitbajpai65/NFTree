@@ -82,6 +82,7 @@ export default function Navbar() {
         <img
           src={logo1}
           alt=""
+          onClick={() => navigate('/')}
           style={{
             height: "3.5rem",
             marginTop: ".5rem",
@@ -104,14 +105,14 @@ export default function Navbar() {
                     style={{ position: "relative" }}
                     className="solutionDivSidebar"
                   >
-                    <a
+                    <p
                       className="navbarLinks projectLink"
                       onClick={handleMouseEnter}
                       style={{ color: "black" }}
                     // onClick={()=>navigate('/')}
                     >
                       {item}
-                    </a>
+                    </p>
                     {isMouseEnter && (
                       <Dropdown
                         handleMouseLeave={handleMouseLeave}
@@ -121,14 +122,14 @@ export default function Navbar() {
                   </div>
                 </>
               ) : (
-                <a
-                  href={`#${item.toLowerCase()}`}
+                <Link
+                  to={`/${item.toLowerCase()}`}
                   className="navbarLinks otherLinks"
                   onClick={handleDrawerToggle}
                   style={{ color: "black" }}
                 >
                   {item}
-                </a>
+                </Link>
               )}
             </div>
           </ListItem>
@@ -147,25 +148,19 @@ export default function Navbar() {
             // border: '2px solid red',
             zIndex: 10,
             boxShadow: "none",
-            background: "#EBF3E8",
+            background: "var(--green-10)",
             position: "fixed",
             top: 0,
           }}
         >
           <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
+            <MenuIcon
               onClick={handleDrawerToggle}
               sx={{
-                mr: 2,
                 display: { sm: "none" },
-                color: "white",
+                filter: "invert(1)"
               }}
-            >
-              <MenuIcon sx={{ filter: "invert(1)" }} />
-            </IconButton>
+            />
             <Grid
               container
               sx={{
@@ -248,7 +243,7 @@ export default function Navbar() {
                         </>
                       ) : (
                         <Link
-                          to='/'
+                          to={`/${item.toLowerCase()}`}
                           className="navbarLinks"
                         >
                           {item}
@@ -257,38 +252,38 @@ export default function Navbar() {
                     </div>
                   ))}
                 </Box>
-                {
-                  isLogin ?
-                    <Button
-                      variant="contained"
-                      className="filledBtn"
-                      onClick={() => navigate("/signin")}
-                    >
-                      Login
-                    </Button>
-                    :
-                    <>
-                      <div
-                        style={{ position: 'relative' }}
-                        onMouseOver={handleMouseEnterProfile}
-                        onMouseOut={handleMouseLeaveProfile}
-                      >
-                        <AccountCircleIcon sx={{
-                          color: 'black',
-                          fontSize: '2.5rem'
-                        }} />
-                        {isMouseEnterProfile && (
-                          <Dropdown
-                            handleMouseLeave={handleMouseLeaveProfile}
-                            setMobileOpen={setMobileOpen}
-                            dropdown={"Profile"}
-                          />
-                        )}
-                      </div>
-                    </>
-                }
               </Grid>
             </Grid>
+            {
+              !isLogin ?
+                <Button
+                  variant="contained"
+                  className="filledBtn"
+                  onClick={() => navigate("/signin")}
+                >
+                  Login
+                </Button>
+                :
+                <>
+                  <div
+                    style={{ position: 'relative' }}
+                    onMouseOver={handleMouseEnterProfile}
+                    onMouseOut={handleMouseLeaveProfile}
+                  >
+                    <AccountCircleIcon sx={{
+                      color: 'black',
+                      fontSize: '2.5rem'
+                    }} />
+                    {isMouseEnterProfile && (
+                      <Dropdown
+                        handleMouseLeave={handleMouseLeaveProfile}
+                        setMobileOpen={setMobileOpen}
+                        dropdown={"Profile"}
+                      />
+                    )}
+                  </div>
+                </>
+            }
           </Toolbar>
         </AppBar>
         <Box component="nav">
@@ -315,7 +310,7 @@ export default function Navbar() {
 
       <Routes>
         <Route index element={<Home />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/kyc" element={<Kyc />} />

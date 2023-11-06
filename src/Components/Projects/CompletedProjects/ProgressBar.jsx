@@ -7,21 +7,20 @@ import Box from '@mui/material/Box';
 
 function LinearProgressWithLabel(props) {
   return (
-    <Tooltip title="10/100">
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: "column",
-          alignItems: 'center',
-          gap: '10px',
-          my: 5
-        }}>
-        <Typography sx={{ mr: 'auto' }}>No of plants plant</Typography>
-        <Box sx={{ width: '100%' }}>
-          <LinearProgress variant="determinate" {...props} />
-        </Box>
+
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: "column",
+        alignItems: 'center',
+        gap: '10px',
+        // my: 5
+      }}>
+      {/* <Typography sx={{ mr: 'auto' }}>No of plants plant</Typography> */}
+      <Box sx={{ width: '100%' }}>
+        <LinearProgress variant="determinate" {...props} />
       </Box>
-    </Tooltip>
+    </Box>
   );
 }
 
@@ -37,8 +36,10 @@ export default function ProgressBar() {
   const [progress, setProgress] = React.useState(10);
 
   return (
-    <Box sx={{ width: '45%' }}>
-      <LinearProgressWithLabel value={progress} />
-    </Box>
+    <Tooltip title="10/100">
+      <Box sx={{ width: '100%' }}>
+        <LinearProgressWithLabel value={progress} />
+      </Box>
+    </Tooltip>
   );
 }
