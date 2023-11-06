@@ -153,6 +153,7 @@ nav {
 
   .submenus ul {
     position: relative;
+    display: block;
     background: white;
     box-shadow: none;
     width: 100%;
@@ -162,8 +163,8 @@ nav {
     color: #11443c;
   }
 
-  .loginBtn {
-    position: relative;
-    top: -270px;
+  .responsiveBtn {
+    position: fixed;
+    top: 30px;
   }
 }

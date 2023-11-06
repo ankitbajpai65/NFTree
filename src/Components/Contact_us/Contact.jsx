@@ -61,7 +61,12 @@ export default function Contact() {
               ></iframe>
             )}
           </div>
-          <div className="form-input">
+          <div
+            className="form-input"
+            style={{
+              width: "25vw",
+            }}
+          >
             <span className="loadingSpinner"></span>
             <input type="text" name="name" placeholder="Full Name" />
 

@@ -1,0 +1,20 @@
+.profileImg {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.profileName {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.profileName label {
+  margin-bottom: 5px;
+  text-align: start;
+}
+
+.editForm label {
+  margin-top: 10px;
+}

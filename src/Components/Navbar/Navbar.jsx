@@ -10,6 +10,8 @@ import logo1 from "/logo_colored.png";
 import OngoingProject from "../Projects/OngoingProject/OngoingProject";
 import "../Navbar/Navbar.css";
 import Contact from "../Contact_us/Contact";
+import ErrorPage from "../Error_page/ErrorPage";
+import EditProfile from "../User/EditProfile";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -57,44 +59,47 @@ export default function Navbar() {
               <li onClick={() => navigate("/contact-us")}>
                 <h4>Contact us</h4>
               </li>
-              <li style={{ padding: "0" }} className="submenus">
-                {!isLoggedIn ? (
-                  <button
-                    className="loginBtn"
-                    style={{ backgroundColor: "red" }}
-                    onClick={() => navigate("/auth")}
-                  >
-                    login
-                  </button>
-                ) : (
-                  <button
-                    className="loginBtn"
-                    style={{ backgroundColor: "red" }}
-                  >
-                    {authUser["name"].split(" ")[0]}
-                  </button>
-                )}
-                {isLoggedIn && (
-                  <ul style={{ right: "0px", marginTop: "2px" }}>
-                    <li>
-                      <p>Dashboard</p>
-                    </li>
-                    <li>
-                      <p>Edit Profile</p>
-                    </li>
-                    <li onClick={() => navigate("/kyc")}>
-                      <p>Complete KYC</p>
-                    </li>
-                    <li
-                      onClick={() => {
-                        googleLogoutBtn();
-                      }}
+              <div className="responsiveBtn">
+                <li style={{ padding: "0" }} className="submenus">
+                  {!isLoggedIn ? (
+                    <button
+                      className="loginBtn"
+                      style={{ backgroundColor: "red" }}
+                      onClick={() => navigate("/auth")}
                     >
-                      <p>Logout</p>
-                    </li>
-                  </ul>
-                )}
-              </li>
+                      login
+                    </button>
+                  ) : (
+                    <button
+                      className="loginBtn"
+                      onClick={() => navigate("/profile")}
+                      style={{ backgroundColor: "red" }}
+                    >
+                      {authUser["name"].split(" ")[0]}
+                    </button>
+                  )}
+                  {isLoggedIn && (
+                    <ul style={{ right: "0px", marginTop: "2px" }}>
+                      <li>
+                        <p>Dashboard</p>
+                      </li>
+                      <li>
+                        <p>Edit Profile</p>
+                      </li>
+                      <li onClick={() => navigate("/kyc")}>
+                        <p>Complete KYC</p>
+                      </li>
+                      <li
+                        onClick={() => {
+                          googleLogoutBtn();
+                        }}
+                      >
+                        <p>Logout</p>
+                      </li>
+                    </ul>
+                  )}
+                </li>
+              </div>
             </ul>
           </div>
           <div className="menu">
@@ -110,6 +115,7 @@ export default function Navbar() {
         <Route path="/" element={<Home />} />
         <Route path="auth" element={<Auth />} />
         <Route path="ongoing-project" element={<OngoingProject />} />
+        <Route path="profile" element={<EditProfile />} />
         {/* <Route path="ongoing-project/:id" element={<DetailedProjectPage />} />
         <Route path="complete-project" element={<CompletedProject />} />
         <Route
@@ -124,7 +130,7 @@ export default function Navbar() {
           </>
         )}
 
-        {/* <Route path="*" element={<NoPage />} /> */}
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>
   );

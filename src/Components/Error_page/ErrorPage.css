@@ -1,0 +1,22 @@
+.Error-container {
+  height: 100vh;
+  padding-top: 200px;
+  text-align: center;
+  font-family: arial;
+  color: #86a789;
+}
+
+.Error-container h1 {
+  font-size: 5vw;
+}
+
+.Error-container h2 {
+  font-size: 2vw;
+  font-weight: unset;
+  margin-bottom: 3rem;
+}
+
+.form-button p {
+  font-size: large;
+  color: black;
+}
