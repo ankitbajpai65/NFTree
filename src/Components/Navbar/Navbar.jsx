@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Home from "../Home/Home";
 import Kyc from "../Kyc/Kyc";
-import CreateProject from "../Projects/CreateProject";
+import CreateProject from "../Projects/CreateProject/CreateProject";
 import Auth from "../Auth/Auth";
 import { useAuth } from "../../Contexts/AuthContext";
 import { googleLogout } from "@react-oauth/google";

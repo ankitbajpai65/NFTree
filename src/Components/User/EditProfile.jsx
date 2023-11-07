@@ -18,7 +18,7 @@ export default function EditProfile() {
           </div>
 
           <div className="form-input" style={{ alignItems: "start" }}>
-            <div className="profileName">
+            <div className="form-col profileName">
               <div>
                 <label htmlFor="">First name</label>
                 <input type="text" name="name" placeholder="First Name" />
