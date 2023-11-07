@@ -22,24 +22,45 @@ export default function OngoingProject() {
                     display: 'block',
                     textAlign: 'center',
                     margin: '7rem 0 2rem',
-                    position: 'relative'
+                    // position: 'relative'
                 }}
             >
                 <Typography
                     variant="h3"
                     gutterBottom>Ongoing Projects</Typography>
             </div>
-            <Box
-                sx={{
-                    position: 'absolute',
-                    top: '8rem',
-                    right: '2rem'
-                }}>
-                <SearchIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                <TextField id="input-with-sx" placeholder="Search.." variant="standard" />
-            </Box>
 
-            <Grid container spacing={1}  sx={{
+            <Grid container spacing={1} sx={{
+                // width:100,
+                // border: '2px solid violet',
+                // height: '100vh',
+                display: 'flex',
+                alignItems: "center",
+                py: 5
+            }}>
+                <Grid item xs={2}></Grid>
+                <Grid container spacing={3} xs={8} sx={{
+                    // border: '2px solid blue',
+                    display: 'flex',
+                    alignItems: 'center'
+                }}>
+                    <Box
+                        sx={{
+                            width: '80%',
+                            textAlign:'center',
+                            margin:'auto'
+                            // position: 'absolute',
+                            // top: '8rem',
+                            // right: '2rem'
+                        }}>
+                        <SearchIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
+                        <TextField id="input-with-sx" placeholder="Search.." variant="standard" sx={{width:'100%'}} />
+                    </Box>
+                </Grid>
+                <Grid item xs={2}></Grid>
+            </Grid>
+
+            <Grid container spacing={1} sx={{
                 // width:100,
                 // border: '2px solid violet',
                 height: '100vh',
