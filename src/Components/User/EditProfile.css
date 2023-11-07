@@ -15,6 +15,10 @@
   text-align: start;
 }
 
+.editForm input {
+  color: black;
+}
+
 .editForm label {
   margin-top: 10px;
 }

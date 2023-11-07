@@ -115,7 +115,7 @@ export default function Navbar() {
         <Route path="/" element={<Home />} />
         <Route path="auth" element={<Auth />} />
         <Route path="ongoing-project" element={<OngoingProject />} />
-        <Route path="profile" element={<EditProfile />} />
+
         {/* <Route path="ongoing-project/:id" element={<DetailedProjectPage />} />
         <Route path="complete-project" element={<CompletedProject />} />
         <Route
@@ -127,6 +127,7 @@ export default function Navbar() {
           <>
             <Route path="kyc" element={<Kyc />} />
             <Route path="create-project" element={<CreateProject />} />
+            <Route path="profile" element={<EditProfile data={authUser} />} />
           </>
         )}
 

@@ -48,7 +48,7 @@
 .form-input textarea {
   border: 1px solid #e4e4e7;
   width: 100%;
-  padding: 3% 4%;
+  padding: 3% 15px;
   border-radius: 5px;
   min-height: 40px;
 }

@@ -1,6 +1,7 @@
 import "./EditProfile.css";
 
-export default function EditProfile() {
+export default function EditProfile({ data }) {
+  console.log(data);
   return (
     <>
       <div className="form-container" style={{ minHeight: "1000px" }}>
@@ -16,20 +17,39 @@ export default function EditProfile() {
               Change Profile pic
             </a>
           </div>
-
+          <br></br>
+          <br></br>
           <div className="form-input" style={{ alignItems: "start" }}>
             <div className="form-col profileName">
               <div>
                 <label htmlFor="">First name</label>
-                <input type="text" name="name" placeholder="First Name" />
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="First Name"
+                  value={data.name.split(" ")[0]}
+                  readOnly={true}
+                />
               </div>
               <div>
                 <label htmlFor="">Last name</label>
-                <input type="text" name="name" placeholder="Last Name" />
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Last Name"
+                  value={data.name.split(" ")[1]}
+                  readOnly={true}
+                />
               </div>
             </div>
             <label htmlFor="">Email</label>
-            <input type="text" name="name" placeholder="Email" />
+            <input
+              type="text"
+              name="name"
+              placeholder="Email"
+              value={data.email}
+              readOnly={true}
+            />
 
             <label htmlFor="">Address</label>
             <input type="text" name="address" required placeholder="Address" />
@@ -44,9 +64,9 @@ export default function EditProfile() {
               />
             </div>
 
-            <label htmlFor="">Password</label>
-            <input type="text" name="name" placeholder="Password" />
+            <label htmlFor="">Change Password</label>
             <input type="text" name="name" placeholder="New Password" />
+            <input type="text" name="name" placeholder="Confirm Password" />
             <a href="" style={{ alignItems: "start", marginTop: "-10px" }}>
               change password
             </a>
