@@ -79,7 +79,7 @@ export default function Contact() {
               rows="5"
               placeholder="Enter Your Message"
             />
-            <div className="form-button">
+            <div className="form-button" style={{ marginBottom: "100px" }}>
               <button className="submit-button" onClick={handleSend}>
                 Send
               </button>
