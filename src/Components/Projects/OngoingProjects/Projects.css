@@ -1,0 +1,4 @@
+.projectsCard > div:first-child{
+    border: 1px solid #c9c9c9;
+    box-shadow: none;
+}
