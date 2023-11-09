@@ -1,60 +1,86 @@
-import { Input, Button } from '@mui/material';
+import { Input, Button } from "@mui/material";
 import "./CreateProject.css";
 
 const CreateProject = () => {
   return (
     <>
-      <div className="login-container createProjectContainer">
-        <div className="login-box login-button">
-          <h2 className="formHead">Let's Plant Trees: Nurturing the Future, One Sapling at a Time</h2>
-          <div className="login-input">
-
+      <div
+        className="form-container"
+        style={{ height: "100vh", minHeight: "1000px" }}
+      >
+        <div className="form-box form-button" style={{ margin: "35px 0px" }}>
+          <h2 className="formHead">
+            Let's Plant Trees: Nurturing the Future, One Sapling at a Time
+          </h2>
+          <div className="form-input">
             <input type="text" name="name" placeholder="Project name" />
 
+            <textarea
+              name="description"
+              id=""
+              cols="30"
+              rows="5"
+              placeholder="Tell us a little about project"
+            />
+            <br></br>
             <input
               type="text"
               name="area"
               required
               placeholder="Total Plantation Area in Square Meter"
             />
-            <input
-              type="text"
-              name="plants"
-              required
-              placeholder="No of Plants Planned"
-            />
-            <input
-              type="text"
-              name="donation"
-              required
-              placeholder="Donation Cost per Plant"
-            />
+            <div className="form-col">
+              <input
+                type="text"
+                name="plants"
+                required
+                placeholder="No of Plants Planned"
+              />
+              <input
+                type="text"
+                name="donation"
+                required
+                placeholder="Donation per Plant"
+              />
+            </div>
 
-            <label htmlFor="">About Project <sup style={{ color: 'red' }}>*</sup></label>
-            <textarea name="description" id="" cols="30" rows="5" placeholder="Tell us a little about project" />
+            <br></br>
+
+            <input type="text" name="address" required placeholder="Address" />
+            <div className="form-col">
+              <input type="text" name="city" required placeholder="City" />
+              <input
+                type="text"
+                name="country"
+                required
+                placeholder="Country
+                "
+              />
+            </div>
+            <br></br>
 
             <label htmlFor="">Upload Supporting Document</label>
             <Input
               id="file-input"
               name="regProof"
               type="file"
-              inputProps={{ accept: 'image/*' }}
+              inputProps={{ accept: "image/*" }}
               disableUnderline
-              style={{ display: 'none' }}
-            // onChange={handleFileUpload}
+              style={{ display: "none" }}
+              // onChange={handleFileUpload}
             />
+
             <Button
               variant="outlined"
               component="label"
               htmlFor="file-input"
               className="uploadBtn"
               sx={{
-                width: '100%',
+                width: "100%",
                 textTransform: "capitalize",
-                color: '#757575',
-                border: '1px solid #E4E4E7'
+                color: "#757575",
+                border: "1px solid #E4E4E7",
               }}
-
             >
               Browse file
             </Button>

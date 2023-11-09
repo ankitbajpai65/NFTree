@@ -1,0 +1,52 @@
+.contact_container {
+  height: 10%h;
+}
+
+.contactHead {
+  padding-top: 100px;
+  padding-bottom: 3vh;
+  text-align: center;
+  font-size: 3vw;
+  font-family: arial;
+}
+
+.contactContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 50px;
+  align-items: center;
+}
+
+.contactMap {
+  width: 100%;
+  padding: 0px 5vw;
+}
+
+.contactForm {
+  display: flex;
+}
+
+.form-button {
+  width: 100%;
+}
+
+.form-input {
+  min-width: 300px;
+  position: relative;
+}
+
+.contactRespond {
+  height: 300px;
+  width: 90%;
+  margin-bottom: 30px;
+  font-size: 20px;
+  color: #86a789;
+  padding: 0px 5vw;
+}
+
+.spinner {
+  width: 80vw;
+  height: 80%;
+  position: absolute;
+}
