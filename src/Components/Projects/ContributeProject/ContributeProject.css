@@ -1,0 +1,14 @@
+/* .contributeProjectContainer {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } */
+
+  
+  @media only screen and (max-width: 1300px) {
+    .login-box {
+      margin-top: 0px;
+      width: 60vw;
+    }
+  }

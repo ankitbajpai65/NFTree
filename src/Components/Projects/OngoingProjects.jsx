@@ -1,5 +1,5 @@
 import * as React from 'react';
-import OngoingProjectCard from './OngoingProjectCard';
+import ProjectCard from './ProjectCard';
 import {
     Grid,
     Card,
@@ -14,15 +14,14 @@ import {
 } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 
-export default function OngoingProject() {
+export default function OngoingProjects() {
     return (
         <>
             <div
                 style={{
                     display: 'block',
                     textAlign: 'center',
-                    margin: '7rem 0 2rem',
-                    // position: 'relative'
+                    margin: '7rem 0 4rem',
                 }}
             >
                 <Typography
@@ -31,67 +30,59 @@ export default function OngoingProject() {
             </div>
 
             <Grid container spacing={1} sx={{
-                // width:100,
-                // border: '2px solid violet',
-                // height: '100vh',
                 display: 'flex',
                 alignItems: "center",
-                py: 5
+                // py: 5
             }}>
                 <Grid item xs={2}></Grid>
-                <Grid container spacing={3} xs={8} sx={{
+                <Grid item container spacing={3} xs={8} sx={{
                     // border: '2px solid blue',
                     display: 'flex',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    ml:0
                 }}>
                     <Box
                         sx={{
-                            width: '80%',
+                            // border:'2px solid red',
+                            width: '42%',
                             textAlign:'center',
                             margin:'auto'
-                            // position: 'absolute',
-                            // top: '8rem',
-                            // right: '2rem'
                         }}>
                         <SearchIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
-                        <TextField id="input-with-sx" placeholder="Search.." variant="standard" sx={{width:'100%'}} />
+                        <TextField id="input-with-sx" placeholder="Search.." variant="standard" sx={{width:'90%'}} />
                     </Box>
                 </Grid>
                 <Grid item xs={2}></Grid>
             </Grid>
 
             <Grid container spacing={1} sx={{
-                // width:100,
-                // border: '2px solid violet',
-                height: '100vh',
                 display: 'flex',
                 alignItems: "center",
                 mb: 5,
                 py: 5
             }}>
-                <Grid item xs={2}></Grid>
-                <Grid container spacing={3} xs={8} sx={{
-                    // border: '2px solid blue',
-                }}>
+                <Grid item xs={1}></Grid>
+                <Grid item container spacing={3} xs={10}>
                     {
                         Array.from({ length: 7 }).map((elem, index) => {
                             return (
                                 <>
                                     <Grid
                                         key={index}
-                                        item xs={3}
+                                        item
+                                        xs={12} sm={6} md={4} lg={3}
                                         sx={{
                                             // border: '2px solid red',
-                                            height: 310,
+                                            height: '28rem',
                                         }}>
-                                        <OngoingProjectCard id={index} />
+                                        <ProjectCard type="ongoingProjects"/>
                                     </Grid>
                                 </>
                             )
                         })
                     }
                 </Grid>
-                <Grid item xs={2}></Grid>
+                <Grid item xs={1}></Grid>
             </Grid>
         </>
     );

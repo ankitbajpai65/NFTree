@@ -3,9 +3,9 @@ import { List, ListItem } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const projectDropdown = [
-  { to: '/create_project', name: 'Create Project' },
-  { to: '/ongoing_project', name: 'Ongoing Project' },
-  { to: '/completed_project', name: 'Completed Project' },
+  { to: '/createProject', name: 'Create Project' },
+  { to: '/ongoingProjects', name: 'Ongoing Project' },
+  { to: '/completedProjects', name: 'Completed Project' },
 ]
 
 const profileDropdown = [

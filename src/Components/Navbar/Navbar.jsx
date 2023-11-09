@@ -6,9 +6,11 @@ import Dropdown from "./Dropdown";
 import Signin from "../Auth/Signin";
 import Signup from "../Auth/Signup";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import CreateProject from "../Projects/CreateProject";
-import OngoingProject from "../Projects/OngoingProject/OngoingProject";
-import CompletedProjects from "../Projects/CompletedProjects/CompletedProjects";
+import CreateProject from "../Projects/CreateProject/CreateProject";
+import OngoingProjects from "../Projects/OngoingProjects";
+import ProjectDetails from "../Projects/ProjectDetails";
+import ContributeProject from "../Projects/ContributeProject/ContributeProject";
+import CompletedProjects from "../Projects/CompletedProjects";
 
 import {
   AppBar,
@@ -173,9 +175,11 @@ export default function Navbar() {
             >
               <Grid
                 item
-                xs={8}
+                sm={4}
+                md={5}
                 component="div"
                 sx={{
+                  // border: '2px solid blue',
                   display: { xs: "none", sm: "block" },
                   textAlign: "start",
                   pl: { sm: 0, md: 5 },
@@ -197,7 +201,9 @@ export default function Navbar() {
               </Grid>
               <Grid
                 item
-                xs={4}
+                className="navLinksContainer"
+                sm={8}
+                md={7}
                 sx={{
                   // border: '2px solid red',
                   display: { xs: "none", sm: "flex" },
@@ -314,9 +320,12 @@ export default function Navbar() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/kyc" element={<Kyc />} />
-        <Route path="/create_project" element={<CreateProject />} />
-        <Route path="/ongoing_project" element={<OngoingProject />} />
-        <Route path="/completed_projects/*" element={<CompletedProjects />} />
+        <Route path="/createProject" element={<CreateProject />} />
+        <Route path="/ongoingProjects" element={<OngoingProjects />} />
+        <Route path="/ongoingProjects/projectName" element={<ProjectDetails progress="10/100"/>} />
+        <Route path="/ongoingProjects/projectName/contribute" element={<ContributeProject/>} />
+        <Route path="/completedProjects" element={<CompletedProjects />} />
+        <Route path="/completedProjects/projectName" element={<ProjectDetails progress="100/100"/>} />
         {/* <Route path="*" element={<NoPage />} /> */}
       </Routes>
     </>

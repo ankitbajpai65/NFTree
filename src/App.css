@@ -34,12 +34,17 @@ label {
 }
 
 input,
-textarea {
+textarea,
+select {
   font-size: 1rem;
   outline: none;
   color: #757575;
   resize: none;
   font-family: 'Arial';
+}
+
+select option{
+  padding:5px;
 }
 
 button {

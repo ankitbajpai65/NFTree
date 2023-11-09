@@ -14,31 +14,30 @@ function LinearProgressWithLabel(props) {
         flexDirection: "column",
         alignItems: 'center',
         gap: '10px',
-        // my: 5
       }}>
-      {/* <Typography sx={{ mr: 'auto' }}>No of plants plant</Typography> */}
       <Box sx={{ width: '100%' }}>
-        <LinearProgress variant="determinate" {...props} />
+        <LinearProgress variant="determinate" sx={{height:7}} {...props} />
       </Box>
     </Box>
   );
 }
 
 LinearProgressWithLabel.propTypes = {
-  /**
-   * The value of the progress indicator for the determinate and buffer variants.
-   * Value between 0 and 100.
-   */
   value: PropTypes.number.isRequired,
 };
 
-export default function ProgressBar() {
-  const [progress, setProgress] = React.useState(10);
+export default function ProgressBar({ progress }) {
+  // const [progress, setProgress] = React.useState(10);
 
   return (
-    <Tooltip title="10/100">
+    <Tooltip title={progress}>
       <Box sx={{ width: '100%' }}>
-        <LinearProgressWithLabel value={progress} />
+        {
+          progress === "10/100" ?
+            <LinearProgressWithLabel value="10" />
+            :
+            <LinearProgressWithLabel value="100" />
+        }
       </Box>
     </Tooltip>
   );

@@ -21,12 +21,16 @@ const About = () => {
                 >
                     <Grid
                         item
-                        xs={3}
-                        sx={{ display: { xs: "none", lg: "block" } }}></Grid>
+                        sm={1}
+                        md={2}
+                        lg={3}
+                        sx={{ display: { xs: "none", sm: "block" } }}></Grid>
                     <Grid
                         item
                         container
                         xs={12}
+                        sm={10}
+                        md={8}
                         lg={6}
                         spacing={3}
                         className="aboutCardContainerDiv">
@@ -35,7 +39,6 @@ const About = () => {
                                 <Grid
                                     item
                                     xs={6}
-                                    // md={4}
                                     key={id}>
                                     <AboutCard
                                         key={id}
@@ -47,8 +50,10 @@ const About = () => {
                     </Grid>
                     <Grid
                         item
-                        xs={3}
-                        sx={{ display: { xs: "none", lg: "block" } }}>
+                        sm={1}
+                        md={2}
+                        lg={3}
+                        sx={{ display: { xs: "none", sm: "block" } }}>
                     </Grid>
                 </Grid>
             </div>

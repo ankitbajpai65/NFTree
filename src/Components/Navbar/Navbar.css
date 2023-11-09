@@ -13,22 +13,19 @@
     transition: ease 0.4s all;
 }
 
-.navbarLinks {
-    text-decoration: none !important;
+.navLinksContainer .navbarLinks {
+    text-decoration: none;
     margin: auto;
-    margin:0 2rem;
+    margin: 0 2rem;
+    font-weight: 600;
 }
 
-/* .navbarLinks:hover,
-.projectLink:hover {
-    color: white !important;
-} */
-
-.projectLink {
+.navLinksContainer .projectLink {
     cursor: default;
     text-decoration: none;
     margin: auto;
-    margin:0 2rem;
+    margin: 0 2rem;
+    font-weight: 600;
 }
 
 .dropdownLinks {
@@ -43,16 +40,9 @@
     background: rgb(244, 244, 244)
 }
 
-/* .signinBtn:hover {
-    border: 2px solid var(--green-30) !important;
-} */
-
 /* MEDIA QUERY */
 
 @media only screen and (max-width : 1200px) {
-    #navbarLogo {
-        height: 4rem !important;
-    }
 
     .navbarLinks,
     .projectLink {
@@ -61,12 +51,10 @@
 }
 
 @media only screen and (min-width : 600px) and (max-width : 768px) {
-    #navbarLogo {
-        height: 3.5rem !important;
-    }
 
-    .navbarLinks,
-    .projectLink {
+    .navLinksContainer .navbarLinks,
+    .navLinksContainer .projectLink {
         font-size: 0.8rem;
+        margin: 0 1.5rem;
     }
 }
