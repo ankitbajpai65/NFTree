@@ -6,9 +6,9 @@ const CreateProject = () => {
     <>
       <div
         className="form-container"
-        style={{ height: "100vh", minHeight: "950px" }}
+        style={{ height: "100vh", minHeight: "1000px" }}
       >
-        <div className="form-box form-button">
+        <div className="form-box form-button" style={{ margin: "35px 0px" }}>
           <h2 className="formHead">
             Let's Plant Trees: Nurturing the Future, One Sapling at a Time
           </h2>
