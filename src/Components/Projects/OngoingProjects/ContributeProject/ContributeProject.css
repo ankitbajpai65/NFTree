@@ -1,9 +1,49 @@
-/* .contributeProjectContainer {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  } */
+.contributeProjectContainer {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.createProjectContainer {
+  height: 138vh;
+}
+
+.uploadBtn:hover {
+  border: 1px solid #e4e4e7 !important;
+}
+
+Select {
+  width: 100%;
+}
+
+.submit-button {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.projectInfo {
+  display: flex;
+  align-items: center;
+  background-color: var(--green-20);
+  min-height: 2.5rem;
+  max-height: auto;
+  width: 75%;
+  padding: 0 1rem;
+  border-radius: 2px;
+}
+
+.projectInfoContainer img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+@media only screen and (max-width: 1300px) {
+  .login-box {
+    margin-top: 0px;
+    width: 60vw;
+  }
+}
 
 @media only screen and (max-width: 1300px) {
   .login-box {

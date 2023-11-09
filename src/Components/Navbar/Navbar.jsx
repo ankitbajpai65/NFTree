@@ -8,7 +8,10 @@ import Auth from "../Auth/Auth";
 import { useAuth } from "../../Contexts/AuthContext";
 import { googleLogout } from "@react-oauth/google";
 import logo1 from "/logo_colored.png";
-import OngoingProject from "../Projects/OngoingProject/OngoingProject";
+import OngoingProjects from "../Projects/OngoingProjects/OngoingProjects";
+import ProjectDetails from "../Projects/OngoingProjects/ProjectDetails";
+import ContributeProject from "../Projects/OngoingProjects/ContributeProject/ContributeProject";
+import CompletedProjects from "../Projects/OngoingProjects/CompletedProjects";
 import "../Navbar/Navbar.css";
 import Contact from "../Contact_us/Contact";
 import ErrorPage from "../Error_page/ErrorPage";
@@ -322,9 +325,17 @@ export default function Navbar() {
         <Route path="/home" element={<Home />} />
         <Route path="login" element={<Auth />} />
         <Route path="createProject" element={<CreateProject />} />
-        <Route path="ongoingProjects" element={<OngoingProject />} />
+        <Route path="ongoingProjects" element={<OngoingProjects />} />
         <Route path="contact" element={<Contact />} />
         <Route path="profile" element={<ProfilePage data={authUser} />} />
+        <Route
+          path="/ongoingProjects/projectName"
+          element={<ProjectDetails progress="10/100" />}
+        />
+        <Route
+          path="/ongoingProjects/projectName/contribute"
+          element={<ContributeProject />}
+        />
         {isLoggedIn && (
           <>
             {/* <Route path="kyc" element={<Kyc />} />
