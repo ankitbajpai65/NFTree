@@ -1,10 +1,9 @@
 import "./EditProfile.css";
 
-export default function EditProfile({ data }) {
-  console.log(data);
+export default function EditProfile() {
   return (
     <>
-      <div className="form-container" style={{ minHeight: "1000px" }}>
+      <div style={{ minHeight: "1000px" }}>
         <div className="form-box editForm">
           <div style={{ display: "inline-grid" }}>
             {" "}
@@ -27,7 +26,7 @@ export default function EditProfile({ data }) {
                   type="text"
                   name="name"
                   placeholder="First Name"
-                  value={data.name.split(" ")[0]}
+                  // value={data.name.split(" ")[0]}
                   readOnly={true}
                 />
               </div>
@@ -37,7 +36,7 @@ export default function EditProfile({ data }) {
                   type="text"
                   name="name"
                   placeholder="Last Name"
-                  value={data.name.split(" ")[1]}
+                  // value={data.name.split(" ")[1]}
                   readOnly={true}
                 />
               </div>
@@ -47,7 +46,7 @@ export default function EditProfile({ data }) {
               type="text"
               name="name"
               placeholder="Email"
-              value={data.email}
+              // value={data.email}
               readOnly={true}
             />
 

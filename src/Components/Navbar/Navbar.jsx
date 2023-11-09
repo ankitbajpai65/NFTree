@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Home from "../Home/Home";
-import Kyc from "../Kyc/Kyc";
 import CreateProject from "../Projects/CreateProject/CreateProject";
 import Auth from "../Auth/Auth";
 import { useAuth } from "../../Contexts/AuthContext";
@@ -11,7 +10,7 @@ import OngoingProject from "../Projects/OngoingProject/OngoingProject";
 import "../Navbar/Navbar.css";
 import Contact from "../Contact_us/Contact";
 import ErrorPage from "../Error_page/ErrorPage";
-import EditProfile from "../User/EditProfile";
+import ProfilePage from "../UserProfile/ProfilePage";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -79,16 +78,9 @@ export default function Navbar() {
                     </button>
                   )}
                   {isLoggedIn && (
-                    <ul style={{ right: "0px", marginTop: "2px" }}>
-                      <li>
-                        <p>Dashboard</p>
-                      </li>
-                      <li>
-                        <p>Edit Profile</p>
-                      </li>
-                      <li onClick={() => navigate("/kyc")}>
-                        <p>Complete KYC</p>
-                      </li>
+                    <ul
+                      style={{ right: "0px", marginTop: "2px", width: "100px" }}
+                    >
                       <li
                         onClick={() => {
                           googleLogoutBtn();
@@ -115,19 +107,13 @@ export default function Navbar() {
         <Route path="/" element={<Home />} />
         <Route path="auth" element={<Auth />} />
         <Route path="ongoing-project" element={<OngoingProject />} />
-
-        {/* <Route path="ongoing-project/:id" element={<DetailedProjectPage />} />
-        <Route path="complete-project" element={<CompletedProject />} />
-        <Route
-          path="complete-project/:id"
-          element={<DetailedCompletedProjectPage />}
-        /> */}
         <Route path="contact-us" element={<Contact />} />
+        <Route path="profile" element={<ProfilePage data={authUser} />} />
         {isLoggedIn && (
           <>
-            <Route path="kyc" element={<Kyc />} />
+            {/* <Route path="kyc" element={<Kyc />} />
             <Route path="create-project" element={<CreateProject />} />
-            <Route path="profile" element={<EditProfile data={authUser} />} />
+            <Route path="profile" element={<EditProfile data={authUser} />} /> */}
           </>
         )}
 

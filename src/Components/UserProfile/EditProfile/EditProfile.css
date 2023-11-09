@@ -15,6 +15,14 @@
   text-align: start;
 }
 
+.editForm {
+  align-items: center;
+  margin: 0rem auto 3rem;
+  position: initial;
+
+  transform: none;
+}
+
 .editForm input {
   color: black;
 }

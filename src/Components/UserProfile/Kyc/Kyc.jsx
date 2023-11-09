@@ -46,7 +46,7 @@ const Kyc = () => {
     <Box
       sx={{
         maxWidth: activeStep === 3 ? "85%" : "600px",
-        margin: "5rem auto 3rem auto",
+        margin: "0rem auto 3rem auto",
         padding: 2,
       }}
     >
