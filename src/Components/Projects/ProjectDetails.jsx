@@ -8,6 +8,16 @@ import {
 import ProgressBar from './ProgressBar';
 import { useNavigate } from 'react-router-dom';
 
+const projectOwnerDetails = [
+    { type: 'Name', value: 'Project Owner Name' },
+    { type: 'Email', value: 'Project Owner Name' },
+    { type: 'Address', value: 'Address' },
+    { type: 'Name of Organization', value: 'Name of Organization' },
+    { type: 'Country', value: 'Country' },
+    { type: 'Website', value: 'Website' },
+    { type: 'Designation', value: 'Designation' },
+]
+
 const ProjectDetails = ({ progress }) => {
     const navigate = useNavigate();
     console.log(progress);
@@ -16,20 +26,33 @@ const ProjectDetails = ({ progress }) => {
         <Grid container spacing={8} columns={16} sx={{
             minHeight: '90vh',
             maxHeight: 'auto',
-            my: 5,
+            my: { xs: 0, sm: 5 },
             py: 5
         }}>
-            <Grid item xs={2}></Grid>
-            <Grid item xs={6} sx={{
+            <Grid
+                item md={1} lg={2}
+                sx={{ display: { sm: 'none', md: 'block' } }}
+            >
+            </Grid>
+            <Grid item xs={12} md={7} lg={6} sx={{
                 display: 'flex',
-                alignItems: 'center'
+                alignItems: 'center',
+                justifyContent: 'center'
             }}>
-                <Box sx={{ height: '100%', width: "90%" }} >
-                    <img src="/project.jpg" alt="" style={{ height: '80%', width: '100%',mb:'auto' }} />
+                <Box sx={{ height: '100%', width: "90%", margin: 'auto' }} >
+                    <img
+                        src="/project.jpg"
+                        alt=""
+                        style={{
+                            height: '60%',
+                            width: '100%',
+                            mb: 'auto',
+                            objectFit: 'cover'
+                        }} />
                 </Box>
             </Grid>
 
-            <Grid item xs={6} sx={{
+            <Grid item xs={12} md={7} lg={6} sx={{
                 // border: '2px solid blue',
                 display: 'flex',
                 flexDirection: 'column',
@@ -106,54 +129,47 @@ const ProjectDetails = ({ progress }) => {
                     onClick={() => navigate('./contribute')}
                     sx={{
                         width: '7rem',
-                        textTransform: 'capitalize'
+                        textTransform: 'capitalize',
+                        mt:2
                     }}
                 >Contribute</Button>
 
                 {/* PROJECT OWNER */}
 
-                <Typography variant="h5" gutterBottom sx={{ mb: 3,mt:4 }}>
+                <Typography variant="h5" gutterBottom sx={{ mb: 3, mt: 4 }}>
                     Project Owner
                 </Typography>
 
-                <Grid container>
-                    <Grid item xs={5} sx={{
-                        marginTop: 'auto',
-                        marginBottom: 'auto',
-                    }}>
-                        <Typography variant="body2" sx={{ mb: 0 }} gutterBottom>
-                            Name
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={7}>
-                        <Box className="projectInfo">
-                            <Typography variant="body2" sx={{ mb: 0 }} gutterBottom>
-                                Project owner name
-                            </Typography>
-                        </Box>
-                    </Grid>
-                </Grid>
+                {
+                    projectOwnerDetails.map((detail, index) => {
+                        return (
+                            <Grid container key={index}>
+                                <Grid item xs={5} sx={{
+                                    marginTop: 'auto',
+                                    marginBottom: 'auto',
+                                }}>
+                                    <Typography variant="body2" sx={{ mb: 0 }} gutterBottom>
+                                        {detail.type}
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={7}>
+                                    <Box className="projectInfo">
+                                        <Typography variant="body2" sx={{ mb: 0 }} gutterBottom>
+                                            {detail.value}
+                                        </Typography>
+                                    </Box>
+                                </Grid>
+                            </Grid>
 
-                <Grid container>
-                    <Grid item xs={5} sx={{
-                        marginTop: 'auto',
-                        marginBottom: 'auto',
-                    }}>
-                        <Typography variant="body2" sx={{ mb: 0 }} gutterBottom>
-                            Email
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={7}>
-                        <Box className="projectInfo">
-                            <Typography variant="body2" sx={{ mb: 0 }} gutterBottom>
-                                Project owner's email
-                            </Typography>
-                        </Box>
-                    </Grid>
-                </Grid>
-
+                        )
+                    })
+                }
             </Grid>
-            <Grid item xs={2}></Grid>
+            <Grid
+                item md={1} lg={2}
+                sx={{ display: { sm: 'none', md: 'block' } }}
+            >
+            </Grid>
         </Grid>
     )
 }

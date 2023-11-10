@@ -1,12 +1,43 @@
+import { useState,useEffect } from 'react';
 import {
     Input,
     Button,
     Select,
     MenuItem
 } from '@mui/material';
-import "../CreateProject/CreateProject.css";
+import "../ContributeProject/ContributeProject.css";
 
-const CreateProject = () => {
+const ContributeProject = () => {
+    const [inputValue, setInputValue] = useState('');
+    const [totalAmount, setTotalAmount] = useState('0');
+
+    useEffect(() => {
+        const delay = 1000; // set your desired debounce delay in milliseconds
+
+        const timeoutId = setTimeout(() => {
+            // Perform the action you want to debounce here
+            console.log('Performing debounce action with input value:', inputValue);
+
+            // For example, update the total amount based on the input value
+            const newTotalAmount = calculateTotalAmount(inputValue);
+            setTotalAmount(newTotalAmount);
+        }, delay);
+
+        // Cleanup the timeout to avoid unnecessary side effects
+        return () => clearTimeout(timeoutId);
+    }, [inputValue]);
+
+    const calculateTotalAmount = (value) => {
+        // Replace this with your logic to calculate the total amount based on the input value
+        // For demonstration, let's assume the input is a number and the total is calculated as 100 * input value
+        const numericValue = parseFloat(value);
+        return isNaN(numericValue) ? 0 : 100 * numericValue;
+    };
+
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
+    };
+
     return (
         <>
             <div className="login-container contributeProjectContainer">
@@ -15,18 +46,12 @@ const CreateProject = () => {
                     <div className="login-input">
 
                         <label htmlFor="">Number of trees</label>
-                        <input type="text" name="name" />
+                        <input type="text" name="name" onChange={handleInputChange} />
 
-                        <label htmlFor="">Type of tree</label>
-                        <select name="trees" id="trees">
-                            <option value="" disabled selected>Select Tree</option>
-                            <option value="mango">Mango Tree</option>
-                            <option value="banyan">Banyan Tree</option>
-                            <option value="oak">Oak Tree</option>
-                        </select>
+                        <p className="amount">Total = Rs.{totalAmount}/-</p>
 
                         <button className="submit-button" onClick="">
-                            Buy
+                            Donate
                         </button>
                     </div>
                 </div>
@@ -35,4 +60,4 @@ const CreateProject = () => {
     );
 };
 
-export default CreateProject;
+export default ContributeProject;

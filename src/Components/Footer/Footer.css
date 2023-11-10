@@ -3,15 +3,16 @@
   background: var(--green-30);
 }
 
-#footerImg:hover {
-  animation: scaleup(0.2s);
-  transform: scale(1.2);
-  transition: ease 0.4s all;
-}
 
 #footerImg {
-  height: 4rem;
+  height: 3.5rem;
   margin-top: 0.5rem;
+}
+
+#footerImg:hover {
+  animation: scaleup(0.2s);
+  transform: scale(1.1);
+  transition: ease 0.4s all;
 }
 
 .footerIcons {
@@ -19,7 +20,7 @@
   margin: 0 0 0 2.5rem;
   transform: scale(1.4);
   cursor: pointer;
-  color:white;
+  color: white;
   /* transition: color 0.3s; */
 }
 
@@ -27,6 +28,10 @@
 @media only screen and (max-width: 600px) {
   .footerDiv {
     padding: 0 !important;
+  }
+
+  #footerLogo {
+    margin-bottom: 1rem;
   }
 
   .footerText {

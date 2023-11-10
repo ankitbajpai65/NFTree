@@ -31,7 +31,7 @@ import logo1 from "/logo_colored.png";
 import "../Navbar/Navbar.css";
 
 const drawerWidth = 240;
-const navItems = ["Home", "Projects", "Contact"];
+const navItems = ["Home", "Projects", "Dashboard"];
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -119,6 +119,7 @@ export default function Navbar() {
                       <Dropdown
                         handleMouseLeave={handleMouseLeave}
                         setMobileOpen={setMobileOpen}
+                        dropdown={"Projects"}
                       />
                     )}
                   </div>
@@ -260,36 +261,43 @@ export default function Navbar() {
                 </Box>
               </Grid>
             </Grid>
-            {
-              !isLogin ?
-                <Button
-                  variant="contained"
-                  className="filledBtn"
-                  onClick={() => navigate("/signin")}
-                >
-                  Login
-                </Button>
-                :
-                <>
-                  <div
-                    style={{ position: 'relative' }}
-                    onMouseOver={handleMouseEnterProfile}
-                    onMouseOut={handleMouseLeaveProfile}
+            <div style={{
+              display: 'flex',
+              gap: '2rem',
+              alignItems: 'center'
+            }}>
+              <Link to="/contact">Contact</Link>
+              {
+                !isLogin ?
+                  <Button
+                    variant="contained"
+                    className="filledBtn"
+                    onClick={() => navigate("/signin")}
                   >
-                    <AccountCircleIcon sx={{
-                      color: 'black',
-                      fontSize: '2.5rem'
-                    }} />
-                    {isMouseEnterProfile && (
-                      <Dropdown
-                        handleMouseLeave={handleMouseLeaveProfile}
-                        setMobileOpen={setMobileOpen}
-                        dropdown={"Profile"}
-                      />
-                    )}
-                  </div>
-                </>
-            }
+                    Login
+                  </Button>
+                  :
+                  <>
+                    <div
+                      style={{ position: 'relative' }}
+                      onMouseOver={handleMouseEnterProfile}
+                      onMouseOut={handleMouseLeaveProfile}
+                    >
+                      <AccountCircleIcon sx={{
+                        color: 'black',
+                        fontSize: '2.5rem'
+                      }} />
+                      {isMouseEnterProfile && (
+                        <Dropdown
+                          handleMouseLeave={handleMouseLeaveProfile}
+                          setMobileOpen={setMobileOpen}
+                          dropdown={"Profile"}
+                        />
+                      )}
+                    </div>
+                  </>
+              }
+            </div>
           </Toolbar>
         </AppBar>
         <Box component="nav">
@@ -322,10 +330,10 @@ export default function Navbar() {
         <Route path="/kyc" element={<Kyc />} />
         <Route path="/createProject" element={<CreateProject />} />
         <Route path="/ongoingProjects" element={<OngoingProjects />} />
-        <Route path="/ongoingProjects/projectName" element={<ProjectDetails progress="10/100"/>} />
-        <Route path="/ongoingProjects/projectName/contribute" element={<ContributeProject/>} />
+        <Route path="/ongoingProjects/projectName" element={<ProjectDetails progress="10/100" />} />
+        <Route path="/ongoingProjects/projectName/contribute" element={<ContributeProject />} />
         <Route path="/completedProjects" element={<CompletedProjects />} />
-        <Route path="/completedProjects/projectName" element={<ProjectDetails progress="100/100"/>} />
+        <Route path="/completedProjects/projectName" element={<ProjectDetails progress="100/100" />} />
         {/* <Route path="*" element={<NoPage />} /> */}
       </Routes>
     </>
