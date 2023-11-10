@@ -62,8 +62,8 @@ const Mission = () => {
 					<Box
 						sx={{
 							// border: '2px solid blue',
-							width: '75%',
-							padding: '0 2rem',
+							width: { xs:'100%', xl: '75%' },
+							padding: { xs: '0 1rem', sm: '0 2rem' },
 							textAlign: "start",
 							pr: { xs: 3, md: 0 },
 						}}>

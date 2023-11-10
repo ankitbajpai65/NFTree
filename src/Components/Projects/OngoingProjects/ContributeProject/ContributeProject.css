@@ -5,9 +5,20 @@
     align-items: center;
   } */
 
-@media only screen and (max-width: 1300px) {
-  .login-box {
-    margin-top: 0px;
-    width: 60vw;
+  .contributeProjectContainer .amount{
+    border: 1px solid #e4e4e7;
+    width: 100%;
+    padding: 2% 4%;
+    border-radius: 5px;
+    background-color: var(--primary);
+    color:white;
+    margin-top:2rem;
   }
-}
+
+  
+  @media only screen and (max-width: 1300px) {
+    .login-box {
+      margin-top: 0px;
+      width: 60vw;
+    }
+  }

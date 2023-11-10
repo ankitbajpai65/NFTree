@@ -23,6 +23,7 @@ body {
 a {
   color: var(--green-30);
   text-decoration: none;
+  font-weight: 600;
 }
 
 label {

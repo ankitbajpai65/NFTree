@@ -22,10 +22,9 @@ const Dropdown = ({ handleMouseLeave, setMobileOpen, dropdown }) => {
           padding: 0,
           backgroundColor: "white",
           position: "absolute",
-          top: dropdown === "Projects" ? { xs: "2rem", sm: "3rem" } : "2.5rem",
-          left:
-            dropdown === "Projects" ? { xs: "-65px", sm: "unset" } : "-5rem",
-          width: dropdown === "Projects" ? { xs: "12rem", sm: "auto" } : "8rem",
+          top: dropdown === "Projects" ? { xs: "2rem", sm: "3rem" } : '2.5rem',
+          left: dropdown === "Projects" ? { xs: "-4rem", sm: "unset" } : '-5rem',
+          width: dropdown === "Projects" ? { xs: "12rem", sm: "auto" } : '8rem',
           zIndex: "100",
           boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
           borderRadius: "4px",

@@ -1,30 +1,45 @@
-import { Input, Button, Select, MenuItem } from "@mui/material";
-import "./ContributeProject.css";
+import { useState, useEffect } from 'react';
+import "../ContributeProject/ContributeProject.css";
 
-const CreateProject = () => {
+const ContributeProject = () => {
+  const [inputValue, setInputValue] = useState('');
+  const [totalAmount, setTotalAmount] = useState('0');
+
+  useEffect(() => {
+    const delay = 1000;
+
+    const timeoutId = setTimeout(() => {
+      const newTotalAmount = calculateTotalAmount(inputValue);
+      setTotalAmount(newTotalAmount);
+    }, delay);
+
+    return () => clearTimeout(timeoutId);
+  }, [inputValue]);
+
+  const calculateTotalAmount = (value) => {
+    const numericValue = parseFloat(value);
+    return isNaN(numericValue) ? 0 : 100 * numericValue;
+  };
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
   return (
     <>
-      <div className="form-container contributeProjectContainer">
-        <div className="form-box login-button">
+      <div className="login-container contributeProjectContainer">
+        <div className="login-box login-button">
           <h1 className="formHead">Contribute</h1>
-          <div className="form-input">
-            <label htmlFor="">Number of trees</label>
-            <input type="text" name="name" />
+          <div className="login-input">
 
-            <label htmlFor="">Type of tree</label>
-            <Select name="trees" id="trees" style={{ width: "100%" }}>
-              <option value="" disabled selected>
-                Select Tree
-              </option>
-              <option value="mango">Mango Tree</option>
-              <option value="banyan">Banyan Tree</option>
-              <option value="oak">Oak Tree</option>
-            </Select>
-            <div className="form-button">
-              <button className="submit-button" onClick="">
-                Buy
-              </button>
-            </div>
+            <label htmlFor="">Number of trees</label>
+            <input type="text" name="name" onChange={handleInputChange} />
+
+            <p className="amount">Total = Rs.{totalAmount}/-</p>
+
+            <button className="submit-button" onClick="">
+              Donate
+            </button>
           </div>
         </div>
       </div>
@@ -32,4 +47,4 @@ const CreateProject = () => {
   );
 };
 
-export default CreateProject;
+export default ContributeProject;

@@ -28,13 +28,17 @@ const Home = () => {
 				id="homeContainer">
 				<Grid
 					item
-					xs={12}
-					sm={1}
-					sx={{ display: { xs: "none", sm: "block" } }}></Grid>
+					// xs={12}
+					xs={1}
+					sx={{
+						display: { xs: "none", xl: "block" }
+					}}>
+				</Grid>
 				<Grid
 					item
 					xs={12}
-					sm={5}
+					sm={6}
+					xl={5}
 					sx={{
 						height: "68%",
 						backgroundImage: `url(${home})`,
@@ -48,6 +52,7 @@ const Home = () => {
 					item
 					xs={12}
 					sm={5}
+					xl={5}
 					sx={{
 						display: "flex",
 						flexDirection: "column",
@@ -87,8 +92,10 @@ const Home = () => {
 				<Grid
 					item
 					xs={12}
-					sm={5}
+					sm={7}
+					xl={5}
 					sx={{
+						// border:'2px solid red',
 						height: "80%",
 						backgroundImage: `url(${home})`,
 						backgroundPosition: "center",
@@ -99,9 +106,9 @@ const Home = () => {
 					id="homeImgContainer"></Grid>
 				<Grid
 					item
-					xs={12}
-					sm={1}
-					sx={{ display: { xs: "none", sm: "block" } }}></Grid>
+					// xs={12}
+					xs={1}
+					sx={{ display: { xs: "none", xl: "block" } }}></Grid>
 			</Grid>
 
 			<About />
