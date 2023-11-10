@@ -7,7 +7,7 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <>
-      <Grid container spacing={2} className="footerDiv">
+      <Grid container className="footerDiv">
         <Grid item xs={1}></Grid>
         <Grid item xs={12} sm={5} md={6} lg={6} id="footerLogo">
           <img
@@ -15,7 +15,7 @@ const Footer = () => {
             alt=""
             style={{
               height: "4rem",
-              marginTop: ".5rem",
+              marginTop: "1.5rem",
             }}
             id="footerImg"
           />

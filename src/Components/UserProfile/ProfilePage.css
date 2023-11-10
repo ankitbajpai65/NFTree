@@ -1,16 +1,15 @@
 .profile-container {
-  height: 100vh;
-  padding: 100px 5vw 50px;
+  min-height: 100vh;
+  margin-top: 60px;
   display: flex;
   gap: 5%;
 }
 
 .profileMenu {
-  background: #86a789;
-  height: 100%;
-  width: 20%;
+  background: #203d15;
+  width: 18vw;
   min-width: 200px;
-  padding: 2rem 2rem;
+  padding: 2rem 0rem;
 }
 
 .profileMenu ul {
@@ -19,16 +18,23 @@
 
 .profileMenu ul li {
   cursor: pointer;
-  border: 1px solid black;
   padding: 1rem;
   margin: 15px 0;
   font-weight: bold;
   font-family: arial;
   color: white;
-  background: grey;
+}
+
+.profileMenu ul li:hover {
+  background: rgb(8, 73, 16);
 }
 
 .profileContent {
-  width: 75%;
+  width: 70%;
   text-align: center;
+  margin-top: 30px;
+}
+
+.active {
+  background: rgb(8, 73, 16);
 }

@@ -1,6 +1,7 @@
 .footerDiv {
-  padding: 1rem !important;
+  padding: 2rem 1rem 1rem 1.1rem;
   background: var(--green-30);
+  height: 150px;
 }
 
 #footerImg:hover {
@@ -19,10 +20,9 @@
   margin: 0 0 0 2.5rem;
   transform: scale(1.4);
   cursor: pointer;
-  color:white;
+  color: white;
   /* transition: color 0.3s; */
 }
-
 
 @media only screen and (max-width: 600px) {
   .footerDiv {
@@ -38,11 +38,10 @@
   }
 }
 
-@media only screen and (max-width : 600px) {
+@media only screen and (max-width: 600px) {
   .footerDiv {
     padding: 0 !important;
   }
-
 
   #footerLogo {
     text-align: center !important;

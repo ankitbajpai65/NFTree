@@ -51,7 +51,7 @@ const Auth = () => {
 
   return (
     <>
-      <div className="form-container" style={{ minHeight: "650px" }}>
+      <div className="form-container" style={{ minHeight: "700px" }}>
         <div className="form-box">
           <h1 className="formHead">
             {isRegistered ? "Sign In To Your Account" : "Create Free Account"}

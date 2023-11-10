@@ -65,6 +65,7 @@ export default function Contact() {
             className="form-input"
             style={{
               width: "25vw",
+              minWidth: "350px",
             }}
           >
             <span className="loadingSpinner"></span>

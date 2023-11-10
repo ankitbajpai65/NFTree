@@ -19,9 +19,9 @@ import ProfilePage from "../UserProfile/ProfilePage";
 
 import {
   AppBar,
-  Box,
   Grid,
   CssBaseline,
+  Box,
   Divider,
   Drawer,
   IconButton,
@@ -265,7 +265,7 @@ export default function Navbar() {
                 </Box>
               </Grid>
             </Grid>
-            {!isLogin ? (
+            {!isLoggedIn ? (
               <Button
                 variant="contained"
                 className="filledBtn"
@@ -279,6 +279,7 @@ export default function Navbar() {
                   style={{ position: "relative" }}
                   onMouseOver={handleMouseEnterProfile}
                   onMouseOut={handleMouseLeaveProfile}
+                  onClick={() => navigate("/profile")}
                 >
                   <AccountCircleIcon
                     sx={{

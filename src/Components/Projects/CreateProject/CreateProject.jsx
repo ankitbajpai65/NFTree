@@ -6,9 +6,9 @@ const CreateProject = () => {
     <>
       <div
         className="form-container"
-        style={{ height: "100vh", minHeight: "1000px" }}
+        style={{ height: "100vh", minHeight: "1120px" }}
       >
-        <div className="form-box form-button" style={{ margin: "35px 0px" }}>
+        <div className="form-box " style={{ margin: "35px 0px" }}>
           <h2 className="formHead">
             Let's Plant Trees: Nurturing the Future, One Sapling at a Time
           </h2>
@@ -27,6 +27,12 @@ const CreateProject = () => {
               type="text"
               name="area"
               required
+              placeholder="Types of Plants (use comma to seperate)"
+            />
+            <input
+              type="text"
+              name="area"
+              required
               placeholder="Total Plantation Area in Square Meter"
             />
             <div className="form-col">
@@ -36,6 +42,7 @@ const CreateProject = () => {
                 required
                 placeholder="No of Plants Planned"
               />
+
               <input
                 type="text"
                 name="donation"
@@ -58,36 +65,66 @@ const CreateProject = () => {
               />
             </div>
             <br></br>
+            <div className="createProjectLabel">
+              {/* <label htmlFor="">Upload Documents Related to Project</label> */}
+              <Input
+                id="file-input"
+                name="regProof"
+                type="file"
+                inputProps={{ accept: "image/*" }}
+                disableUnderline
+                style={{ display: "none" }}
+                // onChange={handleFileUpload}
+              />
 
-            <label htmlFor="">Upload Supporting Document</label>
-            <Input
-              id="file-input"
-              name="regProof"
-              type="file"
-              inputProps={{ accept: "image/*" }}
-              disableUnderline
-              style={{ display: "none" }}
-              // onChange={handleFileUpload}
-            />
+              <Button
+                variant="outlined"
+                component="label"
+                htmlFor="file-input"
+                className="uploadBtn"
+                sx={{
+                  width: "100%",
+                  textTransform: "capitalize",
+                  color: "#757575",
+                  border: "1px solid #E4E4E7",
+                }}
+              >
+                Upload Documents Related to Project
+              </Button>
+              <br></br>
+              <br></br>
 
-            <Button
-              variant="outlined"
-              component="label"
-              htmlFor="file-input"
-              className="uploadBtn"
-              sx={{
-                width: "100%",
-                textTransform: "capitalize",
-                color: "#757575",
-                border: "1px solid #E4E4E7",
-              }}
-            >
-              Browse file
-            </Button>
+              {/* <label htmlFor="">Upload Project Image</label> */}
+              <Input
+                id="file-input"
+                name="projectImg"
+                type="file"
+                inputProps={{ accept: "image/*" }}
+                disableUnderline
+                style={{ display: "none" }}
+                // onChange={handleFileUpload}
+              />
 
-            <button className="submit-button" onClick="">
-              Get Started
-            </button>
+              <Button
+                variant="outlined"
+                component="label"
+                htmlFor="file-input"
+                className="uploadBtn"
+                sx={{
+                  width: "100%",
+                  textTransform: "capitalize",
+                  color: "#757575",
+                  border: "1px solid #E4E4E7",
+                }}
+              >
+                Upload Project Image
+              </Button>
+            </div>
+            <div className="form-button">
+              <button className="submit-button" onClick="">
+                Get Started
+              </button>
+            </div>
           </div>
         </div>
       </div>

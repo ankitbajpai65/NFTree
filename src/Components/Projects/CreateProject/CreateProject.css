@@ -17,8 +17,24 @@
   gap: 1vw;
 }
 
+.createProjectLabel {
+  width: 100%;
+  text-align: left;
+}
+
+.createProjectLabel label {
+  margin: 0px;
+}
+
 @media only screen and (max-width: 1300px) {
-  .login-box {
+  .form-box {
+    margin-top: 0px;
+    width: 60vw;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .form-box {
     margin-top: 0px;
     width: 60vw;
   }

@@ -132,11 +132,9 @@
   }
 }
 
-@media only screen and (max-width: 450px) {
-  .form-checkbox {
-    flex-direction: column;
-  }
+@media only screen and (max-width: 500px) {
   .form-box {
     width: 90vw;
+    padding: 3rem 2rem;
   }
 }

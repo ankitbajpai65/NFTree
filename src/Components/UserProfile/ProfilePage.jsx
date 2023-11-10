@@ -4,11 +4,14 @@ import Kyc from "./Kyc/Kyc";
 import "./ProfilePage.css";
 
 const ProfilePage = () => {
-  const [currentPage, setCurrentPage] = useState("Profile");
+  const [currentPage, setCurrentPage] = useState("EditProfile");
   const PageMap = {
-    Profile: "",
     EditProfile: <EditProfile />,
     Kyc: <Kyc />,
+  };
+
+  const handleActive = (e) => {
+    console.log(e.target.elements);
   };
 
   return (
@@ -16,11 +19,19 @@ const ProfilePage = () => {
       <div className="profile-container">
         <div className="profileMenu">
           <ul>
-            <li onClick={() => setCurrentPage("Profile")}>User Profile</li>
-            <li onClick={() => setCurrentPage("EditProfile")}>
+            <li
+              onClick={() => setCurrentPage("EditProfile")}
+              className="active"
+            >
               Edit Basic Details
             </li>
-            <li onClick={() => setCurrentPage("Kyc")}>KYC</li>
+            <li
+              onClick={() => {
+                setCurrentPage("Kyc");
+              }}
+            >
+              KYC
+            </li>
             <li onClick={() => setCurrentPage("")}>My Projects</li>
             <li onClick={() => setCurrentPage("")}>Donation History</li>
           </ul>
