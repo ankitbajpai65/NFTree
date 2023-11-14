@@ -7,7 +7,6 @@ import home from "./assets/home.png";
 import "./Home.css";
 
 const Home = () => {
-<<<<<<< HEAD
   return (
     <>
       <div id="home"></div>
@@ -25,14 +24,17 @@ const Home = () => {
       >
         <Grid
           item
-          xs={12}
-          sm={1}
-          sx={{ display: { xs: "none", sm: "block" } }}
+          // xs={12}
+          xs={1}
+          sx={{
+            display: { xs: "none", xl: "block" },
+          }}
         ></Grid>
         <Grid
           item
           xs={12}
-          sm={5}
+          sm={6}
+          xl={5}
           sx={{
             height: "68%",
             backgroundImage: `url(${home})`,
@@ -47,6 +49,7 @@ const Home = () => {
           item
           xs={12}
           sm={5}
+          xl={5}
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -69,68 +72,6 @@ const Home = () => {
             >
               NFTree
             </Typography>
-=======
-	return (
-		<>
-			<div id="home"></div>
-			<Grid
-				container
-				spacing={2}
-				sx={{
-					height: { xs: "70vh", sm: "90vh" },
-					zIndex: 1,
-					display: "flex",
-					alignItems: "center",
-					background: '#EBF3E8'
-				}}
-				id="homeContainer">
-				<Grid
-					item
-					// xs={12}
-					xs={1}
-					sx={{
-						display: { xs: "none", xl: "block" }
-					}}>
-				</Grid>
-				<Grid
-					item
-					xs={12}
-					sm={6}
-					xl={5}
-					sx={{
-						height: "68%",
-						backgroundImage: `url(${home})`,
-						backgroundPosition: "center",
-						backgroundSize: "contain",
-						backgroundRepeat: "no-repeat",
-						display: { xs: "block", sm: "none" },
-					}}
-					id="homeImg"></Grid>
-				<Grid
-					item
-					xs={12}
-					sm={5}
-					xl={5}
-					sx={{
-						display: "flex",
-						flexDirection: "column",
-						alignItems: "center",
-						justifyContent: "center",
-					}}>
-					<Box
-						sx={{
-							width: { xs: "90%", sm: "90%", lg: "70%" },
-							textAlign: "start",
-						}}
-						className="homeTextBox">
-						<Typography
-							variant="h2"
-							gutterBottom
-							className="homeHead"
-							sx={{ fontWeight: "bold" }}>
-							NFTree
-						</Typography>
->>>>>>> origin/main
 
             <Typography
               variant="body1"
@@ -148,7 +89,6 @@ const Home = () => {
               more trees around the globe.
             </Typography>
 
-<<<<<<< HEAD
             <Button
               variant="contained"
               endIcon={<ArrowForwardIcon />}
@@ -161,8 +101,10 @@ const Home = () => {
         <Grid
           item
           xs={12}
-          sm={5}
+          sm={7}
+          xl={5}
           sx={{
+            // border:'2px solid red',
             height: "80%",
             backgroundImage: `url(${home})`,
             backgroundPosition: "center",
@@ -174,39 +116,11 @@ const Home = () => {
         ></Grid>
         <Grid
           item
-          xs={12}
-          sm={1}
-          sx={{ display: { xs: "none", sm: "block" } }}
+          // xs={12}
+          xs={1}
+          sx={{ display: { xs: "none", xl: "block" } }}
         ></Grid>
       </Grid>
-=======
-						<Button variant="contained" endIcon={<ArrowForwardIcon />} className="filledBtn">
-							Get Started
-						</Button>
-					</Box>
-				</Grid>
-				<Grid
-					item
-					xs={12}
-					sm={7}
-					xl={5}
-					sx={{
-						// border:'2px solid red',
-						height: "80%",
-						backgroundImage: `url(${home})`,
-						backgroundPosition: "center",
-						backgroundSize: "contain",
-						backgroundRepeat: "no-repeat",
-						display: { xs: "none", sm: "block" },
-					}}
-					id="homeImgContainer"></Grid>
-				<Grid
-					item
-					// xs={12}
-					xs={1}
-					sx={{ display: { xs: "none", xl: "block" } }}></Grid>
-			</Grid>
->>>>>>> origin/main
 
       <About />
       <Mission />
