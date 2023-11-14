@@ -12,10 +12,12 @@ import OngoingProjects from "../Projects/OngoingProjects/OngoingProjects";
 import ProjectDetails from "../Projects/OngoingProjects/ProjectDetails";
 import ContributeProject from "../Projects/OngoingProjects/ContributeProject/ContributeProject";
 import CompletedProjects from "../Projects/OngoingProjects/CompletedProjects";
+import Kyc from "../UserProfile/Kyc/Kyc";
 import "../Navbar/Navbar.css";
 import Contact from "../Contact_us/Contact";
 import ErrorPage from "../Error_page/ErrorPage";
-import ProfilePage from "../UserProfile/ProfilePage";
+// import ProfilePage from "../UserProfile/ProfilePage";
+import Profile from "../UserProfile/Profile";
 
 import {
   AppBar,
@@ -116,7 +118,7 @@ export default function Navbar() {
                       className="navbarLinks projectLink"
                       onClick={handleMouseEnter}
                       style={{ color: "black" }}
-                      // onClick={()=>navigate('/')}
+                    // onClick={()=>navigate('/')}
                     >
                       {item}
                     </p>
@@ -332,21 +334,22 @@ export default function Navbar() {
         <Route path="/home" element={<Home />} />
         <Route path="contact" element={<Contact />} />
         <Route path="login" element={<Auth />} />
-        <Route path="profile" element={<ProfilePage data={authUser} />} />
+        {/* <Route path="profile" element={<ProfilePage data={authUser} />} /> */}
+        <Route path="profile" element={<Profile data={authUser} />} />
         <Route path="/createProject" element={<CreateProject />} />
         <Route path="/ongoingProjects" element={<OngoingProjects />} />
         <Route path="/ongoingProjects/projectName" element={<ProjectDetails progress="10/100" />} />
         <Route path="/ongoingProjects/projectName/contribute" element={<ContributeProject />} />
         <Route path="/completedProjects" element={<CompletedProjects />} />
         <Route path="/completedProjects/projectName" element={<ProjectDetails progress="100/100" />} />
-        
-        {isLoggedIn && (
+        {/* <Route path="kyc" element={<Kyc />} /> */}
+
+        {/* {isLoggedIn && (
           <>
-            {/* <Route path="kyc" element={<Kyc />} />
             <Route path="create-project" element={<CreateProject />} />
-            <Route path="profile" element={<EditProfile data={authUser} />} /> */}
+            <Route path="profile" element={<EditProfile data={authUser} />} />
           </>
-        )}
+        ) */}
 
       </Routes>
     </>
