@@ -45,7 +45,6 @@ export default function Navbar() {
   const [scroll, setScroll] = useState(false);
   const [isMouseEnter, setIsMouseEnter] = useState(false);
   const [isMouseEnterProfile, setIsMouseEnterProfile] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
   const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
 
   const scrolling = () => {
@@ -276,7 +275,7 @@ export default function Navbar() {
               }}
             >
               <Link to="/contact">Contact</Link>
-              {!isLogin ? (
+              {!isLoggedIn ? (
                 <Button
                   variant="contained"
                   className="filledBtn"

@@ -13,39 +13,38 @@ const CreateProject = () => {
             Let's Plant Trees: Nurturing the Future, One Sapling at a Time
           </h2>
           <div className="form-input">
-            <input type="text" name="name" placeholder="Project name" />
+            <input type="text" name="projectName" placeholder="Project name" />
 
             <textarea
-              name="description"
-              id=""
+              name="projectDescription"
               cols="30"
               rows="5"
-              placeholder="Tell us a little about project"
+              placeholder="Tell us a little about project (100 Character atleast)"
             />
             <br></br>
             <input
               type="text"
-              name="area"
+              name="plantType"
               required
               placeholder="Types of Plants (use comma to seperate)"
             />
             <input
               type="text"
-              name="area"
+              name="plantArea"
               required
               placeholder="Total Plantation Area in Square Meter"
             />
             <div className="form-col">
               <input
                 type="text"
-                name="plants"
+                name="plantPlanned"
                 required
                 placeholder="No of Plants Planned"
               />
 
               <input
                 type="text"
-                name="donation"
+                name="plantDonation"
                 required
                 placeholder="Donation per Plant"
               />
@@ -53,12 +52,22 @@ const CreateProject = () => {
 
             <br></br>
 
-            <input type="text" name="address" required placeholder="Address" />
+            <input
+              type="text"
+              name="projectAddress"
+              required
+              placeholder="Address"
+            />
             <div className="form-col">
-              <input type="text" name="city" required placeholder="City" />
               <input
                 type="text"
-                name="country"
+                name="projectCity"
+                required
+                placeholder="City"
+              />
+              <input
+                type="text"
+                name="projectCountry"
                 required
                 placeholder="Country
                 "

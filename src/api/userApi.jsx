@@ -55,7 +55,7 @@ const googleLogin = () => {
             },
           }
         );
-        console.log(data);
+        console.log(response);
       } catch (err) {
         console.log(err);
       }
