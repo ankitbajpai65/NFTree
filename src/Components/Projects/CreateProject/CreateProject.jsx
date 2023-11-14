@@ -1,7 +1,66 @@
 import { Input, Button } from "@mui/material";
 import "./CreateProject.css";
+import { useState } from "react";
+
+/////////////////////////////////////////////
+//////////// Validation /////////////////////
+////////////////////////////////////////////
+
+const checkValidation = () => {
+  var customErrorMessage;
+  if (
+    !isRegistered &&
+    (20 < formData.name.length || formData.name.length < 5)
+  ) {
+    customErrorMessage = "Name is required and should be 5-20 Characters";
+  } else if (!validEmail.test(formData.email)) {
+    customErrorMessage = "Please Enter Valid Email";
+  } else if (formData.password.length < 8) {
+    customErrorMessage = "password should be minimun 8 character long";
+  } else if (!isRegistered && formData.password != formData.cnfPassword) {
+    customErrorMessage = "Unmatched Password and Confirm Password";
+  } else if (!isRegistered && !document.getElementById("tccheckbox").checked) {
+    customErrorMessage = "Please Accept Terms and Conditions first";
+  } else {
+    customErrorMessage = null;
+  }
+
+  setIsError(customErrorMessage);
+};
+
+///////handle Validation
+const handleErrorMessage = (newError = isError) => {
+  document.getElementsByClassName("errorText")[0].innerText = newError;
+  setTimeout(() => {
+    document.getElementsByClassName("errorText")[0].innerText = "";
+  }, 4000);
+};
+
+/////////////////////////////////////////////
+//////////// Validation End /////////////////
+////////////////////////////////////////////
 
 const CreateProject = () => {
+  const [createProjectData, setCreateProjectData] = useState({});
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setCreateProjectData({
+      name: document.getElementsByName("projectName")[0].value,
+      description: document.getElementsByName("projectDescription")[0].value,
+      plant_types: document.getElementsByName("plantType")[0].value,
+      area: document.getElementsByName("plantArea")[0].value,
+      plant_planned: document.getElementsByName("plantPlanned")[0].value,
+      donation: document.getElementsByName("plantDonation")[0].value,
+      address: document.getElementsByName("projectAddress")[0].value,
+      city: document.getElementsByName("projectCity")[0].value,
+      country: document.getElementsByName("projectCountry")[0].value,
+      document: document.getElementsByName("plantType")[0].value,
+      image: document.getElementsByName("plantType")[0].value,
+    });
+    console.log(createProjectData);
+  };
+
   return (
     <>
       <div
@@ -33,6 +92,9 @@ const CreateProject = () => {
               name="plantArea"
               required
               placeholder="Total Plantation Area in Square Meter"
+              onInput={(e) =>
+                (e.target.value = e.target.value.replace(/[^0-9 ]/g, ""))
+              }
             />
             <div className="form-col">
               <input
@@ -40,6 +102,9 @@ const CreateProject = () => {
                 name="plantPlanned"
                 required
                 placeholder="No of Plants Planned"
+                onInput={(e) =>
+                  (e.target.value = e.target.value.replace(/[^0-9 ]/g, ""))
+                }
               />
 
               <input
@@ -47,6 +112,9 @@ const CreateProject = () => {
                 name="plantDonation"
                 required
                 placeholder="Donation per Plant"
+                onInput={(e) =>
+                  (e.target.value = e.target.value.replace(/[^0-9 ]/g, ""))
+                }
               />
             </div>
 
@@ -74,15 +142,14 @@ const CreateProject = () => {
               />
             </div>
             <br></br>
+            <input type="file" />
             <div className="createProjectLabel">
               {/* <label htmlFor="">Upload Documents Related to Project</label> */}
               <Input
-                id="file-input"
-                name="regProof"
+                name="projectDocumants"
                 type="file"
                 inputProps={{ accept: "image/*" }}
                 disableUnderline
-                style={{ display: "none" }}
                 // onChange={handleFileUpload}
               />
 
@@ -130,7 +197,7 @@ const CreateProject = () => {
               </Button>
             </div>
             <div className="form-button">
-              <button className="submit-button" onClick="">
+              <button className="submit-button" onClick={handleSubmit}>
                 Get Started
               </button>
             </div>
