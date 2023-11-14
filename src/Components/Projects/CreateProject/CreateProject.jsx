@@ -22,7 +22,6 @@ const CreateProject = () => {
               rows="5"
               placeholder="Tell us a little about project"
             />
-            <br></br>
             <input
               type="text"
               name="area"
@@ -50,8 +49,6 @@ const CreateProject = () => {
                 placeholder="Donation per Plant"
               />
             </div>
-
-            <br></br>
 
             <input type="text" name="address" required placeholder="Address" />
             <div className="form-col">

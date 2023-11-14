@@ -13,10 +13,6 @@ const Footer = () => {
           <img
             src={logo}
             alt=""
-            style={{
-              height: "4rem",
-              marginTop: "1.5rem",
-            }}
             id="footerImg"
           />
         </Grid>

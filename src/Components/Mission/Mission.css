@@ -54,6 +54,10 @@
     .missionHead {
         font-size: 1.8rem !important;
     }
+    .missionImg {
+        height: 75%;
+        margin: auto auto;
+    }
 
     .missionPara {
         margin-bottom: 2rem !important;

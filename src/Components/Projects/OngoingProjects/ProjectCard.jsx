@@ -20,7 +20,7 @@ const ProjectCard = ({ type }) => {
             boxShadow: 'none',
             border: '1px solid #c9c9c9',
             padding: '10px',
-            margin:'auto'
+            margin: 'auto'
         }}
             className="projectsCard"
             onClick={() => navigate(`/${type}/projectName`)}
@@ -35,36 +35,26 @@ const ProjectCard = ({ type }) => {
                 <Typography gutterBottom variant="h5" component="div">
                     Project Title
                 </Typography>
-                <Typography gutterBottom variant="body1" sx={{fontWeight:'bolder'}}>
+
+                <Typography gutterBottom variant="body1" sx={{ fontWeight: 'bolder' }}>
                     Location
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero architecto officiis harum iste
-                </Typography>
-                <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    marginTop:'1rem'
-                }}>
-                    <Typography variant="body2"
-                        sx={{
-                            color: 'var(--green-30)',
-                            fontWeight: 'bold'
-                        }}>
-                        Rs.100/-
-                    </Typography>
 
-                    <Button
-                        variant="container"
-                        sx={{
-                            textTransform: 'capitalize',
-                            color: 'white',
-                        }}
-                    >
-                        Donate
-                    </Button>
-                </div>
+                <Typography variant="body2" color="text.secondary">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero architecto
+                </Typography>
+
+                <Button
+                    variant="container"
+                    sx={{
+                        textTransform: 'capitalize',
+                        color: 'white',
+                        mt: 1,
+                        float: 'right',
+                    }}
+                >
+                    Donate
+                </Button>
             </CardContent>
         </Card>
     )

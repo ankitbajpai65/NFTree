@@ -4,15 +4,16 @@
   height: 150px;
 }
 
-#footerImg:hover {
-  animation: scaleup(0.2s);
-  transform: scale(1.2);
-  transition: ease 0.4s all;
-}
 
 #footerImg {
-  height: 4rem;
+  height: 3.5rem;
   margin-top: 0.5rem;
+}
+
+#footerImg:hover {
+  animation: scaleup(0.2s);
+  transform: scale(1.1);
+  transition: ease 0.4s all;
 }
 
 .footerIcons {
@@ -27,6 +28,10 @@
 @media only screen and (max-width: 600px) {
   .footerDiv {
     padding: 0 !important;
+  }
+
+  #footerLogo {
+    margin-bottom: 1rem;
   }
 
   .footerText {
