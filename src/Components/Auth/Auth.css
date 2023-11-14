@@ -113,6 +113,12 @@
   width: max-content;
 }
 
+.errorText {
+  color: red;
+  font-size: small;
+  display: flex;
+}
+
 @media only screen and (max-width: 1300px) {
   .form-box {
     width: 40vw;

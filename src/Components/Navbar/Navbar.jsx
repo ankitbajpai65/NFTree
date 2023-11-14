@@ -9,6 +9,7 @@ import { useAuth } from "../../Contexts/AuthContext";
 import { googleLogout } from "@react-oauth/google";
 import logo1 from "/logo_colored.png";
 import OngoingProjects from "../Projects/OngoingProjects/OngoingProjects";
+import OngoingProject from "../Projects/OngoingProject/OngoingProject";
 import ProjectDetails from "../Projects/OngoingProjects/ProjectDetails";
 import ContributeProject from "../Projects/OngoingProjects/ContributeProject/ContributeProject";
 import CompletedProjects from "../Projects/OngoingProjects/CompletedProjects";
@@ -329,6 +330,7 @@ export default function Navbar() {
         <Route path="ongoingProjects" element={<OngoingProjects />} />
         <Route path="contact" element={<Contact />} />
         <Route path="profile" element={<ProfilePage data={authUser} />} />
+
         <Route
           path="/ongoingProjects/projectName"
           element={<ProjectDetails progress="10/100" />}
