@@ -30,13 +30,18 @@ const login = async (formData) => {
 
   try {
     const response = await axiosPerformAction(url, data);
+    sessionStorage.setItem("token", response.data.access);
+    sessionStorage.setItem("id", response.data.id);
     return response;
   } catch (error) {
     return error;
   }
 };
 
-const logout = () => {};
+const logout = () => {
+  sessionStorage.removeItem("token");
+  sessionStorage.removeItem("id");
+};
 
 const googleLogin = () => {
   const login = useGoogleLogin({

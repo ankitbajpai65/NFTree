@@ -6,7 +6,6 @@ import Home from "../Home/Home";
 import CreateProject from "../Projects/CreateProject/CreateProject";
 import Auth from "../Auth/Auth";
 import { useAuth } from "../../Contexts/AuthContext";
-import { googleLogout } from "@react-oauth/google";
 import logo1 from "/logo_colored.png";
 import OngoingProjects from "../Projects/OngoingProjects/OngoingProjects";
 import OngoingProject from "../Projects/OngoingProject/OngoingProject";

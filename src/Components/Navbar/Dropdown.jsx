@@ -2,6 +2,7 @@ import React from "react";
 import { List, ListItem } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Contexts/AuthContext";
+import { logout } from "../../api/userApi";
 
 const projectDropdown = [
   { to: "/createProject", name: "Create Project" },
@@ -57,6 +58,7 @@ const Dropdown = ({ handleMouseLeave, setMobileOpen, dropdown }) => {
                       onClick={() => {
                         handleMouseLeave();
                         setMobileOpen(false);
+                        logout();
                         setIsLoggedIn(false);
                       }}
                       className="dropdownLinks"

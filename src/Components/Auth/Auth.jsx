@@ -58,14 +58,6 @@ const Auth = () => {
               "Login to Continue";
           }, 1);
         } else {
-          const data = {
-            first_name: apiRespond.data.first_name,
-            last_name: apiRespond.data.last_name,
-            email: apiRespond.data.email,
-            id: apiRespond.data.id,
-          };
-
-          setAuthUser(data);
           setIsLoggedIn(true);
           navigate("/");
         }
