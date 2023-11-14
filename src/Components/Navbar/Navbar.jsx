@@ -12,10 +12,12 @@ import OngoingProject from "../Projects/OngoingProject/OngoingProject";
 import ProjectDetails from "../Projects/OngoingProjects/ProjectDetails";
 import ContributeProject from "../Projects/OngoingProjects/ContributeProject/ContributeProject";
 import CompletedProjects from "../Projects/OngoingProjects/CompletedProjects";
+import Kyc from "../UserProfile/Kyc/Kyc";
 import "../Navbar/Navbar.css";
 import Contact from "../Contact_us/Contact";
 import ErrorPage from "../Error_page/ErrorPage";
-import ProfilePage from "../UserProfile/ProfilePage";
+// import ProfilePage from "../UserProfile/ProfilePage";
+import Profile from "../UserProfile/Profile";
 
 import {
   AppBar,
@@ -35,7 +37,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import "../Navbar/Navbar.css";
 
 const drawerWidth = 240;
-const navItems = ["Home", "Projects", "Contact"];
+const navItems = ["Home", "Projects", "Dashboard"];
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -124,6 +126,7 @@ export default function Navbar() {
                       <Dropdown
                         handleMouseLeave={handleMouseLeave}
                         setMobileOpen={setMobileOpen}
+                        dropdown={"Projects"}
                       />
                     )}
                   </div>
@@ -265,38 +268,46 @@ export default function Navbar() {
                 </Box>
               </Grid>
             </Grid>
-            {!isLoggedIn ? (
-              <Button
-                variant="contained"
-                className="filledBtn"
-                onClick={() => navigate("/login")}
-              >
-                Login
-              </Button>
-            ) : (
-              <>
-                <div
-                  style={{ position: "relative" }}
-                  onMouseOver={handleMouseEnterProfile}
-                  onMouseOut={handleMouseLeaveProfile}
-                  onClick={() => navigate("/profile")}
+            <div
+              style={{
+                display: "flex",
+                gap: "2rem",
+                alignItems: "center",
+              }}
+            >
+              <Link to="/contact">Contact</Link>
+              {!isLogin ? (
+                <Button
+                  variant="contained"
+                  className="filledBtn"
+                  onClick={() => navigate("/login")}
                 >
-                  <AccountCircleIcon
-                    sx={{
-                      color: "black",
-                      fontSize: "2.5rem",
-                    }}
-                  />
-                  {isMouseEnterProfile && (
-                    <Dropdown
-                      handleMouseLeave={handleMouseLeaveProfile}
-                      setMobileOpen={setMobileOpen}
-                      dropdown={"Profile"}
+                  Login
+                </Button>
+              ) : (
+                <>
+                  <div
+                    style={{ position: "relative" }}
+                    onMouseOver={handleMouseEnterProfile}
+                    onMouseOut={handleMouseLeaveProfile}
+                  >
+                    <AccountCircleIcon
+                      sx={{
+                        color: "black",
+                        fontSize: "2.5rem",
+                      }}
                     />
-                  )}
-                </div>
-              </>
-            )}
+                    {isMouseEnterProfile && (
+                      <Dropdown
+                        handleMouseLeave={handleMouseLeaveProfile}
+                        setMobileOpen={setMobileOpen}
+                        dropdown={"Profile"}
+                      />
+                    )}
+                  </div>
+                </>
+              )}
+            </div>
           </Toolbar>
         </AppBar>
         <Box component="nav">
@@ -324,12 +335,12 @@ export default function Navbar() {
       <Routes>
         <Route index element={<Home />} />
         <Route path="/home" element={<Home />} />
-        <Route path="login" element={<Auth />} />
-        <Route path="createProject" element={<CreateProject />} />
-        <Route path="ongoingProjects" element={<OngoingProjects />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="profile" element={<ProfilePage data={authUser} />} />
-
+        <Route path="login" element={<Auth />} />
+        {/* <Route path="profile" element={<ProfilePage data={authUser} />} /> */}
+        <Route path="profile" element={<Profile data={authUser} />} />
+        <Route path="/createProject" element={<CreateProject />} />
+        <Route path="/ongoingProjects" element={<OngoingProjects />} />
         <Route
           path="/ongoingProjects/projectName"
           element={<ProjectDetails progress="10/100" />}
@@ -338,15 +349,19 @@ export default function Navbar() {
           path="/ongoingProjects/projectName/contribute"
           element={<ContributeProject />}
         />
-        {isLoggedIn && (
-          <>
-            {/* <Route path="kyc" element={<Kyc />} />
-            <Route path="create-project" element={<CreateProject />} />
-            <Route path="profile" element={<EditProfile data={authUser} />} /> */}
-          </>
-        )}
+        <Route path="/completedProjects" element={<CompletedProjects />} />
+        <Route
+          path="/completedProjects/projectName"
+          element={<ProjectDetails progress="100/100" />}
+        />
+        {/* <Route path="kyc" element={<Kyc />} /> */}
 
-        <Route path="*" element={<ErrorPage />} />
+        {/* {isLoggedIn && (
+          <>
+            <Route path="create-project" element={<CreateProject />} />
+            <Route path="profile" element={<EditProfile data={authUser} />} />
+          </>
+        ) */}
       </Routes>
     </>
   );

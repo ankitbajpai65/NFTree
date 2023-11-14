@@ -1,0 +1,7 @@
+.ankit > div:first-child {
+  top: unset;
+}
+
+.profileContent {
+  margin: 100px auto;
+}
