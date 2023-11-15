@@ -122,6 +122,15 @@
   display: flex;
 }
 
+.forgetPwdForm h2 {
+  margin: 0;
+  font-size: 30px;
+}
+.forgetPwdForm p {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
 @media only screen and (max-width: 1300px) {
   .form-box {
     width: 40vw;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../Contexts/AuthContext";
 import { login, register, googleLogin } from "../../api/userApi";
 import googlelogo from "./img/google-login.png";
@@ -161,7 +161,7 @@ const Auth = () => {
               )}
             </span>
           </div>
-          {isRegistered && <a href="#">Forgot password?</a>}
+          {isRegistered && <Link to="/forget-password">Forgot password?</Link>}
         </div>
         <div className="form-button" style={{ marginBottom: "30px" }}>
           <button type="submit" className="submit-button">

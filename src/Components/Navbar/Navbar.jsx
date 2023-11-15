@@ -34,6 +34,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import "../Navbar/Navbar.css";
+import ForgetPassword from "../Auth/ForgetPassword";
 
 const drawerWidth = 240;
 const navItems = ["Home", "Projects", "Dashboard"];
@@ -357,6 +358,7 @@ export default function Navbar() {
           path="/completedProjects/projectName"
           element={<ProjectDetails progress="100/100" />}
         />
+        <Route path="/forget-password" element={<ForgetPassword />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>
