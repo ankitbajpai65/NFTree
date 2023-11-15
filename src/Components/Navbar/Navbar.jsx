@@ -35,6 +35,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import "../Navbar/Navbar.css";
 import ForgetPassword from "../Auth/ForgetPassword";
+import ProjectPage from "../Projects/ProjectPage/ProjectPage";
 
 const drawerWidth = 240;
 const navItems = ["Home", "Projects", "Dashboard"];
@@ -344,18 +345,25 @@ export default function Navbar() {
         {/* <Route path="profile" element={<ProfilePage data={authUser} />} /> */}
         <Route path="profile" element={<Profile data={authUser} />} />
         <Route path="/createProject" element={<CreateProject />} />
-        <Route path="/ongoingProjects" element={<OngoingProjects />} />
         <Route
-          path="/ongoingProjects/projectName"
+          path="/ongoingProjects"
+          element={<ProjectPage props={"ongoing"} />}
+        />
+        <Route
+          path="/completedProjects"
+          element={<ProjectPage props={"completed"} />}
+        />
+        <Route
+          path="/ongoingProjects/:projectName"
           element={<ProjectDetails progress="10/100" />}
         />
         <Route
           path="/ongoingProjects/projectName/contribute"
           element={<ContributeProject />}
         />
-        <Route path="/completedProjects" element={<CompletedProjects />} />
+
         <Route
-          path="/completedProjects/projectName"
+          path="/completedProjects/:projectName"
           element={<ProjectDetails progress="100/100" />}
         />
         <Route path="/forget-password" element={<ForgetPassword />} />

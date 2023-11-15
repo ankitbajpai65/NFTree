@@ -1,54 +1,154 @@
-import "./Projects.css";
-import { useState, useEffect } from "react";
+import * as React from "react";
+import ProjectCard from "./ProjectCard";
 import { projectList } from "../../../api/projectApi";
+import {
+  Grid,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  CardActions,
+  Button,
+  Box,
+  TextField,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import "./Projects.css";
 
-export default function OngoingProject() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage, setPostPerPage] = useState(10);
+export default function OngoingProjects() {
+  const projectListData = async () => {
+    const data = await projectList();
+    console.log(data);
+  };
 
-  const firstPostIndex = (currentPage - 1) * postPerPage;
-  const lastPostIndex = currentPage * postPerPage;
-
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    const projectListData = async () => {
-      const response = await projectList();
-      setData(response);
-      console.log(data);
-    };
-
-    projectListData();
-  }, []);
-
+  projectListData();
   return (
     <>
-      <div className="project-container">
-        <div className="projectHead">
-          <h1>Ongoing Projects</h1>
-        </div>
-        <div className="projectSearch">
-          <input type="text" placeholder="Search Project" />
-        </div>
-        <div className="projectContent">
-          {data.map((project) => (
-            <div className="box">
-              <img src={project.image} alt="" />
-              <h4>{project.name}</h4>
-              <span>{project.location}</span>
-              <p style={{ height: "63px" }}>
-                {project.description.length > 100
-                  ? `${project.description.substring(0, 100)}...`
-                  : project.description}
-              </p>
-              <div className="donateBtn">
-                {/* <p>₹{project.donation}/plant</p> */}
-                {/* <p></p> */}
-                <button>Donate</button>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div
+        style={{
+          display: "block",
+          textAlign: "center",
+          margin: "7rem 0 4rem",
+        }}
+      >
+        <Typography
+          variant="h4"
+          gutterBottom
+          sx={{ color: "var(--green-30)", fontWeight: "bold" }}
+        >
+          Ongoing Projects
+        </Typography>
       </div>
+
+      <Grid
+        container
+        className="filterContainer"
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: { xs: "column", sm: "row" },
+        }}
+      >
+        <Grid item xs={1} sx={{ display: { xs: "none", sm: "block" } }}></Grid>
+        <Grid
+          item
+          spacing={3}
+          xs={9}
+          sm={8}
+          lg={9}
+          sx={{
+            // border: '2px solid blue',
+            display: "flex",
+            alignItems: "center",
+            ml: 0,
+          }}
+        >
+          <Box
+            sx={{ width: { xs: "100%", sm: "70%", md: "40%" } }}
+            className="searchBox"
+          >
+            <SearchIcon
+              sx={{ color: "action.active", mr: 1, my: 0.5 }}
+              focused={false}
+            />
+            <TextField
+              id="input-with-sx"
+              placeholder="Search.."
+              variant="standard"
+            />
+          </Box>
+        </Grid>
+        <Grid
+          item
+          xs={8}
+          sm={2}
+          lg={1}
+          sx={{
+            // border: '2px solid blue',
+            display: "flex",
+            alignItems: "center",
+            width: "28%",
+            mt: 2,
+          }}
+        >
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Filter</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              // value={age}
+              label="Age"
+              // onChange={handleChange}
+            >
+              <MenuItem value={10}>Delhi</MenuItem>
+              <MenuItem value={20}>Mumbai</MenuItem>
+              <MenuItem value={30}>Kolkata</MenuItem>
+              <MenuItem value={30}>Chennai</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={1} sx={{ display: { xs: "none", sm: "block" } }}></Grid>
+      </Grid>
+
+      <Grid
+        container
+        spacing={1}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          mb: 5,
+          py: 5,
+        }}
+      >
+        <Grid item xs={1}></Grid>
+        <Grid item container spacing={3} xs={10}>
+          {Array.from({ length: 7 }).map((elem, index) => {
+            return (
+              <>
+                <Grid
+                  key={index}
+                  item
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={3}
+                  sx={{
+                    // border: '2px solid red',
+                    height: "25rem",
+                  }}
+                >
+                  <ProjectCard type="ongoingProjects" />
+                </Grid>
+              </>
+            );
+          })}
+        </Grid>
+        <Grid item xs={1}></Grid>
+      </Grid>
     </>
   );
 }
