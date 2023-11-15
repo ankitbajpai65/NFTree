@@ -274,7 +274,9 @@ export default function Navbar() {
                 alignItems: "center",
               }}
             >
-              <Link to="/contact" className="contactLink">Contact</Link>
+              <Link to="/contact" className="contactLink">
+                Contact
+              </Link>
               {!isLoggedIn ? (
                 <Button
                   variant="contained"
@@ -294,9 +296,9 @@ export default function Navbar() {
                       sx={{
                         color: "black",
                         fontSize: "2.5rem",
-                        cursor:'pointer'
+                        cursor: "pointer",
                       }}
-                      onClick={()=>navigate('/profile')}
+                      onClick={() => navigate("/profile")}
                     />
                     {isMouseEnterProfile && (
                       <Dropdown
@@ -355,14 +357,7 @@ export default function Navbar() {
           path="/completedProjects/projectName"
           element={<ProjectDetails progress="100/100" />}
         />
-        {/* <Route path="kyc" element={<Kyc />} /> */}
-
-        {/* {isLoggedIn && (
-          <>
-            <Route path="create-project" element={<CreateProject />} />
-            <Route path="profile" element={<EditProfile data={authUser} />} />
-          </>
-        ) */}
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>
   );

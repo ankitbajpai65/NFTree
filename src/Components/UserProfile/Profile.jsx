@@ -3,19 +3,25 @@ import UserDetails from "./UserDetails";
 import Kyc from "./Kyc/Kyc";
 import { Grid } from "@mui/material";
 import Sidebar from "./Sidebar";
+import { useLocation } from "react-router-dom";
 import "./Profile.css";
 
-const Profile = () => {
-  const [curPage, setCurPage] = useState("user_profile");
+const Profile = ({ state }) => {
+  const location = useLocation();
+  const [curPage, setCurPage] = useState(
+    location.state == null ? "user_profile" : "kyc"
+  );
   const [editActive, setEditActive] = useState(false);
 
   const setPage = (page) => {
     setCurPage(page);
   };
-
+  console.log(location.state);
   const pageMap = {
     user_profile: <UserDetails />,
-    edit_basic_details: <UserDetails editActive={editActive} setEditActive={setEditActive} />,
+    edit_basic_details: (
+      <UserDetails editActive={editActive} setEditActive={setEditActive} />
+    ),
     kyc: <Kyc />,
   };
 
@@ -26,7 +32,11 @@ const Profile = () => {
         marginTop: "4rem",
       }}
     >
-      <Sidebar props={setPage} editActive={editActive} setEditActive={setEditActive} />
+      <Sidebar
+        props={setPage}
+        editActive={editActive}
+        setEditActive={setEditActive}
+      />
 
       <div className="profileContent">{pageMap[curPage]}</div>
     </Grid>

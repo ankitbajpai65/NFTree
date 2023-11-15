@@ -40,9 +40,16 @@ const Auth = () => {
       apiRespond = await (isRegistered ? login(formData) : register(formData));
 
       try {
-        isRegistered
-          ? handleErrorMessage(apiRespond.response.data.detail)
-          : handleErrorMessage(apiRespond.response.data.username[0]);
+        isRegistered;
+        if (isRegistered) {
+          handleErrorMessage(apiRespond.response.data.detail);
+          setFormData((prevData) => ({
+            ...prevData,
+            password: "",
+          }));
+        } else {
+          handleErrorMessage(apiRespond.response.data.username[0]);
+        }
       } catch (error) {
         if (!isRegistered) {
           setIsRegistered(true);

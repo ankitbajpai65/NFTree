@@ -18,6 +18,23 @@ const createProject = async (props) => {
   }
 };
 
+const kycStatus = async (props) => {
+  const url = "http://127.0.0.1:8000/user/kyc/";
+  const config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  };
+
+  try {
+    const response = await axios.get(url, config);
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
 const projectList = async () => {
   const url = "http://127.0.0.1:8000/project/projectlist/";
   try {
@@ -28,4 +45,4 @@ const projectList = async () => {
   }
 };
 
-export { createProject, projectList };
+export { createProject, projectList, kycStatus };

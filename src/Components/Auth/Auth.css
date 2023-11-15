@@ -20,6 +20,7 @@
   border-radius: 1rem;
   background: white;
   padding: 3rem;
+  position: relative;
 }
 
 .switch-option {
@@ -77,6 +78,8 @@
   font-weight: 600;
   min-height: 40px;
   height: 50px;
+  background: #86a789;
+  color: white;
 }
 
 .submit-button {
