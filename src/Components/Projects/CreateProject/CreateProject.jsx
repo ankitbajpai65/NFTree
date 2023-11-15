@@ -1,65 +1,39 @@
-import { Input, Button } from "@mui/material";
 import "./CreateProject.css";
+import { useFormik } from "formik";
+import { createProjectSchema } from "./ValidationSchema";
+import { createProject } from "../../../api/projectApi";
 import { useState } from "react";
 
-/////////////////////////////////////////////
-//////////// Validation /////////////////////
-////////////////////////////////////////////
-
-const checkValidation = () => {
-  var customErrorMessage;
-  if (
-    !isRegistered &&
-    (20 < formData.name.length || formData.name.length < 5)
-  ) {
-    customErrorMessage = "Name is required and should be 5-20 Characters";
-  } else if (!validEmail.test(formData.email)) {
-    customErrorMessage = "Please Enter Valid Email";
-  } else if (formData.password.length < 8) {
-    customErrorMessage = "password should be minimun 8 character long";
-  } else if (!isRegistered && formData.password != formData.cnfPassword) {
-    customErrorMessage = "Unmatched Password and Confirm Password";
-  } else if (!isRegistered && !document.getElementById("tccheckbox").checked) {
-    customErrorMessage = "Please Accept Terms and Conditions first";
-  } else {
-    customErrorMessage = null;
-  }
-
-  setIsError(customErrorMessage);
+const initialValues = {
+  name: "",
+  description: "",
+  plant_types: "",
+  area: "",
+  plant_planned: "",
+  plants_planted: 0,
+  donation: "",
+  address: "",
+  city: "",
+  country: "",
+  document: "",
+  image: "",
+  is_completed: false,
+  user: "",
 };
-
-///////handle Validation
-const handleErrorMessage = (newError = isError) => {
-  document.getElementsByClassName("errorText")[0].innerText = newError;
-  setTimeout(() => {
-    document.getElementsByClassName("errorText")[0].innerText = "";
-  }, 4000);
-};
-
-/////////////////////////////////////////////
-//////////// Validation End /////////////////
-////////////////////////////////////////////
 
 const CreateProject = () => {
-  const [createProjectData, setCreateProjectData] = useState({});
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setCreateProjectData({
-      name: document.getElementsByName("projectName")[0].value,
-      description: document.getElementsByName("projectDescription")[0].value,
-      plant_types: document.getElementsByName("plantType")[0].value,
-      area: document.getElementsByName("plantArea")[0].value,
-      plant_planned: document.getElementsByName("plantPlanned")[0].value,
-      donation: document.getElementsByName("plantDonation")[0].value,
-      address: document.getElementsByName("projectAddress")[0].value,
-      city: document.getElementsByName("projectCity")[0].value,
-      country: document.getElementsByName("projectCountry")[0].value,
-      document: document.getElementsByName("plantType")[0].value,
-      image: document.getElementsByName("plantType")[0].value,
+  const [showError, setShowError] = useState(false);
+  const { values, errors, handleChange, handleSubmit, touched, setFieldValue } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: createProjectSchema,
+      onSubmit: (values, action) => {
+        // action.resetForm();
+        values.user = sessionStorage.getItem("id");
+        console.log(values);
+        createProject(values);
+      },
     });
-    console.log(createProjectData);
-  };
 
   return (
     <>
@@ -71,50 +45,65 @@ const CreateProject = () => {
           <h2 className="formHead">
             Let's Plant Trees: Nurturing the Future, One Sapling at a Time
           </h2>
-          <div className="form-input">
-            <input type="text" name="projectName" placeholder="Project name" />
+          <form className="form-input" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="name"
+              placeholder="Project name"
+              value={values.name}
+              onChange={handleChange}
+            />
 
             <textarea
-              name="projectDescription"
+              name="description"
               cols="30"
               rows="5"
               placeholder="Tell us a little about project (100 Character atleast)"
+              value={values.description}
+              onChange={handleChange}
             />
+
             <br></br>
             <input
               type="text"
-              name="plantType"
-              required
+              name="plant_types"
               placeholder="Types of Plants (use comma to seperate)"
+              value={values.plant_types}
+              onChange={handleChange}
             />
+
             <input
               type="text"
-              name="plantArea"
-              required
+              name="area"
               placeholder="Total Plantation Area in Square Meter"
               onInput={(e) =>
                 (e.target.value = e.target.value.replace(/[^0-9 ]/g, ""))
               }
+              value={values.area}
+              onChange={handleChange}
             />
+
             <div className="form-col">
               <input
                 type="text"
-                name="plantPlanned"
-                required
+                name="plant_planned"
                 placeholder="No of Plants Planned"
                 onInput={(e) =>
                   (e.target.value = e.target.value.replace(/[^0-9 ]/g, ""))
                 }
+                value={values.plant_planned}
+                onChange={handleChange}
               />
 
               <input
                 type="text"
-                name="plantDonation"
-                required
+                name="donation"
                 placeholder="Donation per Plant"
                 onInput={(e) =>
                   (e.target.value = e.target.value.replace(/[^0-9 ]/g, ""))
                 }
+                value={values.donation}
+                onChange={handleChange}
               />
             </div>
 
@@ -122,88 +111,132 @@ const CreateProject = () => {
 
             <input
               type="text"
-              name="projectAddress"
-              required
+              name="address"
               placeholder="Address"
+              value={values.address}
+              onChange={handleChange}
             />
+
             <div className="form-col">
               <input
                 type="text"
-                name="projectCity"
-                required
+                name="city"
                 placeholder="City"
+                value={values.city}
+                onChange={handleChange}
               />
+
               <input
                 type="text"
-                name="projectCountry"
-                required
-                placeholder="Country
-                "
+                name="country"
+                placeholder="Country"
+                value={values.country}
+                onChange={handleChange}
               />
             </div>
             <br></br>
-            <input type="file" />
-            <div className="createProjectLabel">
-              {/* <label htmlFor="">Upload Documents Related to Project</label> */}
-              <Input
-                name="projectDocumants"
+            <div className="projectFile">
+              <input
+                id="inputTag"
                 type="file"
-                inputProps={{ accept: "image/*" }}
-                disableUnderline
-                // onChange={handleFileUpload}
+                name="document"
+                accept=".zip,.pdf"
+                onChange={(event) => {
+                  setFieldValue("document", event.currentTarget.files[0]);
+                }}
+                className={values.document ? "" : "projectDoc"}
               />
 
-              <Button
-                variant="outlined"
-                component="label"
-                htmlFor="file-input"
-                className="uploadBtn"
-                sx={{
-                  width: "100%",
-                  textTransform: "capitalize",
-                  color: "#757575",
-                  border: "1px solid #E4E4E7",
-                }}
-              >
-                Upload Documents Related to Project
-              </Button>
-              <br></br>
-              <br></br>
-
-              {/* <label htmlFor="">Upload Project Image</label> */}
-              <Input
-                id="file-input"
-                name="projectImg"
+              <br />
+              <br />
+              <input
+                id="inputTag"
                 type="file"
-                inputProps={{ accept: "image/*" }}
-                disableUnderline
-                style={{ display: "none" }}
-                // onChange={handleFileUpload}
-              />
-
-              <Button
-                variant="outlined"
-                component="label"
-                htmlFor="file-input"
-                className="uploadBtn"
-                sx={{
-                  width: "100%",
-                  textTransform: "capitalize",
-                  color: "#757575",
-                  border: "1px solid #E4E4E7",
+                name="image"
+                accept="image/*"
+                onChange={(event) => {
+                  setFieldValue("image", event.currentTarget.files[0]);
                 }}
-              >
-                Upload Project Image
-              </Button>
+                className={values.image ? "" : "projectImg"}
+              />
             </div>
             <div className="form-button">
-              <button className="submit-button" onClick={handleSubmit}>
+              <button type="submit" className="submit-button">
                 Get Started
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
+      {Object.keys(errors).length != 0 && (
+        <div className="errorBox">
+          <h3>Errors</h3>
+          {errors.name && touched.name ? (
+            <span className="form-error">{errors.name}</span>
+          ) : (
+            ""
+          )}
+
+          {errors.description && touched.description ? (
+            <span className="form-error">{errors.description}</span>
+          ) : (
+            ""
+          )}
+
+          {errors.plant_types && touched.plant_types ? (
+            <span className="form-error">{errors.plant_types}</span>
+          ) : (
+            ""
+          )}
+
+          {errors.area && touched.area ? (
+            <span className="form-error">{errors.area}</span>
+          ) : (
+            ""
+          )}
+
+          {errors.plant_planned && touched.plant_planned ? (
+            <span className="form-error">{errors.plant_planned}</span>
+          ) : (
+            ""
+          )}
+          {errors.donation && touched.donation ? (
+            <span className="form-error">{errors.donation}</span>
+          ) : (
+            ""
+          )}
+
+          {errors.address && touched.address ? (
+            <span className="form-error">{errors.address}</span>
+          ) : (
+            ""
+          )}
+
+          {errors.city && touched.city ? (
+            <span className="form-error">{errors.city}</span>
+          ) : (
+            ""
+          )}
+
+          {errors.country && touched.country ? (
+            <span className="form-error">{errors.country}</span>
+          ) : (
+            ""
+          )}
+
+          {errors.document && touched.document ? (
+            <span className="form-error">{errors.document}</span>
+          ) : (
+            ""
+          )}
+
+          {errors.image && touched.image ? (
+            <span className="form-error">{errors.image}</span>
+          ) : (
+            ""
+          )}
+        </div>
+      )}
     </>
   );
 };

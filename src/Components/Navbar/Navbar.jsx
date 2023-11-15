@@ -8,7 +8,6 @@ import Auth from "../Auth/Auth";
 import { useAuth } from "../../Contexts/AuthContext";
 import logo1 from "/logo_colored.png";
 import OngoingProjects from "../Projects/OngoingProjects/OngoingProjects";
-import OngoingProject from "../Projects/OngoingProject/OngoingProject";
 import ProjectDetails from "../Projects/OngoingProjects/ProjectDetails";
 import ContributeProject from "../Projects/OngoingProjects/ContributeProject/ContributeProject";
 import CompletedProjects from "../Projects/OngoingProjects/CompletedProjects";

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Contexts/AuthContext";
 import { login, register, googleLogin } from "../../api/userApi";
-
 import googlelogo from "./img/google-login.png";
 import "./Auth.css";
 
@@ -17,7 +16,7 @@ const Auth = () => {
     cnfPassword: "",
   });
 
-  const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
+  const { setIsLoggedIn } = useAuth();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -37,7 +36,7 @@ const Auth = () => {
   const authFunctions = async () => {
     handleErrorMessage();
     let apiRespond;
-    if (isError == null) {
+    if (isError === null) {
       apiRespond = await (isRegistered ? login(formData) : register(formData));
 
       try {
@@ -54,8 +53,8 @@ const Auth = () => {
             cnfPassword: "",
           });
           setTimeout(() => {
-            document.getElementsByClassName("formHead")[0].innerText =
-              "Login to Continue";
+            document.getElementsByClassName("formHead")[0].innerHTML =
+              "Account Created<br>Login to Continue";
           }, 1);
         } else {
           setIsLoggedIn(true);
@@ -67,146 +66,134 @@ const Auth = () => {
 
   const handleGoogleLogin = googleLogin();
 
-  /////////////////////////////////////////////
-  //////////// Validation /////////////////////
-  ////////////////////////////////////////////
-
-  const validEmail = RegExp(
-    /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-  );
+  const validEmail = RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 
   const checkValidation = () => {
-    var customErrorMessage;
-    if (
-      !isRegistered &&
-      (20 < formData.name.length || formData.name.length < 5)
-    ) {
+    let customErrorMessage = null;
+    const { name, email, password, cnfPassword } = formData;
+
+    if (!isRegistered && (name.length < 5 || name.length > 20)) {
       customErrorMessage = "Name is required and should be 5-20 Characters";
-    } else if (!validEmail.test(formData.email)) {
-      customErrorMessage = "Please Enter Valid Email";
-    } else if (formData.password.length < 8) {
-      customErrorMessage = "password should be minimun 8 character long";
-    } else if (!isRegistered && formData.password != formData.cnfPassword) {
+    } else if (!validEmail.test(email)) {
+      customErrorMessage = "Please Enter a Valid Email";
+    } else if (password.length < 8) {
+      customErrorMessage = "Password should be minimum 8 characters long";
+    } else if (!isRegistered && password !== cnfPassword) {
       customErrorMessage = "Unmatched Password and Confirm Password";
     } else if (
       !isRegistered &&
       !document.getElementById("tccheckbox").checked
     ) {
       customErrorMessage = "Please Accept Terms and Conditions first";
-    } else {
-      customErrorMessage = null;
     }
 
     setIsError(customErrorMessage);
   };
 
-  ///////handle Validation
   const handleErrorMessage = (newError = isError) => {
-    document.getElementsByClassName("errorText")[0].innerText = newError;
-    setTimeout(() => {
-      document.getElementsByClassName("errorText")[0].innerText = "";
-    }, 4000);
+    const errorText = document.getElementsByClassName("errorText")[0];
+    errorText.innerText = newError || "";
+    if (newError) {
+      setTimeout(() => {
+        errorText.innerText = "";
+      }, 4000);
+    }
   };
 
-  /////////////////////////////////////////////
-  //////////// Validation End /////////////////
-  ////////////////////////////////////////////
-
   return (
-    <>
-      <div className="form-container" style={{ minHeight: "700px" }}>
-        <form className="form-box" onSubmit={handleSubmit}>
-          <h1 className="formHead">
-            {isRegistered ? "Sign In To Your Account" : "Create Free Account"}
-          </h1>
-          <div className="form-input">
-            {!isRegistered && (
-              <input
-                type="text"
-                name="name"
-                placeholder="Enter Full Name"
-                value={formData.name}
-                onChange={handleInputChange}
-                onInput={(e) =>
-                  (e.target.value = e.target.value.replace(/[^A-Za-z ]/g, ""))
-                }
-              />
-            )}
+    <div className="form-container" style={{ minHeight: "700px" }}>
+      <form className="form-box" onSubmit={handleSubmit}>
+        <h1 className="formHead">
+          {isRegistered ? "Sign In To Your Account" : "Create Free Account"}
+        </h1>
+        <div className="form-input">
+          {!isRegistered && (
             <input
-              type="email"
-              name="email"
-              placeholder="Enter Email"
-              value={formData.email}
+              type="text"
+              name="name"
+              placeholder="Enter Full Name"
+              value={formData.name}
               onChange={handleInputChange}
             />
-
+          )}
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter Email"
+            value={formData.email}
+            onChange={handleInputChange}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter Password"
+            value={formData.password}
+            onChange={handleInputChange}
+          />
+          {!isRegistered && (
             <input
               type="password"
-              name="password"
-              placeholder="Enter Password"
-              value={formData.password}
+              name="cnfPassword"
+              placeholder="Confirm Password"
+              value={formData.cnfPassword}
               onChange={handleInputChange}
             />
-            {!isRegistered && (
-              <input
-                type="password"
-                name="cnfPassword"
-                placeholder="Confirm Password"
-                value={formData.cnfPassword}
-                onChange={handleInputChange}
-              />
-            )}
-          </div>
-          <span className="errorText">{}</span>
-          <div className="form-checkbox">
-            <div className="checkBoxDiv">
-              <input type="checkbox" id="tccheckbox" />
-
-              <span>
-                {isRegistered ? (
-                  "Remember me"
-                ) : (
-                  <p>
-                    {"I agree with the "}
-                    <a href="#">Terms & Conditions</a>
-                    {" of NFTree"}
-                  </p>
-                )}
-              </span>
-            </div>
-            {isRegistered && <a href="">Forgot password?</a>}
-          </div>
-          <div className="form-button" style={{ marginBottom: "30px" }}>
-            <button type="submit" className="submit-button">
-              {isRegistered ? "Sign in" : "Sign up"}
-            </button>
-            {isRegistered && (
-              <button className="googleLoginBtn" onClick={handleGoogleLogin}>
-                <div>
-                  <div>
-                    <img src={googlelogo} alt="Google Login" />
-                    Sign in with Google
-                  </div>
-                </div>
-              </button>
-            )}
-          </div>
-          <div className="switch-option">
+          )}
+        </div>
+        <span className="errorText">{isError}</span>
+        <div className="form-checkbox">
+          <div className="checkBoxDiv">
+            <input type="checkbox" id="tccheckbox" />
             <span>
-              {isRegistered
-                ? "Don't have an account?"
-                : "Already have an account?"}{" "}
+              {isRegistered ? (
+                "Remember me"
+              ) : (
+                <p>
+                  I agree with the <a href="#">Terms & Conditions</a> of NFTree
+                </p>
+              )}
             </span>
-            <a
-              onClick={() => setIsRegistered(!isRegistered)}
-              style={{ cursor: "pointer" }}
-            >
-              {isRegistered ? "Signup" : "Signin"}
-            </a>
           </div>
-        </form>
-      </div>
-    </>
+          {isRegistered && <a href="#">Forgot password?</a>}
+        </div>
+        <div className="form-button" style={{ marginBottom: "30px" }}>
+          <button type="submit" className="submit-button">
+            {isRegistered ? "Sign in" : "Sign up"}
+          </button>
+          {isRegistered && (
+            <button className="googleLoginBtn" onClick={handleGoogleLogin}>
+              <div>
+                <div>
+                  <img src={googlelogo} alt="Google Login" />
+                  Sign in with Google
+                </div>
+              </div>
+            </button>
+          )}
+        </div>
+        <div className="switch-option">
+          <span>
+            {isRegistered
+              ? "Don't have an account?"
+              : "Already have an account?"}{" "}
+          </span>
+          <a
+            onClick={() => {
+              setIsRegistered(!isRegistered);
+              setFormData({
+                name: "",
+                email: "",
+                password: "",
+                cnfPassword: "",
+              });
+            }}
+            style={{ cursor: "pointer" }}
+          >
+            {isRegistered ? "Signup" : "Signin"}
+          </a>
+        </div>
+      </form>
+    </div>
   );
 };
 
