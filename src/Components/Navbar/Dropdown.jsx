@@ -14,7 +14,7 @@ const profileDropdown = [{ to: "/home", name: "Logout" }];
 
 const Dropdown = ({ handleMouseLeave, setMobileOpen, dropdown }) => {
   const { setIsLoggedIn } = useAuth();
-  console.log({ handleMouseLeave, setMobileOpen, dropdown });
+
   return (
     <>
       <List
@@ -35,37 +35,37 @@ const Dropdown = ({ handleMouseLeave, setMobileOpen, dropdown }) => {
           <div style={{ margin: "auto" }}>
             {dropdown === "Projects"
               ? projectDropdown.map((elem, index) => {
-                  return (
-                    <Link
-                      key={index}
-                      to={elem.to}
-                      onClick={() => {
-                        handleMouseLeave();
-                        setMobileOpen(false);
-                      }}
-                      className="dropdownLinks"
-                    >
-                      {elem.name}
-                    </Link>
-                  );
-                })
+                return (
+                  <Link
+                    key={index}
+                    to={elem.to}
+                    onClick={() => {
+                      handleMouseLeave();
+                      setMobileOpen(false);
+                    }}
+                    className="dropdownLinks"
+                  >
+                    {elem.name}
+                  </Link>
+                );
+              })
               : profileDropdown.map((elem, index) => {
-                  return (
-                    <Link
-                      key={index}
-                      to={elem.to}
-                      onClick={() => {
-                        handleMouseLeave();
-                        setMobileOpen(false);
-                        logout();
-                        setIsLoggedIn(false);
-                      }}
-                      className="dropdownLinks"
-                    >
-                      {elem.name}
-                    </Link>
-                  );
-                })}
+                return (
+                  <Link
+                    key={index}
+                    to={elem.to}
+                    onClick={() => {
+                      handleMouseLeave();
+                      setMobileOpen(false);
+                      logout();
+                      setIsLoggedIn(false);
+                    }}
+                    className="dropdownLinks"
+                  >
+                    {elem.name}
+                  </Link>
+                );
+              })}
           </div>
         </ListItem>
       </List>

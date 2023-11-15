@@ -14,6 +14,7 @@ const steps = [
 
 const Kyc = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const [kycDetails, setKycDetails] = useState({});
 
   const handleBack = () => {
     activeStep > 0 && setActiveStep((prevStep) => prevStep - 1);
@@ -23,14 +24,13 @@ const Kyc = () => {
   };
 
   const formContent = (step) => {
-    console.log(`formContent runs ${step}`);
     switch (step) {
       case 0:
-        return <AccountDetails />;
+        return <AccountDetails setKycDetails={setKycDetails} />;
       case 1:
-        return <OrganizationDetails />;
+        return <OrganizationDetails kycDetails={kycDetails} setKycDetails={setKycDetails} />;
       case 2:
-        return <RepresentativeDetails />;
+        return <RepresentativeDetails kycDetails={kycDetails} setKycDetails={setKycDetails} />;
       case 3:
         return <Wallet />;
       default:
@@ -60,7 +60,7 @@ const Kyc = () => {
             <StepLabel
               onClick={() => stepperClick(index)}
               sx={{ cursor: "pointer !important" }}
-              // className={`${index === activeStep ? 'activeStepper' : ''}`}
+            // className={`${index === activeStep ? 'activeStepper' : ''}`}
             />
           </Step>
         ))}

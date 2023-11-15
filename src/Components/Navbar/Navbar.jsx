@@ -165,6 +165,7 @@ export default function Navbar() {
           <Toolbar>
             <MenuIcon
               onClick={handleDrawerToggle}
+              className="navbar"
               sx={{
                 display: { sm: "none" },
                 filter: "invert(1)",
@@ -274,7 +275,7 @@ export default function Navbar() {
                 alignItems: "center",
               }}
             >
-              <Link to="/contact">Contact</Link>
+              <Link to="/contact" className="contactLink">Contact</Link>
               {!isLoggedIn ? (
                 <Button
                   variant="contained"
@@ -294,7 +295,9 @@ export default function Navbar() {
                       sx={{
                         color: "black",
                         fontSize: "2.5rem",
+                        cursor:'pointer'
                       }}
+                      onClick={()=>navigate('/profile')}
                     />
                     {isMouseEnterProfile && (
                       <Dropdown
