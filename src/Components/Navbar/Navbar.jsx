@@ -8,7 +8,6 @@ import Auth from "../Auth/Auth";
 import { useAuth } from "../../Contexts/AuthContext";
 import logo1 from "/logo_colored.png";
 import OngoingProjects from "../Projects/OngoingProjects/OngoingProjects";
-import OngoingProject from "../Projects/OngoingProject/OngoingProject";
 import ProjectDetails from "../Projects/OngoingProjects/ProjectDetails";
 import ContributeProject from "../Projects/OngoingProjects/ContributeProject/ContributeProject";
 import CompletedProjects from "../Projects/OngoingProjects/CompletedProjects";
@@ -45,7 +44,6 @@ export default function Navbar() {
   const [scroll, setScroll] = useState(false);
   const [isMouseEnter, setIsMouseEnter] = useState(false);
   const [isMouseEnterProfile, setIsMouseEnterProfile] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
   const { authUser, setAuthUser, isLoggedIn, setIsLoggedIn } = useAuth();
 
   const scrolling = () => {
@@ -276,7 +274,7 @@ export default function Navbar() {
               }}
             >
               <Link to="/contact">Contact</Link>
-              {!isLogin ? (
+              {!isLoggedIn ? (
                 <Button
                   variant="contained"
                   className="filledBtn"

@@ -1,12 +1,23 @@
 import axios from "axios";
 import { useGoogleLogin } from "@react-oauth/google";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Contexts/AuthContext";
 
-let url;
-let data;
+const BASE_URL = "http://127.0.0.1:8000/user/";
+
+const performAction = async (endpoint, formData) => {
+  try {
+    const response = await axios.post(`${BASE_URL}${endpoint}/`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
 
 const register = async (formData) => {
-  url = "http://127.0.0.1:8000/user/register/";
-  data = {
+  const data = {
     username: formData.email,
     password: formData.password,
     first_name: formData.name.split(" ")[0],
@@ -14,7 +25,7 @@ const register = async (formData) => {
   };
 
   try {
-    const response = await axiosPerformAction(url, data);
+    const response = await performAction("register", data);
     return response;
   } catch (error) {
     return error;
@@ -22,14 +33,13 @@ const register = async (formData) => {
 };
 
 const login = async (formData) => {
-  url = "http://127.0.0.1:8000/user/login/";
-  data = {
+  const data = {
     username: formData.email,
     password: formData.password,
   };
 
   try {
-    const response = await axiosPerformAction(url, data);
+    const response = await performAction("login", data);
     sessionStorage.setItem("token", response.data.access);
     sessionStorage.setItem("id", response.data.id);
     return response;
@@ -44,10 +54,13 @@ const logout = () => {
 };
 
 const googleLogin = () => {
+  const navigate = useNavigate();
+  const { setIsLoggedIn } = useAuth();
+
   const login = useGoogleLogin({
     onSuccess: async (response) => {
       try {
-        const data = await axios.get(
+        const googleResponse = await axios.get(
           "https://www.googleapis.com/oauth2/v3/userinfo",
           {
             headers: {
@@ -55,7 +68,17 @@ const googleLogin = () => {
             },
           }
         );
-        console.log(data);
+
+        const data = {
+          access_token: response.access_token,
+          provider: "google-oauth2",
+        };
+
+        const authResponse = await performAction("auth", data);
+        sessionStorage.setItem("token", authResponse.data.token);
+        sessionStorage.setItem("id", authResponse.data.id);
+        setIsLoggedIn(true);
+        navigate("/");
       } catch (err) {
         console.log(err);
       }
@@ -63,20 +86,6 @@ const googleLogin = () => {
   });
 
   return login;
-};
-
-const axiosPerformAction = async (url, data) => {
-  try {
-    const respond = await axios({
-      method: "post",
-      url: url,
-      data: data,
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    return respond;
-  } catch (error) {
-    throw error;
-  }
 };
 
 export { login, register, googleLogin, logout };

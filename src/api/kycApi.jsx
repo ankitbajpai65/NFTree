@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const authToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk5ODU0ODIxLCJpYXQiOjE2OTk4NTEyMjEsImp0aSI6IjM2YTBlOTk4NzFlYzQ1NmFhNzQ1NDc1ZDZkNDZiODBlIiwidXNlcl9pZCI6MTF9.0LxkikK3tZINfz9R4PTmTuxy2eD4xQ0-rQdxZ8acYbk";
+const authToken = sessionStorage.getItem("token");
 
 const accountDetails = () => {
   const data = {
