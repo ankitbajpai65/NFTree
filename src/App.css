@@ -11,7 +11,7 @@ body {
   --green-10: #ebf3e8;
   --green-20: #d2e3c8;
   --green-30: #86a789;
-  --primary: #2563EB;
+  --primary: #2563eb;
 }
 
 * {
@@ -41,11 +41,11 @@ select {
   outline: none;
   color: #757575;
   resize: none;
-  font-family: 'Arial';
+  font-family: "Arial";
 }
 
-select option{
-  padding:5px;
+select option {
+  padding: 5px;
 }
 
 button {
@@ -57,7 +57,7 @@ button {
   background-color: var(--green-30) !important;
 }
 
-button>span {
+button > span {
   box-shadow: none !important;
 }
 
@@ -72,6 +72,6 @@ button>span {
   background: transparent !important;
 }
 
-.activeStepper circle{
-  color:var(--green-30) !important;
+.activeStepper circle {
+  color: var(--green-30) !important;
 }

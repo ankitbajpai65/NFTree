@@ -10,7 +10,16 @@ const accountFormDetails = [
     { name: 'phone', placeholder: 'Phone' },
 ];
 
-const AccountDetails = () => {
+
+const AccountDetails = ({ setKycDetails }) => {
+
+    const handleInputChange = (e) => {
+        setKycDetails((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value || e.target.files[0],
+        }));
+    }
+
     return (
         <Grid container spacing={2}>
             <h1 style={{ margin: 'auto', margin: '0 auto 1rem' }}>Account Details</h1>
@@ -23,7 +32,10 @@ const AccountDetails = () => {
                                 placeholder={field.placeholder}
                                 variant="outlined"
                                 size="small"
+                                onChange={handleInputChange}
                                 fullWidth
+                                // error
+                                // helperText="Please fill this field"
                             />
                         </Grid>
                     )

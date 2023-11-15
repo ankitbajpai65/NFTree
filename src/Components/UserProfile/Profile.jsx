@@ -13,30 +13,23 @@ const Profile = () => {
     setCurPage(page);
   };
 
-  const handleEditClick = () => {
-    console.log(`edit cliks`);
-    setEditActive(true);
-  };
-
   const pageMap = {
     user_profile: <UserDetails />,
-    edit_basic_details: <UserDetails />,
+    edit_basic_details: <UserDetails editActive={editActive} setEditActive={setEditActive} />,
     kyc: <Kyc />,
   };
 
   return (
-    <div style={{ height: "100vh" }}>
-      <Grid
-        container
-        sx={{
-          marginTop: "4rem",
-        }}
-      >
-        <Sidebar props={setPage} />
+    <Grid
+      container
+      sx={{
+        marginTop: "4rem",
+      }}
+    >
+      <Sidebar props={setPage} editActive={editActive} setEditActive={setEditActive} />
 
-        <div className="profileContent">{pageMap[curPage]}</div>
-      </Grid>
-    </div>
+      <div className="profileContent">{pageMap[curPage]}</div>
+    </Grid>
   );
 };
 

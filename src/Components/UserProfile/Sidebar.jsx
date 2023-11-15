@@ -1,16 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 import DraftsIcon from "@mui/icons-material/Drafts";
 import HistoryIcon from "@mui/icons-material/History";
 import { styled, useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
-import MuiAppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import CssBaseline from "@mui/material/CssBaseline";
-import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -20,8 +15,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import "./Profile.css";
 
 const drawerWidth = 240;
@@ -52,7 +45,6 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "flex-end",
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
@@ -81,7 +73,7 @@ const profileLinks = [
   "Donation History",
 ];
 
-const Sidebar = ({ props }) => {
+const Sidebar = ({ props,editActive,setEditActive }) => {
   const theme = useTheme();
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
@@ -96,7 +88,7 @@ const Sidebar = ({ props }) => {
 
   return (
     <>
-      <Drawer variant="permanent" open={open} className="ankit">
+      <Drawer variant="permanent" open={open} className="profileDrawer">
         <DrawerHeader>
           {open ? (
             <IconButton onClick={handleDrawerClose}>
@@ -133,7 +125,10 @@ const Sidebar = ({ props }) => {
                   px: 2.5,
                 }}
                 // to={`/profile/${text.toLowerCase().replace(/\s/g, '_')}`}
-                onClick={() => props(text.toLowerCase().replace(/\s/g, "_"))}
+                onClick={() =>{
+                  props(text.toLowerCase().replace(/\s/g, "_"))
+                  text==='Edit Basic Details' ? setEditActive(true) : setEditActive(false)
+                }}
               >
                 <ListItemIcon
                   sx={{
