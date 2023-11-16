@@ -4,6 +4,7 @@ import Kyc from "./Kyc/Kyc";
 import { Grid } from "@mui/material";
 import Sidebar from "./Sidebar";
 import { useLocation } from "react-router-dom";
+import ErrorPage from "../Error_page/ErrorPage";
 import "./Profile.css";
 
 const Profile = ({ state }) => {
@@ -23,6 +24,8 @@ const Profile = ({ state }) => {
       <UserDetails editActive={editActive} setEditActive={setEditActive} />
     ),
     kyc: <Kyc />,
+    my_projects: <ErrorPage />,
+    donation_history: <ErrorPage />,
   };
 
   return (

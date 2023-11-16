@@ -26,6 +26,7 @@ export default function OngoingProjects() {
   };
 
   projectListData();
+  
   return (
     <>
       <div

@@ -26,11 +26,11 @@ const Kyc = () => {
   const formContent = (step) => {
     switch (step) {
       case 0:
-        return <AccountDetails setKycDetails={setKycDetails} />;
+        return <AccountDetails steps={steps} activeStep={activeStep} handleBack={handleBack} handleNext={handleNext} setKycDetails={setKycDetails} />
       case 1:
-        return <OrganizationDetails kycDetails={kycDetails} setKycDetails={setKycDetails} />;
+        return <OrganizationDetails steps={steps} activeStep={activeStep} handleBack={handleBack} handleNext={handleNext} kycDetails={kycDetails} setKycDetails={setKycDetails} />;
       case 2:
-        return <RepresentativeDetails kycDetails={kycDetails} setKycDetails={setKycDetails} />;
+        return <RepresentativeDetails steps={steps} activeStep={activeStep} handleBack={handleBack} handleNext={handleNext} kycDetails={kycDetails} setKycDetails={setKycDetails} />;
       case 3:
         return <Wallet />;
       default:
@@ -74,50 +74,7 @@ const Kyc = () => {
           mt: 5,
         }}
       >
-        <Grid item xs={12} sx={{ padding: "20px" }}>
-          {formContent(activeStep)}
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          mt={3}
-          mb={5}
-          sx={{
-            display: activeStep === 3 ? "none" : "flex",
-            justifyContent: "center",
-            gap: "1rem",
-          }}
-        >
-          <Button
-            sx={{
-              width: "45%",
-            }}
-            variant="contained"
-            disabled={activeStep === 0}
-            onClick={handleBack}
-            className="filledBtn"
-          >
-            Back
-          </Button>
-          {activeStep === steps.length - 1 ? (
-            <Button
-              sx={{ width: "45%" }}
-              variant="contained"
-              className="filledBtn"
-            >
-              Submit
-            </Button>
-          ) : (
-            <Button
-              sx={{ width: "45%" }}
-              variant="contained"
-              onClick={handleNext}
-              className="filledBtn"
-            >
-              Next
-            </Button>
-          )}
-        </Grid>
+        {formContent(activeStep)}
       </Grid>
     </Box>
   );
