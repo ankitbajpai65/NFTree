@@ -3,7 +3,7 @@ import { Input, Button } from "@mui/material";
 
 const UserDetails = ({ editActive }) => {
   return (
-    <div>
+    <div style={{ height: "100vh" }}>
       <div className="form-box editForm">
         <div
           style={{

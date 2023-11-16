@@ -10,27 +10,23 @@ function CreateProject() {
     async function fetchKycStatus() {
       try {
         const response = await kycStatus();
-        setIsKycComplete(response); // Assuming response is a boolean indicating KYC status
+        setIsKycComplete(response);
       } catch (error) {
         console.error("Error fetching KYC status:", error);
-        setIsKycComplete(false); // Set KYC status to false in case of an error
+        setIsKycComplete(false);
       }
     }
 
     fetchKycStatus();
   }, []);
-  return <CreateProjectPage />;
-  // Render based on the KYC status
-  // if (isKycComplete === null) {
-  //   // Loading state while fetching data
-  //   return <div>Loading...</div>;
-  // } else if (isKycComplete == "approved") {
-  //   // Render CreateProjectPage if KYC status is complete
-  //   return <CreateProjectPage />;
-  // } else {
-  //   // Render IncompleteKyc if KYC status is incomplete or API call failed
-  //   return <IncompleteKyc />;
-  // }
+
+  if (isKycComplete === null) {
+    return <div>Loading...</div>;
+  } else if (isKycComplete == "approved") {
+    return <CreateProjectPage />;
+  } else {
+    return <IncompleteKyc />;
+  }
 }
 
 export default CreateProject;
