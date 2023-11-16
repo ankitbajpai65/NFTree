@@ -28,12 +28,16 @@ const CreateProjectPage = () => {
       initialValues: initialValues,
       validationSchema: createProjectSchema,
       onSubmit: (values, action) => {
-        // action.resetForm();
+        action.resetForm();
         values.user = sessionStorage.getItem("id");
         console.log(values);
         createProject(values);
       },
     });
+
+  const abcd = () => {
+    setShowError(true);
+  };
 
   return (
     <>
@@ -161,14 +165,14 @@ const CreateProjectPage = () => {
               />
             </div>
             <div className="form-button">
-              <button type="submit" className="submit-button">
+              <button type="submit" className="submit-button" onClick={abcd}>
                 Get Started
               </button>
             </div>
           </form>
         </div>
       </div>
-      {Object.keys(errors).length != 0 && (
+      {showError && (
         <div className="errorBox">
           <h3>Errors</h3>
           {errors.name && touched.name ? (

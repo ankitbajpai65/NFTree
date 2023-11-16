@@ -20,8 +20,6 @@ const ProjectDetails = ({ progress }) => {
   const { data, type } = state.state;
   const navigate = useNavigate();
 
-  console.log(data, type);
-
   return (
     <Grid
       container

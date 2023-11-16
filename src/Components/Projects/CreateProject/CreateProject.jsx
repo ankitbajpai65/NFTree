@@ -19,18 +19,18 @@ function CreateProject() {
 
     fetchKycStatus();
   }, []);
-
+  return <CreateProjectPage />;
   // Render based on the KYC status
-  if (isKycComplete === null) {
-    // Loading state while fetching data
-    return <div>Loading...</div>;
-  } else if (isKycComplete == "approved") {
-    // Render CreateProjectPage if KYC status is complete
-    return <CreateProjectPage />;
-  } else {
-    // Render IncompleteKyc if KYC status is incomplete or API call failed
-    return <IncompleteKyc />;
-  }
+  // if (isKycComplete === null) {
+  //   // Loading state while fetching data
+  //   return <div>Loading...</div>;
+  // } else if (isKycComplete == "approved") {
+  //   // Render CreateProjectPage if KYC status is complete
+  //   return <CreateProjectPage />;
+  // } else {
+  //   // Render IncompleteKyc if KYC status is incomplete or API call failed
+  //   return <IncompleteKyc />;
+  // }
 }
 
 export default CreateProject;
