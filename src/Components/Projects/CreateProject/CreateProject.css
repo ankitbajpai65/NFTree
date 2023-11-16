@@ -13,8 +13,12 @@
 
 .form-col {
   display: flex;
-  width: 100%;
-  gap: 1vw;
+  gap: 10px;
+}
+
+.form-col div {
+  width: 50%;
+  text-align:start;
 }
 
 .createProjectLabel {
@@ -77,6 +81,7 @@
     margin-top: 0px;
     width: 60vw;
   }
+
   .errorBox {
     left: 75%;
   }

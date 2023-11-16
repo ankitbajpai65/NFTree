@@ -48,6 +48,12 @@ select option {
   padding: 5px;
 }
 
+small{
+  color:#ca1919;
+  margin-left:6px;
+  margin-bottom:8px;
+}
+
 button {
   font-size: 1rem;
   border: none;
