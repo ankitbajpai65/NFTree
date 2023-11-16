@@ -3,6 +3,7 @@ import UserDetails from "./UserDetails";
 import Kyc from "./Kyc/Kyc";
 import { Grid } from "@mui/material";
 import Sidebar from "./Sidebar";
+import ErrorPage from "../Error_page/ErrorPage";
 import "./Profile.css";
 
 const Profile = () => {
@@ -17,6 +18,8 @@ const Profile = () => {
     user_profile: <UserDetails />,
     edit_basic_details: <UserDetails editActive={editActive} setEditActive={setEditActive} />,
     kyc: <Kyc />,
+    my_projects: <ErrorPage />,
+    donation_history: <ErrorPage />,
   };
 
   return (

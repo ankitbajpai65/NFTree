@@ -8,6 +8,10 @@ import {
 const Wallet = () => {
     return (
         <>
+        <div style={{
+            width:'100%',
+            marginBottom:'2rem'
+        }}>
             <h1 style={{ margin: 'auto', margin: '1rem auto', textAlign: 'center' }}>Wallet</h1>
             <Typography variant="body2" gutterBottom sx={{ textAlign: 'center' }}>
                 A wallet is your identity on the blockchain.
@@ -15,6 +19,7 @@ const Wallet = () => {
             <Typography variant="body2" gutterBottom sx={{ textAlign: 'center' }}>
                 The certificates will be released from your Account ID.
             </Typography>
+        </div>
             <Grid container spacing={2} sx={{
                 display: 'flex',
                 justifyContent: 'center',
@@ -38,14 +43,14 @@ const Wallet = () => {
                     textAlign: "center"
                 }}>
                     <Typography variant="h5" gutterBottom sx={{ textAlign: 'center' }}>
-                        Browser Wallet
+                        Mobile Wallet
                     </Typography>
                     <Typography variant="body1" gutterBottom sx={{ textAlign: 'center' }}>
                         Connect with Bit-Wallet mobile app.
                     </Typography>
                     <TextField
                         name="accountId"
-                        label="Account ID"
+                        placeholder="Account ID"
                         variant="outlined"
                         size="small"
                         fullWidth

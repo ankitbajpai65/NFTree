@@ -18,12 +18,12 @@ const CreateProject = () => {
   //     },
   //   });
 
-  const handleOnSubmit = (values) => {
-    const fullName = Object.keys(values)
-      .map((key) => values[key])
-      .join(" ");
-    alert(`Hello ${fullName}!`);
-  };
+  // const handleOnSubmit = (values) => {
+  //   const fullName = Object.keys(values)
+  //     .map((key) => values[key])
+  //     .join(" ");
+  //   alert(`Hello ${fullName}!`);
+  // };
 
   const formik = useFormik({
     initialValues: {
@@ -43,7 +43,12 @@ const CreateProject = () => {
       user: "",
     },
     validationSchema: createProjectSchema,
-    onSubmit: handleOnSubmit,
+    onSubmit: (values, action) => {
+        // action.resetForm();
+        values.user = sessionStorage.getItem("id");
+        console.log(values);
+        createProject(values);
+      },
   });
 
   const setInputValue = useCallback(
@@ -54,8 +59,6 @@ const CreateProject = () => {
       }),
     [formik]
   );
-
-  console.log(formik);
 
   return (
     <>

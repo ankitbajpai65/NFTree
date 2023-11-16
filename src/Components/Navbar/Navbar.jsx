@@ -15,7 +15,6 @@ import Kyc from "../UserProfile/Kyc/Kyc";
 import "../Navbar/Navbar.css";
 import Contact from "../Contact_us/Contact";
 import ErrorPage from "../Error_page/ErrorPage";
-// import ProfilePage from "../UserProfile/ProfilePage";
 import Profile from "../UserProfile/Profile";
 
 import {
@@ -355,6 +354,7 @@ export default function Navbar() {
           path="/completedProjects/projectName"
           element={<ProjectDetails progress="100/100" />}
         />
+        <Route path="/*" element={<ErrorPage />} />
         {/* <Route path="kyc" element={<Kyc />} /> */}
 
         {/* {isLoggedIn && (

@@ -13,7 +13,7 @@ export default function ErrorPage() {
         <button
           className="submit-button"
           onClick={() => navigate("/")}
-          style={{ width: "6%", margin: "0" }}
+          style={{ width: "8rem", padding: "1rem" }}
         >
           Home
         </button>
