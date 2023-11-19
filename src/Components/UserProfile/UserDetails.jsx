@@ -1,7 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Input, Button } from "@mui/material";
+import { userDetailApi } from "../../api/kycApi";
+import { kycStatus } from "../../api/projectApi";
 
 const UserDetails = ({ editActive }) => {
+  const [status, setStatus] = useState(null);
+  const [userData, setUserData] = useState({
+    username: "",
+    first_name: "",
+    last_name: "",
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await userDetailApi();
+        const fetchedStatus = await kycStatus();
+        setStatus(fetchedStatus.data[0].status);
+        setUserData(response.data);
+      } catch (error) {
+        console.error("Error fetching user details: ", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleEditChange = () => {
+    userDetailApi(userData);
+  };
+
   return (
     <div style={{ height: "100vh" }}>
       <div className="form-box editForm">
@@ -40,7 +73,6 @@ const UserDetails = ({ editActive }) => {
                 htmlFor="file-input"
                 className="uploadBtn"
                 sx={{
-                  width: "37%",
                   margin: "auto",
                   textTransform: "capitalize",
                   color: "#757575",
@@ -60,8 +92,10 @@ const UserDetails = ({ editActive }) => {
               <label htmlFor="">First name</label>
               <input
                 type="text"
-                name="name"
+                name="first_name"
                 placeholder="First Name"
+                value={userData.first_name}
+                onChange={handleChange}
                 readOnly={editActive ? false : true}
               />
             </div>
@@ -69,7 +103,9 @@ const UserDetails = ({ editActive }) => {
               <label htmlFor="">Last name</label>
               <input
                 type="text"
-                name="name"
+                name="last_name"
+                value={userData.last_name}
+                onChange={handleChange}
                 placeholder="Last Name"
                 readOnly={editActive ? false : true}
               />
@@ -79,9 +115,10 @@ const UserDetails = ({ editActive }) => {
             <label htmlFor="">Email</label>
             <input
               type="text"
-              name="name"
+              name="username"
               placeholder="Email"
-              readOnly={editActive ? false : true}
+              value={userData.username}
+              readOnly={true}
             />
           </div>
           <div style={{ width: "100%" }}>
@@ -107,11 +144,23 @@ const UserDetails = ({ editActive }) => {
               readOnly={editActive ? false : true}
             />
           </div>
+          {!editActive && (
+            <div className="status">
+              <p>Kyc Status: </p>
+              <span>{status}</span>
+            </div>
+          )}
         </div>
         {editActive && (
-          <div className="form-button" style={{ margin: "0" }}>
-            <button className="submit-button" onClick="">
-              Save
+          <div
+            className="form-button"
+            style={{ margin: "0" }}
+            onClick={() => {
+              console.log(userData);
+            }}
+          >
+            <button className="submit-button" onClick={handleEditChange}>
+              Save Changes
             </button>
           </div>
         )}

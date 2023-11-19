@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import { createProjectSchema } from "./ValidationSchema";
 import { createProject } from "../../../api/projectApi";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const initialValues = {
   name: "",
@@ -22,7 +23,7 @@ const initialValues = {
 };
 
 const CreateProjectPage = () => {
-  const [showError, setShowError] = useState(false);
+  const navigate = useNavigate();
   const { values, errors, handleChange, handleSubmit, touched, setFieldValue } =
     useFormik({
       initialValues: initialValues,
@@ -30,20 +31,16 @@ const CreateProjectPage = () => {
       onSubmit: (values, action) => {
         action.resetForm();
         values.user = sessionStorage.getItem("id");
-        console.log(values);
         createProject(values);
+        navigate("/ongoingProjects");
       },
     });
-
-  const abcd = () => {
-    setShowError(true);
-  };
 
   return (
     <>
       <div
         className="form-container"
-        style={{ height: "100vh", minHeight: "1120px" }}
+        style={{ height: "100%", marginTop: "60px" }}
       >
         <div className="form-box " style={{ margin: "35px 0px" }}>
           <h2 className="formHead">
@@ -57,16 +54,24 @@ const CreateProjectPage = () => {
               value={values.name}
               onChange={handleChange}
             />
-
+            {errors.name && touched.name ? (
+              <span className="form-error">{errors.name}</span>
+            ) : (
+              ""
+            )}
             <textarea
               name="description"
               cols="30"
               rows="5"
-              placeholder="Tell us a little about project (100 Character atleast)"
+              placeholder="Tell us a little about project (300 Character atleast)"
               value={values.description}
               onChange={handleChange}
             />
-
+            {errors.description && touched.description ? (
+              <span className="form-error">{errors.description}</span>
+            ) : (
+              ""
+            )}
             <br></br>
             <input
               type="text"
@@ -75,7 +80,11 @@ const CreateProjectPage = () => {
               value={values.plant_types}
               onChange={handleChange}
             />
-
+            {errors.plant_types && touched.plant_types ? (
+              <span className="form-error">{errors.plant_types}</span>
+            ) : (
+              ""
+            )}
             <input
               type="text"
               name="area"
@@ -86,29 +95,46 @@ const CreateProjectPage = () => {
               value={values.area}
               onChange={handleChange}
             />
-
+            {errors.area && touched.area ? (
+              <span className="form-error">{errors.area}</span>
+            ) : (
+              ""
+            )}
             <div className="form-col">
-              <input
-                type="text"
-                name="plant_planned"
-                placeholder="No of Plants Planned"
-                onInput={(e) =>
-                  (e.target.value = e.target.value.replace(/[^0-9 ]/g, ""))
-                }
-                value={values.plant_planned}
-                onChange={handleChange}
-              />
-
-              <input
-                type="text"
-                name="donation"
-                placeholder="Donation per Plant"
-                onInput={(e) =>
-                  (e.target.value = e.target.value.replace(/[^0-9 ]/g, ""))
-                }
-                value={values.donation}
-                onChange={handleChange}
-              />
+              <div>
+                <input
+                  type="text"
+                  name="plant_planned"
+                  placeholder="No of Plants Planned"
+                  onInput={(e) =>
+                    (e.target.value = e.target.value.replace(/[^0-9 ]/g, ""))
+                  }
+                  value={values.plant_planned}
+                  onChange={handleChange}
+                />
+                {errors.plant_planned && touched.plant_planned ? (
+                  <span className="form-error">{errors.plant_planned}</span>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="donation"
+                  placeholder="Donation per Plant"
+                  onInput={(e) =>
+                    (e.target.value = e.target.value.replace(/[^0-9 ]/g, ""))
+                  }
+                  value={values.donation}
+                  onChange={handleChange}
+                />
+                {errors.donation && touched.donation ? (
+                  <span className="form-error">{errors.donation}</span>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
 
             <br></br>
@@ -120,23 +146,40 @@ const CreateProjectPage = () => {
               value={values.address}
               onChange={handleChange}
             />
-
+            {errors.address && touched.address ? (
+              <span className="form-error">{errors.address}</span>
+            ) : (
+              ""
+            )}
             <div className="form-col">
-              <input
-                type="text"
-                name="city"
-                placeholder="City"
-                value={values.city}
-                onChange={handleChange}
-              />
-
-              <input
-                type="text"
-                name="country"
-                placeholder="Country"
-                value={values.country}
-                onChange={handleChange}
-              />
+              <div>
+                <input
+                  type="text"
+                  name="city"
+                  placeholder="City"
+                  value={values.city}
+                  onChange={handleChange}
+                />
+                {errors.city && touched.city ? (
+                  <span className="form-error">{errors.city}</span>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="country"
+                  placeholder="Country"
+                  value={values.country}
+                  onChange={handleChange}
+                />
+                {errors.country && touched.country ? (
+                  <span className="form-error">{errors.country}</span>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
             <br></br>
             <div className="projectFile">
@@ -150,7 +193,11 @@ const CreateProjectPage = () => {
                 }}
                 className={values.document ? "" : "projectDoc"}
               />
-
+              {errors.document && touched.document ? (
+                <span className="form-error">{errors.document}</span>
+              ) : (
+                ""
+              )}
               <br />
               <br />
               <input
@@ -163,84 +210,20 @@ const CreateProjectPage = () => {
                 }}
                 className={values.image ? "" : "projectImg"}
               />
+              {errors.image && touched.image ? (
+                <span className="form-error">{errors.image}</span>
+              ) : (
+                ""
+              )}
             </div>
             <div className="form-button">
-              <button type="submit" className="submit-button" onClick={abcd}>
+              <button type="submit" className="submit-button">
                 Get Started
               </button>
             </div>
           </form>
         </div>
       </div>
-      {showError && (
-        <div className="errorBox">
-          <h3>Errors</h3>
-          {errors.name && touched.name ? (
-            <span className="form-error">{errors.name}</span>
-          ) : (
-            ""
-          )}
-
-          {errors.description && touched.description ? (
-            <span className="form-error">{errors.description}</span>
-          ) : (
-            ""
-          )}
-
-          {errors.plant_types && touched.plant_types ? (
-            <span className="form-error">{errors.plant_types}</span>
-          ) : (
-            ""
-          )}
-
-          {errors.area && touched.area ? (
-            <span className="form-error">{errors.area}</span>
-          ) : (
-            ""
-          )}
-
-          {errors.plant_planned && touched.plant_planned ? (
-            <span className="form-error">{errors.plant_planned}</span>
-          ) : (
-            ""
-          )}
-          {errors.donation && touched.donation ? (
-            <span className="form-error">{errors.donation}</span>
-          ) : (
-            ""
-          )}
-
-          {errors.address && touched.address ? (
-            <span className="form-error">{errors.address}</span>
-          ) : (
-            ""
-          )}
-
-          {errors.city && touched.city ? (
-            <span className="form-error">{errors.city}</span>
-          ) : (
-            ""
-          )}
-
-          {errors.country && touched.country ? (
-            <span className="form-error">{errors.country}</span>
-          ) : (
-            ""
-          )}
-
-          {errors.document && touched.document ? (
-            <span className="form-error">{errors.document}</span>
-          ) : (
-            ""
-          )}
-
-          {errors.image && touched.image ? (
-            <span className="form-error">{errors.image}</span>
-          ) : (
-            ""
-          )}
-        </div>
-      )}
     </>
   );
 };

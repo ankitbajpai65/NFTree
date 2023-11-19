@@ -15,7 +15,7 @@ export default function Contact() {
         size={150}
         aria-label="Loading Spinner"
         data-testid="loader"
-        cssOverride={{ position: "absolute", top: "30%", left: "50%" }}
+        cssOverride={{ position: "absolute", top: "30%", left: "15%" }}
       />
     );
     const addElement = document.querySelector(".loadingSpinner");

@@ -8,6 +8,7 @@
 }
 
 .project-container {
+  min-height: 100vh;
   height: 100%;
   padding: 80px 8vw 80px;
 }
@@ -104,6 +105,72 @@
 .donateBtn p {
   color: #79ad3d;
   font-weight: bold;
+}
+
+.projectDetails {
+  margin-top: 5vh;
+  width: 100%;
+  max-width: unset;
+  border-radius: 5px;
+  display: grid;
+  column-gap: 5vw;
+  row-gap: 5vh;
+  grid-template-rows: 2fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.detailPage-img img {
+  border-radius: 10px;
+  width: 100%;
+  height: 28vw;
+}
+
+.detailPage-projectInfo {
+  width: 80%;
+}
+
+.detailPage-projectInfo h1 {
+  font-size: max(35px, 1.1vmax);
+  margin-bottom: -10px;
+}
+
+.detailPage-projectInfo span {
+  font-weight: bold;
+  font-size: max(15px, 0.5vmax);
+  color: #4b5262;
+}
+
+.detailPage-projectInfo p {
+  margin: 1vh 0 3vh;
+  color: #4b5262;
+}
+
+.detailPage-owner {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.detailPage-owner p {
+  padding: 2vh 0;
+}
+
+.detailPage-button button {
+  background: green !important;
+  width: 30%;
+  min-width: 100px;
+}
+
+.space {
+  padding: 0px 0vw;
+}
+
+.detailPage-owner p {
+  font-size: max(30px, 1.1vmax);
+}
+
+.detailPage-ownerDetails {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 @media screen and (max-width: 1300px) {

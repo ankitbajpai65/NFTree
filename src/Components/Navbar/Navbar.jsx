@@ -7,11 +7,7 @@ import CreateProject from "../Projects/CreateProject/CreateProject";
 import Auth from "../Auth/Auth";
 import { useAuth } from "../../Contexts/AuthContext";
 import logo1 from "/logo_colored.png";
-import OngoingProjects from "../Projects/OngoingProjects/OngoingProjects";
-import ProjectDetails from "../Projects/OngoingProjects/ProjectDetails";
-import ContributeProject from "../Projects/OngoingProjects/ContributeProject/ContributeProject";
-import CompletedProjects from "../Projects/OngoingProjects/CompletedProjects";
-import Kyc from "../UserProfile/Kyc/Kyc";
+import ProjectDetails from "../Projects/ProjectPage/ProjectDetails";
 import "../Navbar/Navbar.css";
 import Contact from "../Contact_us/Contact";
 import ErrorPage from "../Error_page/ErrorPage";
@@ -35,6 +31,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import "../Navbar/Navbar.css";
 import ForgetPassword from "../Auth/ForgetPassword";
 import ProjectPage from "../Projects/ProjectPage/ProjectPage";
+import ContributeProject from "../Projects/ProjectPage/ContributeProject/ContributeProject";
 
 const drawerWidth = 240;
 const navItems = ["Home", "Projects", "Dashboard"];
@@ -354,17 +351,14 @@ export default function Navbar() {
         />
         <Route
           path="/ongoingProjects/:projectName"
-          element={<ProjectDetails progress="10/100" />}
-        />
-        <Route
-          path="/ongoingProjects/projectName/contribute"
-          element={<ContributeProject />}
+          element={<ProjectDetails />}
         />
 
         <Route
-          path="/completedProjects/:projectName"
-          element={<ProjectDetails progress="100/100" />}
+          path="/ongoingProjects/:projectName/contribute"
+          element={<ContributeProject />}
         />
+
         <Route path="/forget-password" element={<ForgetPassword />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>

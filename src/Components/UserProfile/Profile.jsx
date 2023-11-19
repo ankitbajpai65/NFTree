@@ -6,6 +6,7 @@ import Sidebar from "./Sidebar";
 import { useLocation } from "react-router-dom";
 import ErrorPage from "../Error_page/ErrorPage";
 import "./Profile.css";
+import MyProjects from "./my-projects/MyProjects";
 
 const Profile = ({ state }) => {
   const location = useLocation();
@@ -17,14 +18,14 @@ const Profile = ({ state }) => {
   const setPage = (page) => {
     setCurPage(page);
   };
-  console.log(location.state);
+
   const pageMap = {
     user_profile: <UserDetails />,
     edit_basic_details: (
       <UserDetails editActive={editActive} setEditActive={setEditActive} />
     ),
     kyc: <Kyc />,
-    my_projects: <ErrorPage />,
+    my_projects: <MyProjects />,
     donation_history: <ErrorPage />,
   };
 

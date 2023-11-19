@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import "../ContributeProject/ContributeProject.css";
+import { useState, useEffect } from "react";
+import "./ContributeProject.css";
 
 const ContributeProject = () => {
-  const [inputValue, setInputValue] = useState('');
-  const [totalAmount, setTotalAmount] = useState('0');
+  const [inputValue, setInputValue] = useState("");
+  const [totalAmount, setTotalAmount] = useState("0");
 
   useEffect(() => {
     const delay = 1000;
@@ -27,11 +27,10 @@ const ContributeProject = () => {
 
   return (
     <>
-      <div className="login-container contributeProjectContainer">
-        <div className="login-box login-button">
+      <div className="form-container contributeProjectContainer">
+        <div className="form-box form-button">
           <h1 className="formHead">Contribute</h1>
-          <div className="login-input">
-
+          <div className="form-input">
             <label htmlFor="">Number of trees</label>
             <input type="text" name="name" onChange={handleInputChange} />
 

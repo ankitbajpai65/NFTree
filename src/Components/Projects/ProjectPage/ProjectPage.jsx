@@ -14,15 +14,25 @@ export default function ProjectPage({ props }) {
   const lastPostIndex = currentPage * postPerPage;
 
   const [data, setData] = useState([]);
+  const [filterData, setFilterData] = useState([]);
+
   useEffect(() => {
     const projectListData = async () => {
       const response = await projectList();
       setData(response);
-      console.log(data);
+      setFilterData(response);
     };
 
     projectListData();
   }, []);
+
+  const handleSearch = (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const newData = data.filter((project) =>
+      project.name.toLowerCase().includes(searchTerm)
+    );
+    setFilterData(newData);
+  };
 
   return (
     <>
@@ -32,7 +42,11 @@ export default function ProjectPage({ props }) {
         </div>
 
         <div className="projectSearch">
-          <input type="text" placeholder="Search Project" />
+          <input
+            type="text"
+            placeholder="Search Project"
+            onChange={handleSearch}
+          />
           <FormControl className="filterBtn">
             <InputLabel id="demo-simple-select-label">Filter</InputLabel>
             <Select
@@ -42,16 +56,16 @@ export default function ProjectPage({ props }) {
               label="Age"
               // onChange={handleChange}
             >
-              <MenuItem value={10}>Delhi</MenuItem>
-              <MenuItem value={20}>Mumbai</MenuItem>
-              <MenuItem value={30}>Kolkata</MenuItem>
-              <MenuItem value={30}>Chennai</MenuItem>
+              <MenuItem>Delhi</MenuItem>
+              <MenuItem>Mumbai</MenuItem>
+              <MenuItem>Kolkata</MenuItem>
+              <MenuItem>Chennai</MenuItem>
             </Select>
           </FormControl>
         </div>
 
         <div className="projectContent">
-          {data
+          {filterData
             .filter(
               (key) => key.is_completed == (props == "ongoing" ? false : true)
             )
@@ -68,7 +82,7 @@ export default function ProjectPage({ props }) {
                 <img src={project.image} alt="" />
                 <h4>{project.name}</h4>
                 <span>{project.location}</span>
-                <p style={{ height: "63px" }}>
+                <p>
                   {project.description.length > 100
                     ? `${project.description.substring(0, 100)}...`
                     : project.description}

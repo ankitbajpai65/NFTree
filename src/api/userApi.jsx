@@ -74,7 +74,11 @@ const googleLogin = () => {
           provider: "google-oauth2",
         };
 
+        console.log(data);
+        console.log(googleResponse);
+
         const authResponse = await performAction("auth", data);
+        console.log(authResponse);
         sessionStorage.setItem("token", authResponse.data.token);
         sessionStorage.setItem("id", authResponse.data.id);
         setIsLoggedIn(true);

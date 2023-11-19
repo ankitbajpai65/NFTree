@@ -10,9 +10,8 @@ function CreateProject() {
     async function fetchKycStatus() {
       try {
         const response = await kycStatus();
-        setIsKycComplete(response);
+        setIsKycComplete(response.data[0].status);
       } catch (error) {
-        console.error("Error fetching KYC status:", error);
         setIsKycComplete(false);
       }
     }
@@ -20,9 +19,10 @@ function CreateProject() {
     fetchKycStatus();
   }, []);
 
+  console.log(isKycComplete);
   if (isKycComplete === null) {
     return <div>Loading...</div>;
-  } else if (isKycComplete == "approved") {
+  } else if (isKycComplete == "Approved") {
     return <CreateProjectPage />;
   } else {
     return <IncompleteKyc />;
