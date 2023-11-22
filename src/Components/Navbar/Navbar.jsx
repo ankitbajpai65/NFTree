@@ -32,9 +32,10 @@ import "../Navbar/Navbar.css";
 import ForgetPassword from "../Auth/ForgetPassword";
 import ProjectPage from "../Projects/ProjectPage/ProjectPage";
 import ContributeProject from "../Projects/ProjectPage/ContributeProject/ContributeProject";
+import Dashboard from "../Dashboard/Dashboard";
 
 const drawerWidth = 240;
-const navItems = ["Home", "Projects", "Dashboard"];
+const navItems = ["Home", "Projects", "Dashboard", "Wallet"];
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -360,6 +361,8 @@ export default function Navbar() {
         />
 
         <Route path="/forget-password" element={<ForgetPassword />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>

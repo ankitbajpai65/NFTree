@@ -95,15 +95,12 @@
 
 .kyc-wrapper {
   position: absolute;
-  /* top: 50%; */
-  /* margin: auto; */
-  /* left: 46%; */
   background: #86a789ad;
   height: -webkit-fill-available;
   width: 95%;
-  z-index: 999;
+  z-index: 1;
   text-align: center;
-  padding: 50% 0;
+  padding: 45% 0;
 }
 
 .kyc-wrapper h3 {

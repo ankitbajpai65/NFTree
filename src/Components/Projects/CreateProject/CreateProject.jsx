@@ -19,7 +19,6 @@ function CreateProject() {
     fetchKycStatus();
   }, []);
 
-  console.log(isKycComplete);
   if (isKycComplete === null) {
     return <div>Loading...</div>;
   } else if (isKycComplete == "Approved") {

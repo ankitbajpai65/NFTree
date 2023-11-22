@@ -37,8 +37,6 @@ const Kyc = () => {
     fetchStatus();
   }, []);
 
-  console.log(kycState.status);
-
   const formContent = (step) => {
     switch (step) {
       case 0:
@@ -98,8 +96,13 @@ const Kyc = () => {
       >
         {kycState.is_applied == true && (
           <div className="kyc-wrapper">
+            {kycState.status != "Approved" && (
+              <h3>You have already applied for KYC</h3>
+            )}
             <h3>Your KYC Status is {kycState.status}</h3>
-            <h3>Please wait for some time</h3>
+            {kycState.status != "Approved" && (
+              <h3>Please wait for some time</h3>
+            )}
           </div>
         )}
         <Stepper

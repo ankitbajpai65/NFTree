@@ -5,10 +5,10 @@ import "./Projects.css";
 
 const ProjectDetails = () => {
   const state = useLocation();
-  const { data, page } = state.state;
+  const { data, page, user } = state.state;
   const navigate = useNavigate();
 
-  console.log(sessionStorage.getItem("token"));
+  console.log(user);
 
   return (
     <>
@@ -18,16 +18,20 @@ const ProjectDetails = () => {
             <img src={data.image} alt="" />
           </div>
           <div className="detailPage-projectInfo">
-            <div style={{ height: "15%" }}>
+            <div style={{ height: "8%", minHeight: "70px" }}>
               <h1>{data.name}</h1>
               <span>{`${data.city}, ${data.country}`}</span>
             </div>
 
-            <div style={{ minHeight: "200px" }}>
+            <div style={{ minHeight: "30%" }}>
               <p>{data.description}</p>
             </div>
 
-            <div style={{ height: "25%" }}>
+            <div className="progressBar" style={{ marginBottom: "20px" }}>
+              <span></span>
+            </div>
+
+            <div style={{ height: "30%" }}>
               <table>
                 <tbody>
                   <tr>
@@ -46,27 +50,57 @@ const ProjectDetails = () => {
                   </tr>
                   <tr>
                     <td>
-                      <h5>Total Number of Plants planned </h5>
+                      <h5>Types of Plants </h5>
+                    </td>
+                    <td className="space">:</td>
+                    <td>{data.plant_types}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h5>Total Number of Plants Planned </h5>
                     </td>
                     <td className="space">:</td>
                     <td>{data.plant_planned}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h5>Total Number of Plants Planted </h5>
+                    </td>
+                    <td className="space">:</td>
+                    <td>{data.plants_planted}</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             {page == "ongoing" && sessionStorage.getItem("token") && (
-              <div
-                className="form-button detailPage-button"
-                onClick={() => navigate(`${location.pathname}/contribute`)}
-              >
-                <button>Contribute</button>
+              <div className="form-button detailPage-button">
+                {user == "user" && (
+                  <button
+                    onClick={() =>
+                      navigate(`${location.pathname}/contribute`, {
+                        state: data.donation,
+                      })
+                    }
+                  >
+                    Contribute
+                  </button>
+                )}
+                {user == "owner" && (
+                  <div className="">
+                    <button>Edit Project</button>
+                    <button>Generate Report</button>
+                  </div>
+                )}
               </div>
             )}
           </div>
+          {/* image */}
+          <div className="detailPage-img"></div>
+          {/* image */}
           <div className="detailPage-owner">
             <p>Project Owner Details</p>
             <div className="detailPage-ownerDetails">
-              <div style={{ height: "25%" }}>
+              <div>
                 <table>
                   <tbody>
                     <tr>
@@ -98,10 +132,7 @@ const ProjectDetails = () => {
                       <td>{}</td>
                     </tr>
                   </tbody>
-                </table>
-              </div>
-              <div style={{ height: "25%" }}>
-                <table>
+
                   <tbody>
                     <tr>
                       <td>

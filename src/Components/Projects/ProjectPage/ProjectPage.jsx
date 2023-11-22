@@ -75,7 +75,7 @@ export default function ProjectPage({ props }) {
                 key={project.id}
                 onClick={() =>
                   navigate(`${location.pathname}/${project.name}`, {
-                    state: { data: project, page: props },
+                    state: { data: project, page: props, user: "user" },
                   })
                 }
               >

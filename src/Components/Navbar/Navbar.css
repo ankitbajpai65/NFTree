@@ -1,61 +1,59 @@
 .navbarTitle {
-    width: auto;
-    max-width: 150px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: 'black';
+  width: auto;
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: "black";
 }
 
 .navbarTitle img:hover {
-    animation: scaleup(0.2s);
-    transform: scale(1.15);
-    transition: ease 0.4s all;
+  animation: scaleup(0.2s);
+  transform: scale(1.15);
+  transition: ease 0.4s all;
 }
 
 .navLinksContainer .navbarLinks {
-    text-decoration: none;
-    margin: auto;
-    margin: 0 2rem;
-    font-weight: 600;
+  text-decoration: none;
+  margin: auto;
+  margin: 0 2rem;
+  font-weight: 600;
 }
 
 .navLinksContainer .projectLink {
-    cursor: default;
-    text-decoration: none;
-    margin: auto;
-    margin: 0 2rem;
-    font-weight: 600;
+  cursor: default;
+  text-decoration: none;
+  margin: auto;
+  margin: 0 2rem;
+  font-weight: 600;
 }
 
 .dropdownLinks {
-    text-decoration: none;
-    display: block;
-    color: black;
-    margin: 0.5rem 0;
-    padding: 8px 10px;
-    font-weight: normal;
+  text-decoration: none;
+  display: block;
+  color: black;
+  margin: 0.5rem 0;
+  padding: 8px 10px;
+  font-weight: normal;
 }
 
 .dropdownLinks:hover {
-    background: rgb(244, 244, 244)
+  background: rgb(244, 244, 244);
 }
 
 /* MEDIA QUERY */
 
-@media only screen and (max-width : 1200px) {
-
-    .navbarLinks,
-    .projectLink {
-        font-size: 0.9rem;
-    }
+@media only screen and (max-width: 1200px) {
+  .navbarLinks,
+  .projectLink {
+    font-size: 0.9rem;
+  }
 }
 
-@media only screen and (min-width : 600px) and (max-width : 768px) {
-
-    .navLinksContainer .navbarLinks,
-    .navLinksContainer .projectLink {
-        font-size: 0.8rem;
-        margin: 0 1.5rem;
-    }
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+  .navLinksContainer .navbarLinks,
+  .navLinksContainer .projectLink {
+    font-size: 0.8rem;
+    margin: 0 1.5rem;
+  }
 }

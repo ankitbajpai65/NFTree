@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { projectList } from "../../../api/projectApi";
+import { useNavigate } from "react-router-dom";
 
 export default function MyProjects() {
+  const navigate = useNavigate();
   const userId = sessionStorage.getItem("id");
 
   const [data, setData] = useState([]);
@@ -10,11 +12,18 @@ export default function MyProjects() {
     const projectListData = async () => {
       const response = await projectList();
       setData(response);
-      console.log(data);
     };
 
     projectListData();
   }, []);
+
+  const handleProject = (project) => {
+    const pageType = project.is_completed ? "completed" : "ongoing";
+    console.log(project);
+    navigate(`/${pageType + "projects"}/${project.name}`, {
+      state: { data: project, page: pageType, user: "owner" },
+    });
+  };
 
   return (
     <>
@@ -26,7 +35,7 @@ export default function MyProjects() {
             .filter((project) => project.user == userId)
             .map((project) => (
               <div className="counter" key={project.id}>
-                <li>
+                <li onClick={() => handleProject(project)}>
                   <div className="projectIcon">
                     <img src={project.image} alt="" />
                   </div>

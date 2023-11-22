@@ -73,6 +73,7 @@ const CreateProjectPage = () => {
               ""
             )}
             <br></br>
+
             <input
               type="text"
               name="plant_types"
@@ -80,11 +81,25 @@ const CreateProjectPage = () => {
               value={values.plant_types}
               onChange={handleChange}
             />
+            {/* <div>
+                <span style={{ display: "flex" }}>
+                  <input
+                    type="text"
+                    name="plant_types"
+                    placeholder="Plant Name"
+                  />
+                  <input type="file" id="inputTag" />
+                </span>
+              </div> 
+              
+              */}
+
             {errors.plant_types && touched.plant_types ? (
               <span className="form-error">{errors.plant_types}</span>
             ) : (
               ""
             )}
+
             <input
               type="text"
               name="area"
