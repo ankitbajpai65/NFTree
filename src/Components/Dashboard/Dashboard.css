@@ -8,3 +8,16 @@
   text-indent: 100px;
   box-shadow: 3px 3px 8px 2px;
 }
+
+.dashboardPage {
+  margin-top: 5vh;
+  width: 50%;
+  max-width: unset;
+  border-radius: 5px;
+  display: grid;
+  column-gap: 5vw;
+  row-gap: 5vh;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  box-shadow: 5px 5px 15px 0px;
+}

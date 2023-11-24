@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { kycStatus } from "../../../api/projectApi";
 import IncompleteKyc from "./IncompleteKyc";
 import CreateProjectPage from "./CreateProjectPage";
+import { useLocation } from "react-router-dom";
 
 function CreateProject() {
   const [isKycComplete, setIsKycComplete] = useState(null);

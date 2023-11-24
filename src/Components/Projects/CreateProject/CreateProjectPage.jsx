@@ -1,28 +1,29 @@
 import "./CreateProject.css";
 import { useFormik } from "formik";
 import { createProjectSchema } from "./ValidationSchema";
-import { createProject } from "../../../api/projectApi";
+import { createProject, updateProject } from "../../../api/projectApi";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-const initialValues = {
-  name: "",
-  description: "",
-  plant_types: "",
-  area: "",
-  plant_planned: "",
-  plants_planted: 0,
-  donation: "",
-  address: "",
-  city: "",
-  country: "",
-  document: "",
-  image: "",
-  is_completed: false,
-  user: "",
-};
+import { useNavigate, useLocation } from "react-router-dom";
 
 const CreateProjectPage = () => {
+  const state = useLocation();
+  const data = state.state;
+  const initialValues = {
+    name: data == null ? "" : data.data.name,
+    description: data == null ? "" : data.data.description,
+    plant_types: data == null ? "" : data.data.plant_types,
+    area: data == null ? "" : data.data.area,
+    plant_planned: data == null ? "" : data.data.plant_planned,
+    plants_planted: data == null ? 0 : data.data.plants_planted,
+    donation: data == null ? "" : data.data.donation,
+    address: data == null ? "" : data.data.address,
+    city: data == null ? "" : data.data.city,
+    country: data == null ? "" : data.data.country,
+    document: "",
+    image: data == null ? "" : "img",
+    is_completed: data == null ? false : data.data.is_completed,
+    user: data == null ? "" : data.data.user,
+  };
   const navigate = useNavigate();
   const { values, errors, handleChange, handleSubmit, touched, setFieldValue } =
     useFormik({
@@ -30,9 +31,16 @@ const CreateProjectPage = () => {
       validationSchema: createProjectSchema,
       onSubmit: (values, action) => {
         action.resetForm();
-        values.user = sessionStorage.getItem("id");
-        createProject(values);
-        navigate("/ongoingProjects");
+        if (data == null) {
+          values.user = sessionStorage.getItem("id");
+          createProject(values);
+          navigate("/ongoingProjects");
+        } else {
+          updateProject(values, data.data.id);
+          setTimeout(() => {
+            navigate("/profile", { state: "my_projects" });
+          }, 1000);
+        }
       },
     });
 

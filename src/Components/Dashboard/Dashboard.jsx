@@ -5,10 +5,7 @@ export default function Dashboard() {
   return (
     <>
       <div className="form-container">
-        <div
-          className="form-box projectDetails"
-          style={{ width: "50%", gridTemplateRows: "unset" }}
-        >
+        <div className="form-box dashboardPage">
           <div className="dashboard-box">
             <h3>Total Ongoing Projects</h3>
             <p>100</p>

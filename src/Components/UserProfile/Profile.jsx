@@ -11,7 +11,7 @@ import MyProjects from "./my-projects/MyProjects";
 const Profile = ({ state }) => {
   const location = useLocation();
   const [curPage, setCurPage] = useState(
-    location.state == null ? "user_profile" : "kyc"
+    location.state == null ? "user_profile" : location.state
   );
   const [editActive, setEditActive] = useState(false);
 

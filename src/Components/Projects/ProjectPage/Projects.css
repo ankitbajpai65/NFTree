@@ -115,8 +115,7 @@
   display: grid;
   column-gap: 5vw;
   row-gap: 5vh;
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   box-shadow: 5px 5px 15px 0px;
 }
 
@@ -127,12 +126,12 @@
 }
 
 .detailPage-projectInfo {
-  width: 100%;
+  width: 92%;
 }
 
 .detailPage-projectInfo h1 {
   font-size: max(35px, 1.1vmax);
-  margin-bottom: -10px;
+  line-height: 30px;
 }
 
 .detailPage-projectInfo span {
@@ -144,6 +143,24 @@
 .detailPage-projectInfo p {
   margin: 1vh 0 3vh;
   color: #4b5262;
+  line-height: 20px;
+}
+
+.projectInfo-head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.projectInfo-head a {
+  font-weight: normal;
+}
+
+.contributeButton {
+  background: green !important;
+}
+
+.reportButton {
+  background: blue !important;
 }
 
 .detailPage-owner {
@@ -154,9 +171,14 @@
 }
 
 .detailPage-button button {
-  background: green !important;
   width: 30%;
   min-width: 100px;
+  margin-top: 3%;
+}
+
+.owner-detailProject {
+  display: flex;
+  gap: 2vw;
 }
 
 .space {
@@ -175,7 +197,7 @@
 .progressBar {
   position: relative;
   width: 100%;
-  height: 1vh;
+  min-height: 10px;
   border: 1px solid;
   border-radius: 10px;
 }

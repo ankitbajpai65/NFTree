@@ -18,20 +18,27 @@ const ProjectDetails = () => {
             <img src={data.image} alt="" />
           </div>
           <div className="detailPage-projectInfo">
-            <div style={{ height: "8%", minHeight: "70px" }}>
-              <h1>{data.name}</h1>
-              <span>{`${data.city}, ${data.country}`}</span>
+            <div className="projectInfo-head">
+              <div>
+                <h1>{data.name}</h1>
+                <span>{`${data.city}, ${data.country}`}</span>
+              </div>
+              <div>
+                <a href={data.document} target="blank">
+                  view project documents
+                </a>
+              </div>
             </div>
 
             <div style={{ minHeight: "30%" }}>
               <p>{data.description}</p>
             </div>
 
-            <div className="progressBar" style={{ marginBottom: "20px" }}>
+            <div className="progressBar">
               <span></span>
             </div>
 
-            <div style={{ height: "30%" }}>
+            <div style={{ lineHeight: "20px", margin: "2% 0" }}>
               <table>
                 <tbody>
                   <tr>
@@ -75,20 +82,54 @@ const ProjectDetails = () => {
             {page == "ongoing" && sessionStorage.getItem("token") && (
               <div className="form-button detailPage-button">
                 {user == "user" && (
-                  <button
-                    onClick={() =>
-                      navigate(`${location.pathname}/contribute`, {
-                        state: data.donation,
-                      })
-                    }
-                  >
-                    Contribute
-                  </button>
+                  <div className="projectInfo-head">
+                    <button
+                      className="contributeButton"
+                      onClick={() =>
+                        navigate(`${location.pathname}/contribute`, {
+                          state: data.donation,
+                        })
+                      }
+                    >
+                      Contribute
+                    </button>
+                    <button
+                      className="reportButton"
+                      onClick={() => {
+                        navigate("/projectreport");
+                      }}
+                    >
+                      Generate Report
+                    </button>
+                  </div>
                 )}
                 {user == "owner" && (
-                  <div className="">
-                    <button>Edit Project</button>
-                    <button>Generate Report</button>
+                  <div className="owner-detailProject">
+                    <button
+                      className="contributeButton"
+                      onClick={() => {
+                        navigate(`${location.pathname}/edit`, {
+                          state: { data: data },
+                        });
+                      }}
+                    >
+                      Edit Project
+                    </button>
+                    <button
+                      className="reportButton"
+                      onClick={() => {
+                        navigate("/projectreport");
+                      }}
+                    >
+                      Create Report
+                    </button>
+                    <button
+                      onClick={() => {
+                        navigate("/createreport");
+                      }}
+                    >
+                      Users Details
+                    </button>
                   </div>
                 )}
               </div>

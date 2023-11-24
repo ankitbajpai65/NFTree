@@ -18,6 +18,29 @@ const createProject = async (props) => {
   }
 };
 
+const updateProject = async (props, id) => {
+  const url = `http://127.0.0.1:8000/project/update/${id}/`;
+  if (props.image == "img") {
+    delete props.image;
+  }
+
+  props["id"] = id;
+  const data = props;
+  const config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  };
+
+  try {
+    const response = await axios.put(url, data, config);
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
 const kycStatus = async (props) => {
   const url = "http://127.0.0.1:8000/user/kyc/";
   const config = {
@@ -45,4 +68,4 @@ const projectList = async () => {
   }
 };
 
-export { createProject, projectList, kycStatus };
+export { createProject, projectList, kycStatus, updateProject };

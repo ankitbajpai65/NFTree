@@ -33,6 +33,8 @@ import ForgetPassword from "../Auth/ForgetPassword";
 import ProjectPage from "../Projects/ProjectPage/ProjectPage";
 import ContributeProject from "../Projects/ProjectPage/ContributeProject/ContributeProject";
 import Dashboard from "../Dashboard/Dashboard";
+import Projectreport from "../ProjectReport/Projectreport";
+import CreateOwnerReport from "../ProjectReport/CreateOwnerReport";
 
 const drawerWidth = 240;
 const navItems = ["Home", "Projects", "Dashboard", "Wallet"];
@@ -360,9 +362,16 @@ export default function Navbar() {
           element={<ContributeProject />}
         />
 
+        <Route
+          path="/ongoingProjects/:projectName/edit"
+          element={<CreateProject />}
+        />
+
         <Route path="/forget-password" element={<ForgetPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
 
+        <Route path="/projectreport" element={<Projectreport />} />
+        <Route path="/createreport" element={<CreateOwnerReport />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>
