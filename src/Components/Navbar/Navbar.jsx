@@ -12,6 +12,7 @@ import "../Navbar/Navbar.css";
 import Contact from "../Contact_us/Contact";
 import ErrorPage from "../Error_page/ErrorPage";
 import Profile from "../UserProfile/Profile";
+import GenerateReport from "../Projects/GenerateReport/GenerateReport";
 
 import {
   AppBar,
@@ -358,6 +359,10 @@ export default function Navbar() {
         <Route
           path="/ongoingProjects/:projectName/contribute"
           element={<ContributeProject />}
+        />
+        <Route
+          path="/ongoingProjects/:projectName/generateReport"
+          element={<GenerateReport />}
         />
 
         <Route path="/forget-password" element={<ForgetPassword />} />

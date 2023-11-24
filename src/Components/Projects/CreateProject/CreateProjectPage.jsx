@@ -9,6 +9,7 @@ const initialValues = {
   name: "",
   description: "",
   plant_types: "",
+  // plantImage: "",
   area: "",
   plant_planned: "",
   plants_planted: 0,
@@ -24,6 +25,16 @@ const initialValues = {
 
 const CreateProjectPage = () => {
   const navigate = useNavigate();
+
+  const [text, setText] = useState('');
+  const [plantType, setTypePlant] = useState([])
+
+  const handleTextChange = (newText) => {
+    const items = newText.split(',').map((item) => item.trim());
+    setTypePlant(items);
+    setText(newText);
+  };
+
   const { values, errors, handleChange, handleSubmit, touched, setFieldValue } =
     useFormik({
       initialValues: initialValues,
@@ -35,6 +46,33 @@ const CreateProjectPage = () => {
         navigate("/ongoingProjects");
       },
     });
+
+  const renderFileInputs = () => {
+    const fileInputs = [];
+
+    for (let i = 0; i < plantType.length; i++) {
+      fileInputs.push(
+        <div key={i} style={{ width: "50%", margin: '10px 0' }}>
+          <input
+            type="file"
+            name={`plantImage${i}`}
+            accept="image/*"
+            onChange={(event) => {
+              setFieldValue(`plantImage${i}`, event.currentTarget.files[0]);
+            }}
+            className={values[`plantImage${i}`] ? "" : "plantImage customUpload"}
+            data-upload-text={`Upload ${plantType[i]}`}
+          />
+          {errors[`plantImage${i}`] && touched[`plantImage${i}`] ? (
+            <small className="form-error">{errors[`plantImage${i}`]}</small>
+          ) : (
+            ""
+          )}
+        </div>
+      );
+    }
+    return fileInputs;
+  };
 
   return (
     <>
@@ -55,7 +93,7 @@ const CreateProjectPage = () => {
               onChange={handleChange}
             />
             {errors.name && touched.name ? (
-              <span className="form-error">{errors.name}</span>
+              <small>{errors.name}</small>
             ) : (
               ""
             )}
@@ -68,7 +106,7 @@ const CreateProjectPage = () => {
               onChange={handleChange}
             />
             {errors.description && touched.description ? (
-              <span className="form-error">{errors.description}</span>
+              <small>{errors.description}</small>
             ) : (
               ""
             )}
@@ -79,26 +117,23 @@ const CreateProjectPage = () => {
               name="plant_types"
               placeholder="Types of Plants (use comma to seperate)"
               value={values.plant_types}
-              onChange={handleChange}
+              onChange={(e) => {
+                handleChange(e);
+                handleTextChange(e.target.value);
+              }}
             />
-            {/* <div>
-                <span style={{ display: "flex" }}>
-                  <input
-                    type="text"
-                    name="plant_types"
-                    placeholder="Plant Name"
-                  />
-                  <input type="file" id="inputTag" />
-                </span>
-              </div> 
-              
-              */}
 
             {errors.plant_types && touched.plant_types ? (
-              <span className="form-error">{errors.plant_types}</span>
+              <small>{errors.plant_types}</small>
             ) : (
               ""
             )}
+            <div style={{
+              display: 'flex',
+              gap: '10px'
+            }}>
+              {renderFileInputs()}
+            </div>
 
             <input
               type="text"
@@ -111,7 +146,7 @@ const CreateProjectPage = () => {
               onChange={handleChange}
             />
             {errors.area && touched.area ? (
-              <span className="form-error">{errors.area}</span>
+              <small>{errors.area}</small>
             ) : (
               ""
             )}
@@ -128,7 +163,7 @@ const CreateProjectPage = () => {
                   onChange={handleChange}
                 />
                 {errors.plant_planned && touched.plant_planned ? (
-                  <span className="form-error">{errors.plant_planned}</span>
+                  <small>{errors.plant_planned}</small>
                 ) : (
                   ""
                 )}
@@ -145,7 +180,7 @@ const CreateProjectPage = () => {
                   onChange={handleChange}
                 />
                 {errors.donation && touched.donation ? (
-                  <span className="form-error">{errors.donation}</span>
+                  <small>{errors.donation}</small>
                 ) : (
                   ""
                 )}
@@ -162,7 +197,7 @@ const CreateProjectPage = () => {
               onChange={handleChange}
             />
             {errors.address && touched.address ? (
-              <span className="form-error">{errors.address}</span>
+              <small>{errors.address}</small>
             ) : (
               ""
             )}
@@ -176,7 +211,7 @@ const CreateProjectPage = () => {
                   onChange={handleChange}
                 />
                 {errors.city && touched.city ? (
-                  <span className="form-error">{errors.city}</span>
+                  <small>{errors.city}</small>
                 ) : (
                   ""
                 )}
@@ -190,7 +225,7 @@ const CreateProjectPage = () => {
                   onChange={handleChange}
                 />
                 {errors.country && touched.country ? (
-                  <span className="form-error">{errors.country}</span>
+                  <small>{errors.country}</small>
                 ) : (
                   ""
                 )}
@@ -209,7 +244,7 @@ const CreateProjectPage = () => {
                 className={values.document ? "" : "projectDoc"}
               />
               {errors.document && touched.document ? (
-                <span className="form-error">{errors.document}</span>
+                <small>{errors.document}</small>
               ) : (
                 ""
               )}
@@ -226,7 +261,7 @@ const CreateProjectPage = () => {
                 className={values.image ? "" : "projectImg"}
               />
               {errors.image && touched.image ? (
-                <span className="form-error">{errors.image}</span>
+                <small>{errors.image}</small>
               ) : (
                 ""
               )}

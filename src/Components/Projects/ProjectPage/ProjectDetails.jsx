@@ -88,7 +88,7 @@ const ProjectDetails = () => {
                 {user == "owner" && (
                   <div className="">
                     <button>Edit Project</button>
-                    <button>Generate Report</button>
+                    <button onClick={()=>navigate('./generateReport')}>Generate Report</button>
                   </div>
                 )}
               </div>
