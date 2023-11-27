@@ -26,11 +26,11 @@ const initialValues = {
 const CreateProjectPage = () => {
   const navigate = useNavigate();
 
-  const [text, setText] = useState('');
-  const [plantType, setPlantType] = useState([])
+  const [text, setText] = useState("");
+  const [plantType, setPlantType] = useState([]);
 
   const handleTextChange = (newText) => {
-    const items = newText.split(',').map((item) => item.trim());
+    const items = newText.split(",").map((item) => item.trim());
     setPlantType(items);
     setText(newText);
   };
@@ -50,12 +50,11 @@ const CreateProjectPage = () => {
   const renderFileInputs = () => {
     const fileInputs = [];
 
-    if (plantType.length == 0 || plantType[0] === "")
-      return;
+    if (plantType.length == 0 || plantType[0] === "") return;
 
     for (let i = 0; i < plantType.length; i++) {
       fileInputs.push(
-        <div key={i} style={{ width: "48.5%", margin: '10px 0' }}>
+        <div key={i} style={{ width: "49%", marginTop: "2px" }}>
           <input
             type="file"
             name={`plantImage${i}`}
@@ -63,8 +62,10 @@ const CreateProjectPage = () => {
             onChange={(event) => {
               setFieldValue(`plantImage${i}`, event.currentTarget.files[0]);
             }}
-            className={values[`plantImage${i}`] ? "" : "plantImage customUpload"}
-            data-upload-text={`Upload ${plantType[i]}`}
+            className={
+              values[`plantImage${i}`] ? "" : "plantImage customUpload"
+            }
+            data-upload-text={`Upload ${plantType[i]} image`}
           />
           {errors[`plantImage${i}`] && touched[`plantImage${i}`] ? (
             <small className="form-error">{errors[`plantImage${i}`]}</small>
@@ -95,11 +96,7 @@ const CreateProjectPage = () => {
               value={values.name}
               onChange={handleChange}
             />
-            {errors.name && touched.name ? (
-              <small>{errors.name}</small>
-            ) : (
-              ""
-            )}
+            {errors.name && touched.name ? <small>{errors.name}</small> : ""}
             <textarea
               name="description"
               cols="30"
@@ -115,29 +112,36 @@ const CreateProjectPage = () => {
             )}
             <br></br>
 
-            <input
-              type="text"
-              name="plant_types"
-              placeholder="Types of Plants (use comma to seperate)"
-              value={values.plant_types}
-              onChange={(e) => {
-                handleChange(e);
-                handleTextChange(e.target.value);
-              }}
-            />
+            <div className="projectFile">
+              <input
+                type="text"
+                name="plant_types"
+                placeholder="Types of Plants (use comma to seperate)"
+                value={values.plant_types}
+                onChange={(e) => {
+                  handleChange(e);
+                  handleTextChange(e.target.value);
+                }}
+              />
+
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "2%",
+                }}
+              >
+                {renderFileInputs()}
+              </div>
+            </div>
 
             {errors.plant_types && touched.plant_types ? (
               <small>{errors.plant_types}</small>
             ) : (
               ""
             )}
-            <div style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '10px'
-            }}>
-              {renderFileInputs()}
-            </div>
+
+            <br></br>
 
             <input
               type="text"
@@ -149,11 +153,7 @@ const CreateProjectPage = () => {
               value={values.area}
               onChange={handleChange}
             />
-            {errors.area && touched.area ? (
-              <small>{errors.area}</small>
-            ) : (
-              ""
-            )}
+            {errors.area && touched.area ? <small>{errors.area}</small> : ""}
             <div className="form-col">
               <div>
                 <input
