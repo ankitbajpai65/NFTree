@@ -21,7 +21,7 @@ function CreateProject() {
 
   if (isKycComplete === null) {
     return <div>Loading...</div>;
-  } else if (isKycComplete == "unverified") {
+  } else if (isKycComplete == "Approved") {
     return <CreateProjectPage />;
   } else {
     return <IncompleteKyc />;
