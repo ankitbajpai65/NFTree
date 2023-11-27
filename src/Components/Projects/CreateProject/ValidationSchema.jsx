@@ -7,6 +7,7 @@ export const createProjectSchema = Yup.object().shape({
     .max(1000)
     .required("Please Enter Project Description"),
   plant_types: Yup.string().required("Please Enter Plant Type"),
+  // plantImage: Yup.string().required("Please Upload Image"),
   area: Yup.string().required("Please Enter Plantation Area"),
   plant_planned: Yup.string().required("Please Enter No of Plants Planned"),
   donation: Yup.string().required("Please Enter Donation per Plant"),
