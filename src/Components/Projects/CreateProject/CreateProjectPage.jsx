@@ -27,11 +27,11 @@ const CreateProjectPage = () => {
   const navigate = useNavigate();
 
   const [text, setText] = useState('');
-  const [plantType, setTypePlant] = useState([])
+  const [plantType, setPlantType] = useState([])
 
   const handleTextChange = (newText) => {
     const items = newText.split(',').map((item) => item.trim());
-    setTypePlant(items);
+    setPlantType(items);
     setText(newText);
   };
 
@@ -50,9 +50,12 @@ const CreateProjectPage = () => {
   const renderFileInputs = () => {
     const fileInputs = [];
 
+    if (plantType.length == 0 || plantType[0] === "")
+      return;
+
     for (let i = 0; i < plantType.length; i++) {
       fileInputs.push(
-        <div key={i} style={{ width: "50%", margin: '10px 0' }}>
+        <div key={i} style={{ width: "48.5%", margin: '10px 0' }}>
           <input
             type="file"
             name={`plantImage${i}`}
@@ -130,6 +133,7 @@ const CreateProjectPage = () => {
             )}
             <div style={{
               display: 'flex',
+              flexWrap: 'wrap',
               gap: '10px'
             }}>
               {renderFileInputs()}
