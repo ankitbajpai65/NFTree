@@ -23,15 +23,15 @@ const ProjectDetails = () => {
               <span>{`${data.city}, ${data.country}`}</span>
             </div>
 
-            <div style={{ minHeight: "30%" }}>
+            <div>
               <p>{data.description}</p>
             </div>
 
-            <div className="progressBar" style={{ marginBottom: "20px" }}>
+            <div className="progressBar">
               <span></span>
             </div>
 
-            <div style={{ height: "30%" }}>
+            <div>
               <table>
                 <tbody>
                   <tr>
@@ -88,14 +88,16 @@ const ProjectDetails = () => {
                 {user == "owner" && (
                   <div className="">
                     <button>Edit Project</button>
-                    <button onClick={()=>navigate('./generateReport')}>Generate Report</button>
+                    <button onClick={() => navigate('./generateReport')}>Generate Report</button>
                   </div>
                 )}
               </div>
             )}
           </div>
           {/* image */}
-          <div className="detailPage-img"></div>
+          <div className="detailPage-img plantImageDiv">
+            {/* <img src="https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" className="plantImage"/> */}
+          </div>
           {/* image */}
           <div className="detailPage-owner">
             <p>Project Owner Details</p>
@@ -108,28 +110,28 @@ const ProjectDetails = () => {
                         <h5>Name </h5>
                       </td>
                       <td className="space">:</td>
-                      <td>{}</td>
+                      <td>{ }</td>
                     </tr>
                     <tr>
                       <td>
                         <h5>Email </h5>
                       </td>
                       <td className="space">:</td>
-                      <td>{}</td>
+                      <td>{ }</td>
                     </tr>
                     <tr>
                       <td>
                         <h5>Address </h5>
                       </td>
                       <td className="space">:</td>
-                      <td>{}</td>
+                      <td>{ }</td>
                     </tr>
                     <tr>
                       <td>
                         <h5>Name of Organization </h5>
                       </td>
                       <td className="space">:</td>
-                      <td>{}</td>
+                      <td>{ }</td>
                     </tr>
                   </tbody>
 
@@ -139,21 +141,21 @@ const ProjectDetails = () => {
                         <h5>Country </h5>
                       </td>
                       <td className="space">:</td>
-                      <td>{}</td>
+                      <td>{ }</td>
                     </tr>
                     <tr>
                       <td>
                         <h5>Website </h5>
                       </td>
                       <td className="space">:</td>
-                      <td>{}</td>
+                      <td>{ }</td>
                     </tr>
                     <tr>
                       <td>
                         <h5>Designation </h5>
                       </td>
                       <td className="space">:</td>
-                      <td>{}</td>
+                      <td>{ }</td>
                     </tr>
                   </tbody>
                 </table>

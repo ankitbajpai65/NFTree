@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import ErrorPage from "../Error_page/ErrorPage";
 import "./Profile.css";
 import MyProjects from "./my-projects/MyProjects";
+import UserTransaction from "../UserProfile/UserTransactions/UserTransaction";
 
 const Profile = ({ state }) => {
   const location = useLocation();
@@ -26,7 +27,7 @@ const Profile = ({ state }) => {
     ),
     kyc: <Kyc />,
     my_projects: <MyProjects />,
-    donation_history: <ErrorPage />,
+    donation_history: <UserTransaction />,
   };
 
   return (

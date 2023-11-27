@@ -127,7 +127,10 @@
 }
 
 .detailPage-projectInfo {
-  width: 100%;
+  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  gap:1.5rem;
 }
 
 .detailPage-projectInfo h1 {
@@ -142,12 +145,18 @@
 }
 
 .detailPage-projectInfo p {
-  margin: 1vh 0 3vh;
+  /* margin: 1vh 0 3vh; */
   color: #4b5262;
 }
 
-.detailPage-owner {
+/* .plantImageDiv {
+  border:2px solid red;
+  display: flex;
 }
+
+.plantImage{
+  height:10%
+} */
 
 .detailPage-owner p {
   padding: 2vh 0;
@@ -157,6 +166,7 @@
   background: green !important;
   width: 30%;
   min-width: 100px;
+  margin-top:1rem;
 }
 
 .space {
