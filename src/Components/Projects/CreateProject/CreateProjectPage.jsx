@@ -9,7 +9,7 @@ const initialValues = {
   name: "",
   description: "",
   plant_types: "",
-  // plantImage: "",
+  plantImages: [],
   area: "",
   plant_planned: "",
   plants_planted: 0,
@@ -40,6 +40,7 @@ const CreateProjectPage = () => {
       initialValues: initialValues,
       validationSchema: createProjectSchema,
       onSubmit: (values, action) => {
+        console.log(values);
         action.resetForm();
         values.user = sessionStorage.getItem("id");
         createProject(values);
@@ -48,35 +49,35 @@ const CreateProjectPage = () => {
     });
 
   const renderFileInputs = () => {
-    const fileInputs = [];
-
-    if (plantType.length == 0 || plantType[0] === "") return;
-
-    for (let i = 0; i < plantType.length; i++) {
-      fileInputs.push(
-        <div key={i} style={{ width: "49%", marginTop: "2px" }}>
-          <input
-            type="file"
-            name={`plantImage${i}`}
-            accept="image/*"
-            onChange={(event) => {
-              setFieldValue(`plantImage${i}`, event.currentTarget.files[0]);
-            }}
-            className={
-              values[`plantImage${i}`] ? "" : "plantImage customUpload"
-            }
-            data-upload-text={`Upload ${plantType[i]} image`}
-          />
-          {errors[`plantImage${i}`] && touched[`plantImage${i}`] ? (
-            <small className="form-error">{errors[`plantImage${i}`]}</small>
-          ) : (
-            ""
-          )}
-        </div>
-      );
+    if (plantType.length == 0 || plantType[0] === "") {
+      return;
     }
-    return fileInputs;
+
+    return plantType.map((plantTypeName, index) => (
+      <div key={index} style={{ width: "48.5%", marginTop: "10px 0" }}>
+        <input
+          type="file"
+          name={`plantImages`}
+          accept="image/*"
+          onChange={(event) => {
+            setFieldValue(`plantImages`, [
+              ...values.plantImages.slice(0, index),
+              event.currentTarget.files[0],
+              ...values.plantImages.slice(index + 1),
+            ]);
+          }}
+          className={values[`plantImages`]?.[index] ? "" : "plantImage"}
+          data-upload-text={`Upload ${plantTypeName} image`}
+        />
+        {errors[`plantImages`] && touched[`plantImages`] ? (
+          <small className="form-error">{errors[`plantImages`]}</small>
+        ) : (
+          ""
+        )}
+      </div>
+    ));
   };
+
 
   return (
     <>
@@ -112,36 +113,34 @@ const CreateProjectPage = () => {
             )}
             <br></br>
 
-            <div className="projectFile">
-              <input
-                type="text"
-                name="plant_types"
-                placeholder="Types of Plants (use comma to seperate)"
-                value={values.plant_types}
-                onChange={(e) => {
-                  handleChange(e);
-                  handleTextChange(e.target.value);
-                }}
-              />
-
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: "2%",
-                }}
-              >
-                {renderFileInputs()}
-              </div>
-            </div>
-
+            <input
+              type="text"
+              name="plant_types"
+              placeholder="Types of Plants (use comma to seperate)"
+              value={values.plant_types}
+              onChange={(e) => {
+                handleChange(e);
+                handleTextChange(e.target.value);
+              }}
+            />
             {errors.plant_types && touched.plant_types ? (
               <small>{errors.plant_types}</small>
             ) : (
               ""
             )}
 
-            <br></br>
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "10px",
+                marginTop: '4px'
+              }}
+            >
+              {renderFileInputs()}
+            </div>
+
+            <br />
 
             <input
               type="text"

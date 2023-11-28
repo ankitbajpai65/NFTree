@@ -145,18 +145,8 @@
 }
 
 .detailPage-projectInfo p {
-  /* margin: 1vh 0 3vh; */
   color: #4b5262;
 }
-
-/* .plantImageDiv {
-  border:2px solid red;
-  display: flex;
-}
-
-.plantImage{
-  height:10%
-} */
 
 .detailPage-owner p {
   padding: 2vh 0;
