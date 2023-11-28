@@ -38,54 +38,42 @@ const CreateProjectPage = () => {
       initialValues: initialValues,
       validationSchema: createProjectSchema,
       onSubmit: (values, action) => {
-        // action.resetForm();
-        // if (data == null) {
-        //   values.user = sessionStorage.getItem("id");
-        //   createProject(values);
-        //   navigate("/ongoingProjects");
-        // } else {
-        //   updateProject(values, data.data.id);
-        //   setTimeout(() => {
-        //     navigate("/profile", { state: "my_projects" });
-        //   }, 1000);
-        // }
         console.log(values);
+        // action.resetForm();
+        // values.user = sessionStorage.getItem("id");
+        // createProject(values);
+        // navigate("/ongoingProjects");
       },
     });
 
-  var plant_images = [];
-
   const renderFileInputs = () => {
-    if (plantType.length == 0 || plantType[0] === "") return;
+    if (plantType.length == 0 || plantType[0] === "") {
+      return;
+    }
 
-    return plantType.map((plant, index) => {
-      const handleFileChange = (event, index) => {
-        const file = event.currentTarget.files[0];
-        setFieldValue(`plantImage${index}`, file);
-        const newPlantImage = {
-          fieldName: `plantImage${index}`,
-          file: file,
-          plantType: plant,
-        };
-        console.log(newPlantImage);
-      };
-
-      return (
-        <div key={index} style={{ width: "49%", marginTop: "2px" }}>
-          <input
-            type="file"
-            name={`plantImage${index}`}
-            accept="image/*"
-            required
-            onChange={(event) => handleFileChange(event, index)}
-            className={
-              values[`plantImage${index}`] ? "" : "plantImage customUpload"
-            }
-            data-upload-text={`Upload ${plant} image`}
-          />
-        </div>
-      );
-    });
+    return plantType.map((plantTypeName, index) => (
+      <div key={index} style={{ width: "48.5%", marginTop: "10px 0" }}>
+        <input
+          type="file"
+          name={`plantImages`}
+          accept="image/*"
+          onChange={(event) => {
+            setFieldValue(`plantImages`, [
+              ...values.plantImages.slice(0, index),
+              event.currentTarget.files[0],
+              ...values.plantImages.slice(index + 1),
+            ]);
+          }}
+          className={values[`plantImages`]?.[index] ? "" : "plantImage"}
+          data-upload-text={`Upload ${plantTypeName} image`}
+        />
+        {errors[`plantImages`] && touched[`plantImages`] ? (
+          <small className="form-error">{errors[`plantImages`]}</small>
+        ) : (
+          ""
+        )}
+      </div>
+    ));
   };
 
   return (
@@ -122,36 +110,34 @@ const CreateProjectPage = () => {
             )}
             <br></br>
 
-            <div className="projectFile">
-              <input
-                type="text"
-                name="plant_types"
-                placeholder="Types of Plants (use comma to seperate)"
-                value={values.plant_types}
-                onChange={(e) => {
-                  handleChange(e);
-                  handleTextChange(e.target.value);
-                }}
-              />
-
-              <div
-                style={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: "2%",
-                }}
-              >
-                {renderFileInputs()}
-              </div>
-            </div>
-
+            <input
+              type="text"
+              name="plant_types"
+              placeholder="Types of Plants (use comma to seperate)"
+              value={values.plant_types}
+              onChange={(e) => {
+                handleChange(e);
+                handleTextChange(e.target.value);
+              }}
+            />
             {errors.plant_types && touched.plant_types ? (
               <small>{errors.plant_types}</small>
             ) : (
               ""
             )}
 
-            <br></br>
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "10px",
+                marginTop: "4px",
+              }}
+            >
+              {renderFileInputs()}
+            </div>
+
+            <br />
 
             <input
               type="text"
