@@ -1,60 +1,91 @@
 import axios from "axios";
 
-const API = axios.create({
-  baseURL: "http://127.0.0.1:8000/",
-  headers: {
-    "Content-Type": "multipart/form-data",
-    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-  },
-});
-
-const createTransaction = async (data) => {
+const createTransaction = async (props) => {
+  const url = "http://127.0.0.1:8000/project/transaction/";
+  const data = props;
+  const config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  };
   try {
-    const response = await API.post("/project/transaction/", data);
+    const response = await axios.post(url, data, config);
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const viewTransaction = async (props) => {
+  const url = "http://127.0.0.1:8000/project/transaction/";
+  const config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  };
+
+  try {
+    const response = await axios.get(url, config);
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const createProject = async (props) => {
+  const url = "http://127.0.0.1:8000/project/create/";
+  const data = props;
+  const config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  };
+
+  try {
+    const response = await axios.post(url, data, config);
     console.log(response);
   } catch (error) {
     console.error(error);
   }
 };
 
-const viewTransaction = async (data) => {
+const updateProject = async (props, id) => {
+  const url = `http://127.0.0.1:8000/project/update/${id}/`;
+  if (props.image == "img") {
+    delete props.image;
+  }
+
+  props["id"] = id;
+  const data = props;
+  const config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  };
+
   try {
-    const response = await API.get("/project/transaction/", data);
+    const response = await axios.put(url, data, config);
     return response;
   } catch (error) {
     return error;
   }
 };
 
-const createProject = async (data) => {
-  try {
-    const response = await API.post("/project/create/", data);
-    console.log(response);
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-const updateProject = async (id, data) => {
-  const url = `/project/update/${id}/`;
-  if (data.image === "img") {
-    delete data.image;
-  }
-
-  data.id = id;
+const kycStatus = async (props) => {
+  const url = "http://127.0.0.1:8000/user/kyc/";
+  const config = {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  };
 
   try {
-    const response = await API.put(url, data);
-    return response;
-  } catch (error) {
-    return error;
-  }
-};
-
-const kycStatus = async () => {
-  const url = "/user/kyc/";
-  try {
-    const response = await API.get(url);
+    const response = await axios.get(url, config);
     return response;
   } catch (error) {
     return error;
@@ -62,9 +93,9 @@ const kycStatus = async () => {
 };
 
 const projectList = async () => {
-  const url = "/project/projectlist/";
+  const url = "http://127.0.0.1:8000/project/projectlist/";
   try {
-    const response = await API.get(url);
+    const response = await axios.get(url);
     return response.data;
   } catch (error) {
     console.error(error);

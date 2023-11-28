@@ -19,6 +19,7 @@ export default function ProjectPage({ props }) {
   useEffect(() => {
     const projectListData = async () => {
       const response = await projectList();
+
       setData(response);
       setFilterData(response);
     };
