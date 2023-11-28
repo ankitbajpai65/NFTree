@@ -23,14 +23,17 @@ const CreateProjectPage = () => {
     image: data == null ? "" : "img",
     is_completed: data == null ? false : data.data.is_completed,
     user: data == null ? "" : data.data.user,
+    plant_images: [],
   };
   const navigate = useNavigate();
 
+  const [text, setText] = useState("");
   const [plantType, setPlantType] = useState([]);
 
   const handleTextChange = (newText) => {
     const items = newText.split(",").map((item) => item.trim());
     setPlantType(items);
+    setText(newText);
   };
 
   const { values, errors, handleChange, handleSubmit, touched, setFieldValue } =
@@ -55,20 +58,20 @@ const CreateProjectPage = () => {
       <div key={index} style={{ width: "48.5%", marginTop: "10px 0" }}>
         <input
           type="file"
-          name={`plantImages`}
+          name={`plant_images`}
           accept="image/*"
           onChange={(event) => {
-            setFieldValue(`plantImages`, [
-              ...values.plantImages.slice(0, index),
+            setFieldValue(`plant_images`, [
+              ...values.plant_images.slice(0, index),
               event.currentTarget.files[0],
-              ...values.plantImages.slice(index + 1),
+              ...values.plant_images.slice(index + 1),
             ]);
           }}
-          className={values[`plantImages`]?.[index] ? "" : "plantImage"}
+          className={values[`plant_images`]?.[index] ? "" : "plant_images"}
           data-upload-text={`Upload ${plantTypeName} image`}
         />
-        {errors[`plantImages`] && touched[`plantImages`] ? (
-          <small className="form-error">{errors[`plantImages`]}</small>
+        {errors[`plant_images`] && touched[`plant_images`] ? (
+          <small className="form-error">{errors[`plant_images`]}</small>
         ) : (
           ""
         )}
@@ -109,32 +112,33 @@ const CreateProjectPage = () => {
               ""
             )}
             <br></br>
+            <div className="projectFile">
+              <input
+                type="text"
+                name="plant_types"
+                placeholder="Types of Plants (use comma to seperate)"
+                value={values.plant_types}
+                onChange={(e) => {
+                  handleChange(e);
+                  handleTextChange(e.target.value);
+                }}
+              />
+              {errors.plant_types && touched.plant_types ? (
+                <small>{errors.plant_types}</small>
+              ) : (
+                ""
+              )}
 
-            <input
-              type="text"
-              name="plant_types"
-              placeholder="Types of Plants (use comma to seperate)"
-              value={values.plant_types}
-              onChange={(e) => {
-                handleChange(e);
-                handleTextChange(e.target.value);
-              }}
-            />
-            {errors.plant_types && touched.plant_types ? (
-              <small>{errors.plant_types}</small>
-            ) : (
-              ""
-            )}
-
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: "10px",
-                marginTop: "4px",
-              }}
-            >
-              {renderFileInputs()}
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "10px",
+                  marginTop: "4px",
+                }}
+              >
+                {renderFileInputs()}
+              </div>
             </div>
 
             <br />
