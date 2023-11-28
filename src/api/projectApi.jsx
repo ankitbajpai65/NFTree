@@ -17,6 +17,15 @@ const createTransaction = async (data) => {
   }
 };
 
+const viewTransaction = async (data) => {
+  try {
+    const response = await API.get("/project/transaction/", data);
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
 const createProject = async (data) => {
   try {
     const response = await API.post("/project/create/", data);
@@ -68,4 +77,5 @@ export {
   kycStatus,
   updateProject,
   createTransaction,
+  viewTransaction,
 };
