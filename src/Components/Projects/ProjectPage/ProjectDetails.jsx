@@ -119,7 +119,9 @@ const ProjectDetails = () => {
                       <button
                         className="reportButton"
                         onClick={() => {
-                          navigate("/projectreport");
+                          navigate(`${location.pathname}/edit`, {
+                            state: { data: data },
+                          });
                         }}
                       >
                         Create Report

@@ -48,7 +48,7 @@ const UserTransaction = () => {
           .map((transaction) =>
             createData(
               transaction.amount,
-              transaction.name,
+              transaction.project_name,
               transaction.trees_count,
               "Actions"
             )
