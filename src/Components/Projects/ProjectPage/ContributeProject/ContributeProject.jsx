@@ -1,32 +1,49 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { createTransaction } from "../../../../api/projectApi";
 import "./ContributeProject.css";
 
 const ContributeProject = () => {
   const state = useLocation();
-  const price = state.state;
+  const { id, donation } = state.state;
 
-  const [inputValue, setInputValue] = useState("");
-  const [totalAmount, setTotalAmount] = useState("0");
+  const [formData, setFormData] = useState({
+    amount: 0,
+    trees_count: null,
+    email: "",
+    name: "",
+    project: id,
+    user: sessionStorage.getItem("id"),
+  });
 
   useEffect(() => {
     const delay = 1000;
 
     const timeoutId = setTimeout(() => {
-      const newTotalAmount = calculateTotalAmount(inputValue);
-      setTotalAmount(newTotalAmount);
+      const newTotalAmount = calculateTotalAmount(formData.trees_count);
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        amount: newTotalAmount,
+      }));
     }, delay);
 
     return () => clearTimeout(timeoutId);
-  }, [inputValue]);
+  }, [formData.trees_count]);
 
   const calculateTotalAmount = (value) => {
     const numericValue = parseFloat(value);
-    return isNaN(numericValue) ? 0 : price * numericValue;
+    return isNaN(numericValue) ? 0 : donation * numericValue;
   };
 
   const handleInputChange = (e) => {
-    setInputValue(e.target.value);
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = () => {
+    createTransaction(formData);
   };
 
   return (
@@ -46,7 +63,7 @@ const ContributeProject = () => {
             />
             <input
               type="text"
-              name="number"
+              name="trees_count"
               onChange={handleInputChange}
               onInput={(e) =>
                 (e.target.value = e.target.value.replace(/[^0-9 ]/g, ""))
@@ -57,24 +74,20 @@ const ContributeProject = () => {
               type="text"
               name="email"
               onChange={handleInputChange}
-              onInput={(e) =>
-                (e.target.value = e.target.value.replace(/[^0-9 ]/g, ""))
-              }
               placeholder="Email"
             />
             <input
               type="text"
               name="bitWallet"
               onChange={handleInputChange}
-              onInput={(e) =>
-                (e.target.value = e.target.value.replace(/[^0-9 ]/g, ""))
-              }
               placeholder="Bit Wallet Address"
             />
 
-            <p className="amount">Total = Rs.{totalAmount}/-</p>
+            <p className="amount">Total = Rs.{formData.amount}/-</p>
 
-            <button className="submit-button">Donate</button>
+            <button className="submit-button" onClick={handleSubmit}>
+              Donate
+            </button>
           </div>
         </div>
       </div>

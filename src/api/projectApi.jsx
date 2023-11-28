@@ -1,57 +1,51 @@
 import axios from "axios";
 
-const createProject = async (props) => {
-  const url = "http://127.0.0.1:8000/project/create/";
-  const data = props;
-  const config = {
-    headers: {
-      "Content-Type": "multipart/form-data",
-      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-    },
-  };
+const API = axios.create({
+  baseURL: "http://127.0.0.1:8000/",
+  headers: {
+    "Content-Type": "multipart/form-data",
+    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+  },
+});
 
+const createTransaction = async (data) => {
   try {
-    const response = await axios.post(url, data, config);
+    const response = await API.post("/project/transaction/", data);
     console.log(response);
   } catch (error) {
     console.error(error);
   }
 };
 
-const updateProject = async (props, id) => {
-  const url = `http://127.0.0.1:8000/project/update/${id}/`;
-  if (props.image == "img") {
-    delete props.image;
+const createProject = async (data) => {
+  try {
+    const response = await API.post("/project/create/", data);
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const updateProject = async (id, data) => {
+  const url = `/project/update/${id}/`;
+  if (data.image === "img") {
+    delete data.image;
   }
 
-  props["id"] = id;
-  const data = props;
-  const config = {
-    headers: {
-      "Content-Type": "multipart/form-data",
-      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-    },
-  };
+  data.id = id;
 
   try {
-    const response = await axios.put(url, data, config);
+    const response = await API.put(url, data);
     return response;
   } catch (error) {
     return error;
   }
 };
 
-const kycStatus = async (props) => {
-  const url = "http://127.0.0.1:8000/user/kyc/";
-  const config = {
-    headers: {
-      "Content-Type": "multipart/form-data",
-      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-    },
-  };
-
+const kycStatus = async () => {
+  const url = "/user/kyc/";
   try {
-    const response = await axios.get(url, config);
+    const response = await API.get(url);
     return response;
   } catch (error) {
     return error;
@@ -59,13 +53,19 @@ const kycStatus = async (props) => {
 };
 
 const projectList = async () => {
-  const url = "http://127.0.0.1:8000/project/projectlist/";
+  const url = "/project/projectlist/";
   try {
-    const response = await axios.get(url);
+    const response = await API.get(url);
     return response.data;
   } catch (error) {
     console.error(error);
   }
 };
 
-export { createProject, projectList, kycStatus, updateProject };
+export {
+  createProject,
+  projectList,
+  kycStatus,
+  updateProject,
+  createTransaction,
+};

@@ -87,7 +87,7 @@ const ProjectDetails = () => {
                       className="contributeButton"
                       onClick={() =>
                         navigate(`${location.pathname}/contribute`, {
-                          state: data.donation,
+                          state: data,
                         })
                       }
                     >

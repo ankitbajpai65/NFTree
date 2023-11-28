@@ -26,13 +26,11 @@ const CreateProjectPage = () => {
   };
   const navigate = useNavigate();
 
-  const [text, setText] = useState("");
   const [plantType, setPlantType] = useState([]);
 
   const handleTextChange = (newText) => {
     const items = newText.split(",").map((item) => item.trim());
     setPlantType(items);
-    setText(newText);
   };
 
   const { values, errors, handleChange, handleSubmit, touched, setFieldValue } =
@@ -40,49 +38,54 @@ const CreateProjectPage = () => {
       initialValues: initialValues,
       validationSchema: createProjectSchema,
       onSubmit: (values, action) => {
-        action.resetForm();
-        if (data == null) {
-          values.user = sessionStorage.getItem("id");
-          createProject(values);
-          navigate("/ongoingProjects");
-        } else {
-          updateProject(values, data.data.id);
-          setTimeout(() => {
-            navigate("/profile", { state: "my_projects" });
-          }, 1000);
-        }
+        // action.resetForm();
+        // if (data == null) {
+        //   values.user = sessionStorage.getItem("id");
+        //   createProject(values);
+        //   navigate("/ongoingProjects");
+        // } else {
+        //   updateProject(values, data.data.id);
+        //   setTimeout(() => {
+        //     navigate("/profile", { state: "my_projects" });
+        //   }, 1000);
+        // }
+        console.log(values);
       },
     });
 
-  const renderFileInputs = () => {
-    const fileInputs = [];
+  var plant_images = [];
 
+  const renderFileInputs = () => {
     if (plantType.length == 0 || plantType[0] === "") return;
 
-    for (let i = 0; i < plantType.length; i++) {
-      fileInputs.push(
-        <div key={i} style={{ width: "49%", marginTop: "2px" }}>
+    return plantType.map((plant, index) => {
+      const handleFileChange = (event, index) => {
+        const file = event.currentTarget.files[0];
+        setFieldValue(`plantImage${index}`, file);
+        const newPlantImage = {
+          fieldName: `plantImage${index}`,
+          file: file,
+          plantType: plant,
+        };
+        console.log(newPlantImage);
+      };
+
+      return (
+        <div key={index} style={{ width: "49%", marginTop: "2px" }}>
           <input
             type="file"
-            name={`plantImage${i}`}
+            name={`plantImage${index}`}
             accept="image/*"
-            onChange={(event) => {
-              setFieldValue(`plantImage${i}`, event.currentTarget.files[0]);
-            }}
+            required
+            onChange={(event) => handleFileChange(event, index)}
             className={
-              values[`plantImage${i}`] ? "" : "plantImage customUpload"
+              values[`plantImage${index}`] ? "" : "plantImage customUpload"
             }
-            data-upload-text={`Upload ${plantType[i]} image`}
+            data-upload-text={`Upload ${plant} image`}
           />
-          {errors[`plantImage${i}`] && touched[`plantImage${i}`] ? (
-            <small className="form-error">{errors[`plantImage${i}`]}</small>
-          ) : (
-            ""
-          )}
         </div>
       );
-    }
-    return fileInputs;
+    });
   };
 
   return (
