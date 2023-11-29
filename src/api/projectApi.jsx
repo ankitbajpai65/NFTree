@@ -45,6 +45,7 @@ const createProject = async (props) => {
   };
 
   try {
+    console.log(data);
     const response = await axios.post(url, data, config);
     console.log(response);
   } catch (error) {

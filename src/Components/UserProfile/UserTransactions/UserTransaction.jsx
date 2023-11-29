@@ -30,26 +30,30 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+function createData(UserName, UserEmail, ProjectName, NumTrees, Amount) {
+  console.log(UserName, UserEmail, ProjectName, NumTrees, Amount);
+  return { UserName, UserEmail, ProjectName, NumTrees, Amount };
 }
 
-const UserTransaction = () => {
+const UserTransaction = ({ props }) => {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await viewTransaction();
+        console.log(response);
         const transactionRows = response.data
           .filter(
             (transaction) => transaction.user == sessionStorage.getItem("id")
           )
           .map((transaction) =>
             createData(
-              transaction.amount,
+              transaction.name,
+              transaction.email,
               transaction.project_name,
               transaction.trees_count,
+              transaction.amount,
               "Actions"
             )
           );
@@ -62,40 +66,64 @@ const UserTransaction = () => {
   }, []);
 
   return (
-    <div style={{ minHeight: "100vh" }}>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell align="center">Amount(in Rs)</StyledTableCell>
-              <StyledTableCell align="center">Project Name</StyledTableCell>
-              <StyledTableCell align="center">Number of trees</StyledTableCell>
-              <StyledTableCell align="center">Actions</StyledTableCell>
-              {/* <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-                            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell> */}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row.name}>
-                <StyledTableCell component="th" scope="row" align="center">
-                  {row.name}
+    <div className="form-container">
+      <div>
+        <TableContainer component={Paper}>
+          <Table sx={{ width: "50vw" }} aria-label="customized table">
+            <TableHead>
+              <TableRow>
+                <StyledTableCell align="center">Doner Name</StyledTableCell>
+                <StyledTableCell align="center">Doner Email</StyledTableCell>
+                {props != "owner" && (
+                  <StyledTableCell align="center">Project Name</StyledTableCell>
+                )}
+                <StyledTableCell align="center">
+                  Number of trees
                 </StyledTableCell>
-                <StyledTableCell align="center">{row.calories}</StyledTableCell>
-                <StyledTableCell align="center">{row.fat}</StyledTableCell>
-                {/* <StyledTableCell align="right">{row.carbs}</StyledTableCell> */}
-                {/* <StyledTableCell align="right">{row.protein}</StyledTableCell> */}
-                <Button variant="contained" className="filledBtn" sx={{ m: 2 }}>
-                  User Report
-                </Button>
-                <Button variant="contained" className="filledBtn">
-                  Project Report
-                </Button>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                <StyledTableCell align="center">Amount(in Rs)</StyledTableCell>
+                <StyledTableCell align="center">Actions</StyledTableCell>
+                {/* <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
+                            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell> */}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                <StyledTableRow key={row.ProjectName}>
+                  <StyledTableCell component="th" scope="row" align="center">
+                    {row.UserName}
+                  </StyledTableCell>
+                  <StyledTableCell component="th" scope="row" align="center">
+                    {row.UserEmail}
+                  </StyledTableCell>
+                  {props != "owner" && (
+                    <StyledTableCell align="center">
+                      {row.ProjectName}
+                    </StyledTableCell>
+                  )}
+                  <StyledTableCell align="center">
+                    {row.NumTrees}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">{row.Amount}</StyledTableCell>
+                  {/* <StyledTableCell align="right">{row.carbs}</StyledTableCell> */}
+                  {/* <StyledTableCell align="right">{row.protein}</StyledTableCell> */}
+                  <Button
+                    variant="contained"
+                    className="filledBtn"
+                    sx={{ m: 2 }}
+                  >
+                    User Report
+                  </Button>
+                  {props != "owner" && (
+                    <Button variant="contained" className="filledBtn">
+                      Project Report
+                    </Button>
+                  )}
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </div>
     </div>
   );
 };

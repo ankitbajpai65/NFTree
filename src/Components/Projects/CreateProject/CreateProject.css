@@ -48,7 +48,7 @@
   content: "Upload Project Image";
 }
 
-.plantImage::before {
+.plant_images::before {
   margin-right: 1000px;
   content: attr(data-upload-text);
 }

@@ -43,8 +43,8 @@ const CreateProjectPage = () => {
       onSubmit: (values, action) => {
         console.log(values);
         // action.resetForm();
-        // values.user = sessionStorage.getItem("id");
-        // createProject(values);
+        values.user = sessionStorage.getItem("id");
+        createProject(values);
         // navigate("/ongoingProjects");
       },
     });
@@ -60,6 +60,7 @@ const CreateProjectPage = () => {
           type="file"
           name={`plant_images`}
           accept="image/*"
+          required
           onChange={(event) => {
             setFieldValue(`plant_images`, [
               ...values.plant_images.slice(0, index),
@@ -70,11 +71,11 @@ const CreateProjectPage = () => {
           className={values[`plant_images`]?.[index] ? "" : "plant_images"}
           data-upload-text={`Upload ${plantTypeName} image`}
         />
-        {errors[`plant_images`] && touched[`plant_images`] ? (
+        {/* {errors[`plant_images`] && touched[`plant_images`] ? (
           <small className="form-error">{errors[`plant_images`]}</small>
         ) : (
           ""
-        )}
+        )} */}
       </div>
     ));
   };

@@ -35,6 +35,7 @@ import ProjectPage from "../Projects/ProjectPage/ProjectPage";
 import ContributeProject from "../Projects/ProjectPage/ContributeProject/ContributeProject";
 import Dashboard from "../Dashboard/Dashboard";
 import Projectreport from "../ProjectReport/Projectreport";
+import UserTransaction from "../UserProfile/UserTransactions/UserTransaction";
 
 const drawerWidth = 240;
 const navItems = ["Home", "Projects", "Dashboard", "Wallet"];
@@ -362,13 +363,18 @@ export default function Navbar() {
           element={<ContributeProject />}
         />
         <Route
-          path="/ongoingProjects/:projectName/generateReport"
+          path="/ongoingProjects/:projectName/createReport"
           element={<GenerateReport />}
         />
 
         <Route
           path="/ongoingProjects/:projectName/edit"
           element={<CreateProject />}
+        />
+
+        <Route
+          path="/ongoingProjects/:projectName/doner-details"
+          element={<UserTransaction props="owner" />}
         />
 
         <Route path="/forget-password" element={<ForgetPassword />} />
