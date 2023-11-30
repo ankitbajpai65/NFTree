@@ -37,6 +37,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import Projectreport from "../ProjectReport/Projectreport";
 import UserTransaction from "../UserProfile/UserTransactions/UserTransaction";
 import CreateProjectOption from "../Projects/CreateProject/CreateProjectOption";
+import CreateProjectPage from "../Projects/CreateProject/CreateProjectPage";
 
 const drawerWidth = 240;
 const navItems = ["Home", "Projects", "Dashboard", "Wallet"];
@@ -343,40 +344,51 @@ export default function Navbar() {
         <Route path="/home" element={<Home />} />
         <Route path="contact" element={<Contact />} />
         <Route path="login" element={<Auth />} />
-        {/* <Route path="profile" element={<ProfilePage data={authUser} />} /> */}
-        <Route path="profile" element={<Profile data={authUser} />} />
-        <Route path="/createProject" element={<CreateProject />} />
         <Route path="/projectDetails" element={<ProjectPage />} />
+        {/* <Route path="profile" element={<ProfilePage data={authUser} />} /> */}
         <Route
           path="/projectDetails/:projectName"
           element={<ProjectDetails />}
         />
-
-        <Route
-          path="/projectDetails/:projectName/contribute"
-          element={<ContributeProject />}
-        />
-        <Route
-          path="/projectDetails/:projectName/createReport"
-          element={<GenerateReport />}
-        />
-
-        <Route
-          path="/projectDetails/:projectName/edit"
-          element={<CreateProject />}
-        />
-
-        <Route
-          path="/projectDetails/:projectName/doner-details"
-          element={<UserTransaction props="owner" />}
-        />
-
         <Route path="/forget-password" element={<ForgetPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
 
-        <Route path="/CreateProjectOption" element={<CreateProjectOption />} />
+        {isLoggedIn && (
+          <>
+            {" "}
+            <Route
+              path="/projectDetails/:projectName/contribute"
+              element={<ContributeProject />}
+            />
+            <Route path="profile" element={<Profile data={authUser} />} />
+            <Route path="/createProject" element={<CreateProject />} />
+            <Route path="/projectreport" element={<Projectreport />} />
+            {/* only product owner */}
+            <Route
+              path="/createProject/funding-project"
+              element={<CreateProjectPage />}
+            />
+            <Route
+              path="/createProject/monitoring-project"
+              element={<CreateProjectPage />}
+            />
+            <Route
+              path="/projectDetails/:projectName/createReport"
+              element={<GenerateReport />}
+            />
+            <Route
+              path="/projectDetails/:projectName/edit"
+              element={<CreateProject />}
+            />
+            <Route
+              path="/projectDetails/:projectName/doner-details"
+              element={<UserTransaction props="owner" />}
+            />
+          </>
+        )}
 
-        <Route path="/projectreport" element={<Projectreport />} />
+        {/* <Route path="/CreateProjectOption" element={<CreateProjectOption />} /> */}
+
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>

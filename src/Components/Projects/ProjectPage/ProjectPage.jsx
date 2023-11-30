@@ -78,8 +78,8 @@ export default function ProjectPage({ props }) {
             >
               <img src={project.image} alt="" />
               <h4>{project.name}</h4>
-              <span>{project.location}</span>
-              <p>
+              {/* <span>{project.location}</span> */}
+              <p style={{ height: "65px" }}>
                 {project.description.length > 100
                   ? `${project.description.substring(0, 100)}...`
                   : project.description}

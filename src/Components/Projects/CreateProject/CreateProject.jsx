@@ -3,6 +3,7 @@ import { kycStatus } from "../../../api/projectApi";
 import IncompleteKyc from "./IncompleteKyc";
 import CreateProjectPage from "./CreateProjectPage";
 import { useLocation } from "react-router-dom";
+import CreateProjectOption from "./CreateProjectOption";
 
 function CreateProject() {
   const [isKycComplete, setIsKycComplete] = useState(null);
@@ -23,7 +24,7 @@ function CreateProject() {
   if (isKycComplete === null) {
     return <div>Loading...</div>;
   } else if (isKycComplete == "Approved") {
-    return <CreateProjectPage />;
+    return <CreateProjectOption />;
   } else {
     return <IncompleteKyc />;
   }

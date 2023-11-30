@@ -1,7 +1,11 @@
 import React from "react";
 import "./CreateProject.css";
+import CreateProjectPage from "./CreateProjectPage";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function CreateProjectOption() {
+  const navigate = useNavigate();
+  const location = useLocation();
   return (
     <div className="form-container" style={{ minHeight: "700px" }}>
       <div className="form-box">
@@ -25,8 +29,20 @@ export default function CreateProjectOption() {
         </div>
         <br />
         <div className="form-button" style={{ marginBottom: "10px" }}>
-          <button>Funding Project</button>
-          <button>Monitoring Project</button>
+          <button
+            onClick={() => {
+              navigate(`${location.pathname}/funding-project`);
+            }}
+          >
+            Funding Project
+          </button>
+          <button
+            onClick={() => {
+              navigate(`${location.pathname}/monitoring-project`);
+            }}
+          >
+            Monitoring Project
+          </button>
         </div>
       </div>
     </div>
