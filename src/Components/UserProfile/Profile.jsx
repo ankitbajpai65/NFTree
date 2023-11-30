@@ -33,9 +33,9 @@ const Profile = ({ state }) => {
   return (
     <Grid
       container
-      sx={{
-        marginTop: "4rem",
-      }}
+      // sx={{
+      //   marginTop: "4rem",
+      // }}
     >
       <Sidebar
         props={setPage}

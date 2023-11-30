@@ -36,7 +36,7 @@ const UserDetails = ({ editActive }) => {
   };
 
   return (
-    <div style={{ height: "100vh" }}>
+    <div style={{ height: "100vh", marginTop: "4rem" }}>
       <div className="form-box editForm">
         <div
           style={{

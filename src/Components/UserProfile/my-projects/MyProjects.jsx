@@ -25,7 +25,7 @@ export default function MyProjects() {
 
   return (
     <>
-      <div className="Container">
+      <div className="Container" style={{ marginTop: "4rem" }}>
         <h3>My Projects</h3>
 
         <div className="projectList">

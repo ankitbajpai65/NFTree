@@ -86,7 +86,7 @@ const Kyc = () => {
   };
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative", marginTop: "4rem" }}>
       <Box
         sx={{
           maxWidth: activeStep === 3 ? "85%" : "600px",

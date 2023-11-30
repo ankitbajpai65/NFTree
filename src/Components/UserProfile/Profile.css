@@ -106,3 +106,9 @@
 .kyc-wrapper h3 {
   color: black;
 }
+
+.transactionPage {
+  margin: unset;
+  margin: 8rem auto 5rem;
+  width: 60vw;
+}

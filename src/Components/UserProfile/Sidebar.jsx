@@ -45,6 +45,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "flex-end",
   padding: theme.spacing(0, 1),
+
   ...theme.mixins.toolbar,
 }));
 
@@ -55,6 +56,7 @@ const Drawer = styled(MuiDrawer, {
   flexShrink: 0,
   whiteSpace: "nowrap",
   boxSizing: "border-box",
+  marginTop: "4rem",
   ...(open && {
     ...openedMixin(theme),
     "& .MuiDrawer-paper": openedMixin(theme),
@@ -73,7 +75,7 @@ const profileLinks = [
   "Donation History",
 ];
 
-const Sidebar = ({ props,editActive,setEditActive }) => {
+const Sidebar = ({ props, editActive, setEditActive }) => {
   const theme = useTheme();
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
@@ -125,9 +127,11 @@ const Sidebar = ({ props,editActive,setEditActive }) => {
                   px: 2.5,
                 }}
                 // to={`/profile/${text.toLowerCase().replace(/\s/g, '_')}`}
-                onClick={() =>{
-                  props(text.toLowerCase().replace(/\s/g, "_"))
-                  text==='Edit Basic Details' ? setEditActive(true) : setEditActive(false)
+                onClick={() => {
+                  props(text.toLowerCase().replace(/\s/g, "_"));
+                  text === "Edit Basic Details"
+                    ? setEditActive(true)
+                    : setEditActive(false);
                 }}
               >
                 <ListItemIcon
