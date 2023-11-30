@@ -3,7 +3,11 @@
 }
 
 .profileContent {
-  margin: 3rem auto 5rem;
+  /* border:2px solid red; */
+  width:90%;
+  margin: 1rem auto 5rem;
+  display: flex;
+  justify-content: center;
 }
 
 .Container {
@@ -105,4 +109,17 @@
 
 .kyc-wrapper h3 {
   color: black;
+}
+
+/* MEDIA QUERY */
+
+@media screen and (max-width: 650px) {
+  .profileContent{
+    width:88%;
+  }
+}
+@media screen and (max-width: 900px) {
+  .tableBtn{
+    width:8rem;
+  }
 }

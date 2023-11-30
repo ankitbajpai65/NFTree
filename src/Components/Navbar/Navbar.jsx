@@ -112,7 +112,7 @@ export default function Navbar() {
                 <>
                   <div
                     style={{ position: "relative" }}
-                    className="solutionDivSidebar"
+                    className="navLinksContainer"
                   >
                     <p
                       className="navbarLinks projectLink"
@@ -168,7 +168,7 @@ export default function Navbar() {
               onClick={handleDrawerToggle}
               className="navbar"
               sx={{
-                display: { sm: "none" },
+                display: { md: "none" },
                 filter: "invert(1)",
               }}
             />
@@ -189,7 +189,7 @@ export default function Navbar() {
                 component="div"
                 sx={{
                   // border: '2px solid blue',
-                  display: { xs: "none", sm: "block" },
+                  display: { xs: "none", md: "block" },
                   textAlign: "start",
                   pl: { sm: 0, md: 5 },
                 }}
@@ -215,7 +215,7 @@ export default function Navbar() {
                 md={7}
                 sx={{
                   // border: '2px solid red',
-                  display: { xs: "none", sm: "flex" },
+                  display: { xs: "none", md:"flex" },
                   width: { sm: "70%", md: "50%" },
                 }}
               >
@@ -325,7 +325,7 @@ export default function Navbar() {
             }}
             onClick={handleSidebarClick}
             sx={{
-              display: { xs: "block", sm: "none" },
+              display: { xs: "block", md: "none" },
               "& .MuiDrawer-paper": {
                 boxSizing: "border-box",
                 width: drawerWidth,

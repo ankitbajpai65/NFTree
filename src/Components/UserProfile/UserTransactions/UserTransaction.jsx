@@ -9,6 +9,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { viewTransaction } from "../../../api/projectApi";
+import '../Profile.css';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -24,7 +25,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
-  // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
   },
@@ -66,65 +66,62 @@ const UserTransaction = ({ props }) => {
   }, []);
 
   return (
-    <div className="form-container">
-      <div>
-        <TableContainer component={Paper}>
-          <Table sx={{ width: "50vw" }} aria-label="customized table">
-            <TableHead>
-              <TableRow>
-                <StyledTableCell align="center">Doner Name</StyledTableCell>
-                <StyledTableCell align="center">Doner Email</StyledTableCell>
+      <TableContainer component={Paper} 
+      sx={{ 
+        width: { xs:'100%', md: '95%', lg: '90%' } 
+        }}>
+        <Table aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="center">Doner Name</StyledTableCell>
+              <StyledTableCell align="center">Doner Email</StyledTableCell>
+              {props != "owner" && (
+                <StyledTableCell align="center">Project Name</StyledTableCell>
+              )}
+              <StyledTableCell align="center">
+                Number of trees
+              </StyledTableCell>
+              <StyledTableCell align="center">Amount(in Rs)</StyledTableCell>
+              <StyledTableCell align="center">Actions</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <StyledTableRow key={row.ProjectName}>
+                <StyledTableCell component="th" scope="row" align="center">
+                  {row.UserName}
+                </StyledTableCell>
+                <StyledTableCell component="th" scope="row" align="center">
+                  {row.UserEmail}
+                </StyledTableCell>
                 {props != "owner" && (
-                  <StyledTableCell align="center">Project Name</StyledTableCell>
+                  <StyledTableCell align="center">
+                    {row.ProjectName}
+                  </StyledTableCell>
                 )}
                 <StyledTableCell align="center">
-                  Number of trees
+                  {row.NumTrees}
                 </StyledTableCell>
-                <StyledTableCell align="center">Amount(in Rs)</StyledTableCell>
-                <StyledTableCell align="center">Actions</StyledTableCell>
-                {/* <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-                            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell> */}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <StyledTableRow key={row.ProjectName}>
-                  <StyledTableCell component="th" scope="row" align="center">
-                    {row.UserName}
-                  </StyledTableCell>
-                  <StyledTableCell component="th" scope="row" align="center">
-                    {row.UserEmail}
-                  </StyledTableCell>
-                  {props != "owner" && (
-                    <StyledTableCell align="center">
-                      {row.ProjectName}
-                    </StyledTableCell>
-                  )}
-                  <StyledTableCell align="center">
-                    {row.NumTrees}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">{row.Amount}</StyledTableCell>
-                  {/* <StyledTableCell align="right">{row.carbs}</StyledTableCell> */}
-                  {/* <StyledTableCell align="right">{row.protein}</StyledTableCell> */}
+                <StyledTableCell align="center">{row.Amount}</StyledTableCell>
+                <StyledTableCell align="center">
                   <Button
                     variant="contained"
-                    className="filledBtn"
-                    sx={{ m: 2 }}
+                    className="filledBtn tableBtn"
+                    sx={{ mx: 2 }}
                   >
                     User Report
                   </Button>
                   {props != "owner" && (
-                    <Button variant="contained" className="filledBtn">
+                    <Button variant="contained" className="filledBtn tableBtn" sx={{mt:{xs:1,lg:0}}}>
                       Project Report
                     </Button>
                   )}
-                </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
-    </div>
+                </StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
   );
 };
 
