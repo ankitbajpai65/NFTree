@@ -18,10 +18,8 @@ export default function MyProjects() {
   }, []);
 
   const handleProject = (project) => {
-    const pageType = project.is_completed ? "completed" : "ongoing";
-    console.log(project);
-    navigate(`/${pageType + "projects"}/${project.name}`, {
-      state: { data: project, page: pageType, user: "owner" },
+    navigate(`/projectDetails/${project.name}`, {
+      state: { data: project, user: "owner" },
     });
   };
 

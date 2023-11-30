@@ -36,6 +36,7 @@ import ContributeProject from "../Projects/ProjectPage/ContributeProject/Contrib
 import Dashboard from "../Dashboard/Dashboard";
 import Projectreport from "../ProjectReport/Projectreport";
 import UserTransaction from "../UserProfile/UserTransactions/UserTransaction";
+import CreateProjectOption from "../Projects/CreateProject/CreateProjectOption";
 
 const drawerWidth = 240;
 const navItems = ["Home", "Projects", "Dashboard", "Wallet"];
@@ -345,40 +346,35 @@ export default function Navbar() {
         {/* <Route path="profile" element={<ProfilePage data={authUser} />} /> */}
         <Route path="profile" element={<Profile data={authUser} />} />
         <Route path="/createProject" element={<CreateProject />} />
+        <Route path="/projectDetails" element={<ProjectPage />} />
         <Route
-          path="/ongoingProjects"
-          element={<ProjectPage props={"ongoing"} />}
-        />
-        <Route
-          path="/completedProjects"
-          element={<ProjectPage props={"completed"} />}
-        />
-        <Route
-          path="/ongoingProjects/:projectName"
+          path="/projectDetails/:projectName"
           element={<ProjectDetails />}
         />
 
         <Route
-          path="/ongoingProjects/:projectName/contribute"
+          path="/projectDetails/:projectName/contribute"
           element={<ContributeProject />}
         />
         <Route
-          path="/ongoingProjects/:projectName/createReport"
+          path="/projectDetails/:projectName/createReport"
           element={<GenerateReport />}
         />
 
         <Route
-          path="/ongoingProjects/:projectName/edit"
+          path="/projectDetails/:projectName/edit"
           element={<CreateProject />}
         />
 
         <Route
-          path="/ongoingProjects/:projectName/doner-details"
+          path="/projectDetails/:projectName/doner-details"
           element={<UserTransaction props="owner" />}
         />
 
         <Route path="/forget-password" element={<ForgetPassword />} />
         <Route path="/dashboard" element={<Dashboard />} />
+
+        <Route path="/CreateProjectOption" element={<CreateProjectOption />} />
 
         <Route path="/projectreport" element={<Projectreport />} />
         <Route path="*" element={<ErrorPage />} />

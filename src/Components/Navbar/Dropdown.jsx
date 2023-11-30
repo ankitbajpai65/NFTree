@@ -9,16 +9,19 @@ const profileDropdown = [{ to: "/home", name: "Logout" }];
 const Dropdown = ({ handleMouseLeave, setMobileOpen, dropdown }) => {
   const { isLoggedIn } = useAuth();
 
-  const projectDropdown = isLoggedIn
-    ? [
-        { to: "/createProject", name: "Create Project" },
-        { to: "/ongoingProjects", name: "Ongoing Project" },
-        { to: "/completedProjects", name: "Completed Project" },
-      ]
-    : [
-        { to: "/ongoingProjects", name: "Ongoing Project" },
-        { to: "/completedProjects", name: "Completed Project" },
-      ];
+  // const projectDropdown = isLoggedIn
+  //   ? [
+  //       { to: "/createProject", name: "Create Project" },
+  //       { to: "/projectDetails", name: "Project Details" },
+  //     ]
+  //   : [
+  //       { to: "/ongoingProjects", name: "Ongoing Project" },
+  //       { to: "/completedProjects", name: "Completed Project" },
+  //     ];
+  const projectDropdown = [
+    { to: "/createProject", name: "Create Project" },
+    { to: "/projectDetails", name: "Project Details" },
+  ];
 
   return (
     <>

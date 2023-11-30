@@ -109,64 +109,71 @@ const Auth = () => {
 
   return (
     <div className="form-container" style={{ minHeight: "700px" }}>
-      <form className="form-box" onSubmit={handleSubmit}>
-        <h1 className="formHead">
-          {isRegistered ? "Sign In To Your Account" : "Create Free Account"}
-        </h1>
-        <div className="form-input">
-          {!isRegistered && (
+      <div className="form-box">
+        <form onSubmit={handleSubmit}>
+          <h1 className="formHead">
+            {isRegistered ? "Sign In To Your Account" : "Create Free Account"}
+          </h1>
+          <div className="form-input">
+            {!isRegistered && (
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter Full Name"
+                value={formData.name}
+                onChange={handleInputChange}
+              />
+            )}
             <input
-              type="text"
-              name="name"
-              placeholder="Enter Full Name"
-              value={formData.name}
+              type="email"
+              name="email"
+              placeholder="Enter Email"
+              value={formData.email}
               onChange={handleInputChange}
             />
-          )}
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter Email"
-            value={formData.email}
-            onChange={handleInputChange}
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter Password"
-            value={formData.password}
-            onChange={handleInputChange}
-          />
-          {!isRegistered && (
             <input
               type="password"
-              name="cnfPassword"
-              placeholder="Confirm Password"
-              value={formData.cnfPassword}
+              name="password"
+              placeholder="Enter Password"
+              value={formData.password}
               onChange={handleInputChange}
             />
-          )}
-        </div>
-        <span className="errorText">{isError}</span>
-        <div className="form-checkbox">
-          <div className="checkBoxDiv">
-            <input type="checkbox" id="tccheckbox" />
-            <span>
-              {isRegistered ? (
-                "Remember me"
-              ) : (
-                <p>
-                  I agree with the <a href="#">Terms & Conditions</a> of NFTree
-                </p>
-              )}
-            </span>
+            {!isRegistered && (
+              <input
+                type="password"
+                name="cnfPassword"
+                placeholder="Confirm Password"
+                value={formData.cnfPassword}
+                onChange={handleInputChange}
+              />
+            )}
           </div>
-          {isRegistered && <Link to="/forget-password">Forgot password?</Link>}
-        </div>
+          <span className="errorText">{isError}</span>
+          <div className="form-checkbox">
+            <div className="checkBoxDiv">
+              <input type="checkbox" id="tccheckbox" />
+              <span>
+                {isRegistered ? (
+                  "Remember me"
+                ) : (
+                  <p>
+                    I agree with the <a href="#">Terms & Conditions</a> of
+                    NFTree
+                  </p>
+                )}
+              </span>
+            </div>
+            {isRegistered && (
+              <Link to="/forget-password">Forgot password?</Link>
+            )}
+          </div>
+          <div className="form-button" style={{ marginBottom: "10px" }}>
+            <button type="submit" className="submit-button">
+              {isRegistered ? "Sign in" : "Sign up"}
+            </button>
+          </div>
+        </form>
         <div className="form-button" style={{ marginBottom: "30px" }}>
-          <button type="submit" className="submit-button">
-            {isRegistered ? "Sign in" : "Sign up"}
-          </button>
           {isRegistered && (
             <button className="googleLoginBtn" onClick={handleGoogleLogin}>
               <div>
@@ -199,7 +206,7 @@ const Auth = () => {
             {isRegistered ? "Signup" : "Signin"}
           </a>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

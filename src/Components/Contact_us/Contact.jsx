@@ -2,10 +2,37 @@ import FadeLoader from "react-spinners/FadeLoader";
 import "./Contact.css";
 import { useState } from "react";
 import ReactDOMServer from "react-dom/server";
+import { useFormik } from "formik";
+import { contactUsSchema } from "../../ValidationSchema/ValidationSchema";
 
 export default function Contact() {
   const [isLoading, setIsLoading] = useState(true);
   setTimeout(() => setIsLoading(false), 2000);
+
+  const url = "http://127.0.0.1:8000/contact/contact-us/";
+
+  const initialValues = {
+    full_name: "",
+    email: "",
+    phone_number: "",
+    subject:
+      sessionStorage.getItem("id") == null
+        ? "from unregistered user"
+        : "from registered user",
+    message_type: null,
+    message: "",
+  };
+
+  const { values, errors, handleChange, touched, handleSubmit } = useFormik({
+    initialValues: initialValues,
+    validationSchema: contactUsSchema,
+    onSubmit: (values) => {
+      console.log(values);
+      handleSend();
+    },
+  });
+
+  console.log(errors);
 
   const handleSend = () => {
     const loader = ReactDOMServer.renderToString(
@@ -18,16 +45,19 @@ export default function Contact() {
         cssOverride={{ position: "absolute", top: "30%", left: "15%" }}
       />
     );
+
     const addElement = document.querySelector(".loadingSpinner");
     addElement.innerHTML = loader;
     addElement.classList.add("spinner");
     const elementToReplace = document.getElementsByClassName("form-input")[0];
+
     setTimeout(() => {
       elementToReplace.textContent =
         "Thank you for reaching out! Your message has been received, and we appreciate your interest. We will review your inquiry and get back to you as soon as possible.";
       elementToReplace.classList.add("contactRespond");
     }, 3000);
   };
+
   return (
     <>
       <div className="contact_container">
@@ -61,17 +91,34 @@ export default function Contact() {
               ></iframe>
             )}
           </div>
-          <div
+          <form
             className="form-input"
             style={{
               width: "25vw",
               minWidth: "350px",
             }}
+            onSubmit={handleSubmit}
           >
             <span className="loadingSpinner"></span>
-            <input type="text" name="name" placeholder="Full Name" />
+            <input
+              type="text"
+              name="full_name"
+              placeholder="Full Name"
+              onChange={handleChange}
+            />
+            {errors.full_name && touched.full_name ? (
+              <small>{errors.full_name}</small>
+            ) : (
+              ""
+            )}
 
-            <input type="email" name="email" placeholder="Email" />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              onChange={handleChange}
+            />
+            {errors.email && touched.email ? <small>{errors.email}</small> : ""}
 
             <textarea
               name="message"
@@ -79,13 +126,20 @@ export default function Contact() {
               cols="30"
               rows="5"
               placeholder="Enter Your Message"
+              onChange={handleChange}
             />
+            {errors.message && touched.message ? (
+              <small>{errors.message}</small>
+            ) : (
+              ""
+            )}
+
             <div className="form-button" style={{ marginBottom: "100px" }}>
-              <button className="submit-button" onClick={handleSend}>
+              <button type="submit" className="submit-button">
                 Send
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </>

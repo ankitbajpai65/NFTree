@@ -79,7 +79,7 @@ const ProjectDetails = () => {
                 </tbody>
               </table>
             </div>
-            {page == "ongoing" && sessionStorage.getItem("token") && (
+            {sessionStorage.getItem("token") && (
               <div className="form-button detailPage-button">
                 {user == "user" && (
                   <div className="projectInfo-head">

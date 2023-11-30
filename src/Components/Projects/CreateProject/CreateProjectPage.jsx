@@ -1,6 +1,6 @@
 import "./CreateProject.css";
 import { useFormik } from "formik";
-import { createProjectSchema } from "./ValidationSchema";
+import { createProjectSchema } from "../../../ValidationSchema/ValidationSchema";
 import { createProject, updateProject } from "../../../api/projectApi";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";

@@ -39,7 +39,7 @@ export default function ProjectPage({ props }) {
     <>
       <div className="project-container" style={{ minHeight: "100vh" }}>
         <div className="projectHead">
-          <h1> {props == "ongoing" ? "Ongoing " : "Completed "} Projects</h1>
+          <h1> Projects</h1>
         </div>
 
         <div className="projectSearch">
@@ -66,36 +66,32 @@ export default function ProjectPage({ props }) {
         </div>
 
         <div className="projectContent">
-          {filterData
-            .filter(
-              (key) => key.is_completed == (props == "ongoing" ? false : true)
-            )
-            .map((project) => (
-              <div
-                className="box"
-                key={project.id}
-                onClick={() =>
-                  navigate(`${location.pathname}/${project.name}`, {
-                    state: { data: project, page: props, user: "user" },
-                  })
-                }
-              >
-                <img src={project.image} alt="" />
-                <h4>{project.name}</h4>
-                <span>{project.location}</span>
-                <p>
-                  {project.description.length > 100
-                    ? `${project.description.substring(0, 100)}...`
-                    : project.description}
-                </p>
+          {filterData.map((project) => (
+            <div
+              className="box"
+              key={project.id}
+              onClick={() =>
+                navigate(`${location.pathname}/${project.name}`, {
+                  state: { data: project, user: "user" },
+                })
+              }
+            >
+              <img src={project.image} alt="" />
+              <h4>{project.name}</h4>
+              <span>{project.location}</span>
+              <p>
+                {project.description.length > 100
+                  ? `${project.description.substring(0, 100)}...`
+                  : project.description}
+              </p>
 
-                <div className="donateBtn">
-                  {/* <p>₹{project.donation}/plant</p> */}
-                  {/* <p></p> */}
-                  {props == "ongoing" && <button>Donate</button>}
-                </div>
+              <div className="donateBtn">
+                {/* <p>₹{project.donation}/plant</p> */}
+                {/* <p></p> */}
+                <button>Donate</button>
               </div>
-            ))}
+            </div>
+          ))}
         </div>
       </div>
     </>
