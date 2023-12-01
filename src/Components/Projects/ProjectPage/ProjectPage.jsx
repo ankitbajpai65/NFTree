@@ -53,14 +53,14 @@ export default function ProjectPage({ props }) {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              // value={age}
               label="Age"
               // onChange={handleChange}
             >
-              <MenuItem>Delhi</MenuItem>
-              <MenuItem>Mumbai</MenuItem>
-              <MenuItem>Kolkata</MenuItem>
-              <MenuItem>Chennai</MenuItem>
+              <MenuItem>All</MenuItem>
+              <MenuItem>Donating Projects</MenuItem>
+              <MenuItem>Monitoring Projects</MenuItem>
+              <MenuItem>Ongoing Projects</MenuItem>
+              <MenuItem>Completed Projects</MenuItem>
             </Select>
           </FormControl>
         </div>

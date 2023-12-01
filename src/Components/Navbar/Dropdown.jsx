@@ -18,10 +18,12 @@ const Dropdown = ({ handleMouseLeave, setMobileOpen, dropdown }) => {
   //       { to: "/ongoingProjects", name: "Ongoing Project" },
   //       { to: "/completedProjects", name: "Completed Project" },
   //     ];
-  const projectDropdown = [
-    { to: "/createProject", name: "Create Project" },
-    { to: "/projectDetails", name: "Project Details" },
-  ];
+  const projectDropdown = isLoggedIn
+    ? [
+        { to: "/createProject", name: "Create Project" },
+        { to: "/projectDetails", name: "Project Details" },
+      ]
+    : [{ to: "/projectDetails", name: "Project Details" }];
 
   return (
     <>
