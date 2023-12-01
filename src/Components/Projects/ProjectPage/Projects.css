@@ -1,8 +1,8 @@
-.filterContainer .searchBox > div:first-child {
+.filterContainer .searchBox>div:first-child {
   width: 80% !important;
 }
 
-.projectsCard > div:first-child {
+.projectsCard>div:first-child {
   border: 1px solid #c9c9c9;
   box-shadow: none;
 }
@@ -18,31 +18,43 @@
   font-size: 20px;
   font-family: arial;
   text-align: center;
+  color: var(--green-30);
 }
 
 .projectSearch {
-  margin-top: 3vh;
   display: flex;
   justify-content: space-between;
 }
 
 .projectSearch input {
-  padding: 1.5vh 2.5vw;
-  width: 75%;
-  border: 1px solid silver;
+  padding: 0.8rem 2rem;
+  width: 70%;
+  border: none;
+  font-size: 14px;
   border-radius: 30px;
-  color: black;
+  background-color: var(--green-20);
 }
 
 .filterBtn {
   width: 15%;
+  border: none;
+  padding: 0 1rem;
+  background-color: var(--green-20);
 }
 
 .projectContent {
   margin-top: 3%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 10px;
+  gap: 1rem;
+}
+
+.messageDiv {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green-30);
 }
 
 .box {
@@ -99,7 +111,7 @@
 .donateBtn button {
   padding: 8px 16px;
   border-radius: 5px;
-  background: #79ad3d !important;
+  background: var(--green-30);
 }
 
 .donateBtn p {
