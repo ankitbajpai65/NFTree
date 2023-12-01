@@ -25,3 +25,9 @@ export const contactUsSchema = Yup.object().shape({
   email: Yup.string().email().required("Enter Email"),
   message: Yup.string().min(30).max(500).required("Please Enter Message"),
 });
+
+export const contributionSchema = Yup.object().shape({
+  trees_count: Yup.number().min(1),
+  email: Yup.string().email().required("Enter Email"),
+  name: Yup.string().min(5).max(30).required("Please Enter Full Name"),
+});

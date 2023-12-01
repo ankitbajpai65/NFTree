@@ -7,7 +7,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 const CreateProjectPage = () => {
   const state = useLocation();
-  const data = state.state;
+  const { data, type } = state.state;
   const initialValues = {
     name: data == null ? "" : data.data.name,
     description: data == null ? "" : data.data.description,
@@ -155,7 +155,10 @@ const CreateProjectPage = () => {
               onChange={handleChange}
             />
             {errors.area && touched.area ? <small>{errors.area}</small> : ""}
-            <div className="form-col">
+            <div
+              className="form-col"
+              style={{ width: type == "monitoring" && "200%" }}
+            >
               <div>
                 <input
                   type="text"
@@ -173,23 +176,25 @@ const CreateProjectPage = () => {
                   ""
                 )}
               </div>
-              <div>
-                <input
-                  type="text"
-                  name="donation"
-                  placeholder="Donation per Plant"
-                  onInput={(e) =>
-                    (e.target.value = e.target.value.replace(/[^0-9 ]/g, ""))
-                  }
-                  value={values.donation}
-                  onChange={handleChange}
-                />
-                {errors.donation && touched.donation ? (
-                  <small>{errors.donation}</small>
-                ) : (
-                  ""
-                )}
-              </div>
+              {type != "monitoring" && (
+                <div>
+                  <input
+                    type="text"
+                    name="donation"
+                    placeholder="Donation per Plant"
+                    onInput={(e) =>
+                      (e.target.value = e.target.value.replace(/[^0-9 ]/g, ""))
+                    }
+                    value={values.donation}
+                    onChange={handleChange}
+                  />
+                  {errors.donation && touched.donation ? (
+                    <small>{errors.donation}</small>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              )}
             </div>
 
             <br></br>

@@ -31,14 +31,18 @@ export default function CreateProjectOption() {
         <div className="form-button" style={{ marginBottom: "10px" }}>
           <button
             onClick={() => {
-              navigate(`${location.pathname}/funding-project`);
+              navigate(`${location.pathname}/funding-project`, {
+                state: { type: "funding" },
+              });
             }}
           >
             Funding Project
           </button>
           <button
             onClick={() => {
-              navigate(`${location.pathname}/monitoring-project`);
+              navigate(`${location.pathname}/monitoring-project`, {
+                state: { type: "monitoring" },
+              });
             }}
           >
             Monitoring Project

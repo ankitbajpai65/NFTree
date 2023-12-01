@@ -4,6 +4,7 @@ import { useState } from "react";
 import ReactDOMServer from "react-dom/server";
 import { useFormik } from "formik";
 import { contactUsSchema } from "../../ValidationSchema/ValidationSchema";
+import axios from "axios";
 
 export default function Contact() {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,20 +20,22 @@ export default function Contact() {
       sessionStorage.getItem("id") == null
         ? "from unregistered user"
         : "from registered user",
-    message_type: null,
+    message_type: "General Inquiry",
     message: "",
   };
 
   const { values, errors, handleChange, touched, handleSubmit } = useFormik({
     initialValues: initialValues,
     validationSchema: contactUsSchema,
-    onSubmit: (values) => {
-      console.log(values);
-      handleSend();
+    onSubmit: async (values) => {
+      try {
+        const response = await axios.post(url, values);
+        handleSend();
+      } catch (error) {
+        console.error(error);
+      }
     },
   });
-
-  console.log(errors);
 
   const handleSend = () => {
     const loader = ReactDOMServer.renderToString(

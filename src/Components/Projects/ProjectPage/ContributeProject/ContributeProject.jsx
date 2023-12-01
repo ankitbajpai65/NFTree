@@ -1,50 +1,44 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { createTransaction } from "../../../../api/projectApi";
+import { contributionSchema } from "../../../../ValidationSchema/ValidationSchema";
 import "./ContributeProject.css";
+import { useFormik } from "formik";
 
 const ContributeProject = () => {
+  const navigate = useNavigate();
   const state = useLocation();
   const { id, donation } = state.state;
 
-  const [formData, setFormData] = useState({
+  const initialValues = {
     amount: 0,
-    trees_count: null,
+    trees_count: 0,
     email: "",
     name: "",
     project: id,
     user: sessionStorage.getItem("id"),
-  });
+  };
+
+  const { values, handleChange, handleSubmit, touched, errors, setFieldValue } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: contributionSchema,
+      onSubmit: (values) => {
+        createTransaction(values);
+        navigate(-1);
+      },
+    });
 
   useEffect(() => {
     const delay = 1000;
 
     const timeoutId = setTimeout(() => {
-      const newTotalAmount = calculateTotalAmount(formData.trees_count);
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        amount: newTotalAmount,
-      }));
+      const newTotalAmount = donation * values["trees_count"];
+      setFieldValue("amount", newTotalAmount);
     }, delay);
 
     return () => clearTimeout(timeoutId);
-  }, [formData.trees_count]);
-
-  const calculateTotalAmount = (value) => {
-    const numericValue = parseFloat(value);
-    return isNaN(numericValue) ? 0 : donation * numericValue;
-  };
-
-  const handleInputChange = (e) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleSubmit = () => {
-    createTransaction(formData);
-  };
+  }, [values["trees_count"]]);
 
   return (
     <>
@@ -55,35 +49,45 @@ const ContributeProject = () => {
             <input
               type="text"
               name="name"
-              onChange={handleInputChange}
+              onChange={handleChange}
               onInput={(e) =>
                 (e.target.value = e.target.value.replace(/[^a-zA-Z ]/g, ""))
               }
               placeholder="Name"
             />
+            {errors.name && touched.name ? <small>{errors.name}</small> : ""}
+
             <input
               type="text"
               name="trees_count"
-              onChange={handleInputChange}
+              onChange={handleChange}
               onInput={(e) =>
                 (e.target.value = e.target.value.replace(/[^0-9 ]/g, ""))
               }
               placeholder="Number of Plants"
             />
+            {errors.trees_count && touched.trees_count ? (
+              <small>{errors.trees_count}</small>
+            ) : (
+              ""
+            )}
+
             <input
               type="text"
               name="email"
-              onChange={handleInputChange}
+              onChange={handleChange}
               placeholder="Email"
             />
+            {errors.email && touched.email ? <small>{errors.email}</small> : ""}
+
             <input
               type="text"
               name="bitWallet"
-              onChange={handleInputChange}
+              onChange={handleChange}
               placeholder="Bit Wallet Address"
             />
 
-            <p className="amount">Total = Rs.{formData.amount}/-</p>
+            <p className="amount">Total = Rs.{values["amount"]}/-</p>
 
             <button className="submit-button" onClick={handleSubmit}>
               Donate
