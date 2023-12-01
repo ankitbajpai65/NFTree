@@ -22,7 +22,6 @@
 }
 
 .projectSearch {
-  /* border:2px solid red; */
   display: flex;
   justify-content: space-between;
 }
@@ -33,13 +32,14 @@
   border: none;
   font-size: 14px;
   border-radius: 30px;
+  background-color: var(--green-20);
 }
 
 .filterBtn {
-  /* border:2px solid red; */
   width: 15%;
   border: none;
   padding: 0 1rem;
+  background-color: var(--green-20);
 }
 
 .projectContent {
@@ -111,7 +111,7 @@
 .donateBtn button {
   padding: 8px 16px;
   border-radius: 5px;
-  background: #79ad3d !important;
+  background: var(--green-30);
 }
 
 .donateBtn p {
