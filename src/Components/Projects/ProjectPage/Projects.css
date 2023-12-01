@@ -1,8 +1,8 @@
-.filterContainer .searchBox>div:first-child {
+.filterContainer .searchBox > div:first-child {
   width: 80% !important;
 }
 
-.projectsCard>div:first-child {
+.projectsCard > div:first-child {
   border: 1px solid #c9c9c9;
   box-shadow: none;
 }
@@ -215,7 +215,6 @@
 .progressBar span {
   position: absolute;
   border-radius: 10px;
-  width: 40%;
   height: 100%;
   background: blue;
 }

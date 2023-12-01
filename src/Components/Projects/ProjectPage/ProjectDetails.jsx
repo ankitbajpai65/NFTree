@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./Projects.css";
@@ -8,7 +8,11 @@ const ProjectDetails = () => {
   const { data, page, user } = state.state;
   const navigate = useNavigate();
 
-  console.log(user);
+  const [progressWidth, setProgressWidth] = useState(0);
+
+  useEffect(() => {
+    setProgressWidth((data.plants_planted / data.plant_planned) * 100);
+  }, []);
 
   return (
     <>
@@ -35,7 +39,7 @@ const ProjectDetails = () => {
             </div>
 
             <div className="progressBar">
-              <span></span>
+              <span style={{ width: `${progressWidth}` + "%" }}></span>
             </div>
 
             <div style={{ lineHeight: "20px", margin: "4% 0" }}>
@@ -138,74 +142,77 @@ const ProjectDetails = () => {
             )}
           </div>
 
-          {/* image */}
-          <div className="detailPage-img plantImageDiv">
-            {/* <img src="https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" className="plantImage"/> */}
-          </div>
-          {/* image */}
-          <div className="detailPage-owner">
-            <p>Project Owner Details</p>
-            <div className="detailPage-ownerDetails">
-              <div>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <h5>Name </h5>
-                      </td>
-                      <td className="space">:</td>
-                      <td>{}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h5>Email </h5>
-                      </td>
-                      <td className="space">:</td>
-                      <td>{}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h5>Address </h5>
-                      </td>
-                      <td className="space">:</td>
-                      <td>{}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h5>Name of Organization </h5>
-                      </td>
-                      <td className="space">:</td>
-                      <td>{}</td>
-                    </tr>
-                  </tbody>
-
-                  <tbody>
-                    <tr>
-                      <td>
-                        <h5>Country </h5>
-                      </td>
-                      <td className="space">:</td>
-                      <td>{}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h5>Website </h5>
-                      </td>
-                      <td className="space">:</td>
-                      <td>{}</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h5>Designation </h5>
-                      </td>
-                      <td className="space">:</td>
-                      <td>{}</td>
-                    </tr>
-                  </tbody>
-                </table>
+          {sessionStorage.getItem("id") != null && (
+            <>
+              <div className="detailPage-img plantImageDiv">
+                {/* <img src="https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" className="plantImage"/> */}
               </div>
-            </div>
-          </div>
+
+              <div className="detailPage-owner">
+                <p>Project Owner Details</p>
+                <div className="detailPage-ownerDetails">
+                  <div>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <h5>Name </h5>
+                          </td>
+                          <td className="space">:</td>
+                          <td>{}</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <h5>Email </h5>
+                          </td>
+                          <td className="space">:</td>
+                          <td>{}</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <h5>Address </h5>
+                          </td>
+                          <td className="space">:</td>
+                          <td>{}</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <h5>Name of Organization </h5>
+                          </td>
+                          <td className="space">:</td>
+                          <td>{}</td>
+                        </tr>
+                      </tbody>
+
+                      <tbody>
+                        <tr>
+                          <td>
+                            <h5>Country </h5>
+                          </td>
+                          <td className="space">:</td>
+                          <td>{}</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <h5>Website </h5>
+                          </td>
+                          <td className="space">:</td>
+                          <td>{}</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <h5>Designation </h5>
+                          </td>
+                          <td className="space">:</td>
+                          <td>{}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>
