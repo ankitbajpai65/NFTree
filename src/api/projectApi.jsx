@@ -1,7 +1,8 @@
 import axios from "axios";
+import { baseURL } from "./kycApi";
 
 const createProject = async (props) => {
-  const url = "http://127.0.0.1:8000/project/create/";
+  const url = `${baseURL}/project/create/`;
   const data = props;
   const config = {
     headers: {
@@ -42,7 +43,7 @@ const updateProject = async (props, id) => {
 };
 
 const kycStatus = async (props) => {
-  const url = "http://127.0.0.1:8000/user/kyc/";
+  const url = `${baseURL}/user/kyc/`;
   const config = {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -59,7 +60,7 @@ const kycStatus = async (props) => {
 };
 
 const projectList = async () => {
-  const url = "http://127.0.0.1:8000/project/projectlist/";
+  const url = `${baseURL}/project/projectlist/`;
   try {
     const response = await axios.get(url);
     return response.data;
