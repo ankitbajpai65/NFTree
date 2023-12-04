@@ -103,7 +103,7 @@ const ProjectDetails = () => {
                         navigate("/projectreport");
                       }}
                     >
-                      Generate Report
+                      View Report
                     </button>
                   </div>
                 )}
